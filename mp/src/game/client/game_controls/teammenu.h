@@ -67,6 +67,7 @@ protected:
 	// helper functions
 	virtual void SetLabelText(const char *textEntryName, const char *text);
 	virtual void LoadMapPage( const char *mapName );
+	virtual void OnCommand( const char *command );
 	// virtual void MakeTeamButtons( void );
 	
 	// command callbacks

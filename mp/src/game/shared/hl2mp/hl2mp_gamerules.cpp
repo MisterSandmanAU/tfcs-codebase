@@ -195,7 +195,7 @@ CHL2MPRules::CHL2MPRules()
 		g_Teams.AddToTail( pTeam );
 	}
 
-	m_bTeamPlayEnabled = teamplay.GetBool();
+	m_bTeamPlayEnabled = true;
 	m_flIntermissionEndTime = 0.0f;
 	m_flGameStartTime = 0;
 

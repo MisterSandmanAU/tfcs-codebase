@@ -71,7 +71,7 @@ void FinishClientPutInServer( CHL2MP_Player *pPlayer )
 	data->SetString( "type", "1" );			// show userdata from stringtable entry
 	data->SetString( "msg",	"motd" );		// use this stringtable entry
 	data->SetBool( "unload", sv_motd_unload_on_dismissal.GetBool() );
-
+	pPlayer->ShowViewPortPanel( PANEL_TEAM, true, data );
 	pPlayer->ShowViewPortPanel( PANEL_INFO, true, data );
 
 	data->deleteThis();

@@ -234,50 +234,18 @@ void CHL2MP_Player::GiveDefaultItems( void )
 
 void CHL2MP_Player::PickDefaultSpawnTeam( void )
 {
-	if ( GetTeamNumber() == 0 )
+	if( GetTeamNumber() == 0 )
 	{
-		if ( HL2MPRules()->IsTeamplay() == false )
+		if( HL2MPRules()->IsTeamplay() == false )
 		{
-			if ( GetModelPtr() == NULL )
+			if( GetModelPtr() == NULL )
 			{
-				const char *szModelName = NULL;
-				szModelName = engine->GetClientConVarValue( engine->IndexOfEdict( edict() ), "cl_playermodel" );
-
-				if ( ValidatePlayerModel( szModelName ) == false )
-				{
-					char szReturnString[512];
-
-					Q_snprintf( szReturnString, sizeof (szReturnString ), "cl_playermodel models/combine_soldier.mdl\n" );
-					engine->ClientCommand ( edict(), szReturnString );
-				}
-
 				ChangeTeam( TEAM_UNASSIGNED );
 			}
 		}
 		else
 		{
-			CTeam *pCombine = g_Teams[TEAM_COMBINE];
-			CTeam *pRebels = g_Teams[TEAM_REBELS];
-
-			if ( pCombine == NULL || pRebels == NULL )
-			{
-				ChangeTeam( random->RandomInt( TEAM_COMBINE, TEAM_REBELS ) );
-			}
-			else
-			{
-				if ( pCombine->GetNumPlayers() > pRebels->GetNumPlayers() )
-				{
-					ChangeTeam( TEAM_REBELS );
-				}
-				else if ( pCombine->GetNumPlayers() < pRebels->GetNumPlayers() )
-				{
-					ChangeTeam( TEAM_COMBINE );
-				}
-				else
-				{
-					ChangeTeam( random->RandomInt( TEAM_COMBINE, TEAM_REBELS ) );
-				}
-			}
+			ChangeTeam( TEAM_SPECTATOR );
 		}
 	}
 }
@@ -331,6 +299,16 @@ void CHL2MP_Player::Spawn(void)
 	SetPlayerUnderwater(false);
 
 	m_bReady = false;
+
+	if( GetTeamNumber() != TEAM_SPECTATOR )
+	{
+		StopObserverMode();
+	}
+	else
+	{
+		//if we are a spectator then go into roaming mode
+		StartObserverMode( OBS_MODE_ROAMING );
+	}
 }
 
 void CHL2MP_Player::PickupObject( CBaseEntity *pObject, bool bLimitMassAndSize )

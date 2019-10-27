@@ -69,6 +69,7 @@
 #include "dt_utlvector_send.h"
 #include "vote_controller.h"
 #include "ai_speech.h"
+#include "hl2mp_gamerules.h"
 
 #if defined USES_ECON_ITEMS
 #include "econ_wearable.h"
@@ -6565,6 +6566,39 @@ bool CBasePlayer::ClientCommand( const CCommand &args )
 		}
 		return true;
 	}
+	else if( stricmp( cmd, "jointeam" ) == 0 ) //start jointeam
+	{
+		if( args.ArgC() < 2 )
+			return true;
+
+		int team = atoi( args.Arg( 1 ) );
+
+		//don't do anything if you join your own team
+		if( team == GetTeamNumber() )
+			return true;
+
+		//auto assign if you join team 0
+		if( team == 0 )
+		{
+			if( g_Teams[TEAM_RED]->GetNumPlayers() > g_Teams[TEAM_BLU]->GetNumPlayers() )
+				team = TEAM_RED;
+			else
+				team = TEAM_BLU;
+		}
+
+		if( !IsDead() )
+		{
+			if( GetTeamNumber() != TEAM_UNASSIGNED )
+			{
+				CommitSuicide();
+				IncrementFragCount( 1 ); //adds 1 frag to balance out the 1 subtracted for killing yourself
+			}
+		}
+
+		ChangeTeam( team );
+
+		return true;
+	} //end jointeam
 
 	return false;
 }

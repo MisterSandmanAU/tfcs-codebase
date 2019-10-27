@@ -1,0 +1,6 @@
+"LightmappedGeneric"
+{
+	// Original shader: BaseTimesLightmap
+	"$basetexture" "tfc/keep13"
+	"$surfaceprop" "dirt"
+}

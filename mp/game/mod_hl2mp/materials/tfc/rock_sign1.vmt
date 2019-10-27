@@ -1,0 +1,9 @@
+"LightmappedGeneric"
+{
+	// Original shader: BaseTimesLightmapPlusMaskedSphericalEnvMap
+	"$basetexture" "tfc/rock_sign1"
+	"$envmapsphere" 1
+	"$envmap" "environment maps/envmap_01a"
+	"$envmapmask" "tfc/rock_sign1r"
+	"$surfaceprop" "metal"
+}

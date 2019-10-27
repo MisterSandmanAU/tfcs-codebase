@@ -1,2 +1,1 @@
-# tfcs-codebase
- The codebase for Team Fortress Classic: Source.
+This is the codebase for Team Fortress Classic: Source. Developers feel free to upload your changes here.

@@ -154,7 +154,7 @@ void CTfc_WeaponCrowbar::Operator_HandleAnimEvent(animevent_t *pEvent, CBaseComb
 //-----------------------------------------------------------------------------
 // Attempt to lead the target (needed because citizens can't hit manhacks with the crowbar!)
 //-----------------------------------------------------------------------------
-ConVar sk_crowbar_lead_time("sk_tfc_crowbar_lead_time", "0.9");
+extern ConVar sk_crowbar_lead_time;
 
 int CTfc_WeaponCrowbar::WeaponMeleeAttack1Condition(float flDot, float flDist)
 {

@@ -20,7 +20,7 @@
 #include "weapon_hl2mpbase_machinegun.h"
 
 #ifdef CLIENT_DLL
-#define CWeaponSMG1 C_WeaponSMG1
+#define CWeaponSuperNailGun C_WeaponSuperNailGun
 #endif
 
 // memdbgon must be the last include file in a .cpp file!!!
@@ -43,7 +43,6 @@ public:
 	void	Precache(void);
 	void	AddViewKick(void);
 	virtual void	PrimaryAttack();
-	void	SecondaryAttack(void);
 
 	int		GetMinBurst() { return 2; }
 	int		GetMaxBurst() { return 5; }

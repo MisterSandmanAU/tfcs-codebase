@@ -589,6 +589,139 @@ public:
 
 LINK_ENTITY_TO_CLASS( item_ammo_ar2_altfire, CItem_AR2AltFireRound );
 
+// ========================================================================
+//	>> LargeBoxSHELLRounds
+// ========================================================================
+class CItem_LargeBoxShellRounds : public CItem
+{
+public:
+	DECLARE_CLASS(CItem_LargeBoxShellRounds, CItem);
+
+	void Spawn(void)
+	{
+		Precache();
+		SetModel("models/items/boxmrounds.mdl");
+		BaseClass::Spawn();
+	}
+	void Precache(void)
+	{
+		PrecacheModel("models/items/boxmrounds.mdl");
+	}
+	bool MyTouch(CBasePlayer *pPlayer)
+	{
+		if (ITEM_GiveAmmo(pPlayer, SIZE_AMMO_SHELL_LARGE, "shell"))
+		{
+			if (g_pGameRules->ItemShouldRespawn(this) == GR_ITEM_RESPAWN_NO)
+			{
+				UTIL_Remove(this);
+			}
+			return true;
+		}
+		return false;
+	}
+};
+LINK_ENTITY_TO_CLASS(item_ammo_shell_large, CItem_LargeBoxShellRounds);
+
+// ========================================================================
+//	>> LargeBoxCELLRounds
+// ========================================================================
+class CItem_LargeBoxCellRounds : public CItem
+{
+public:
+	DECLARE_CLASS(CItem_LargeBoxCellRounds, CItem);
+
+	void Spawn(void)
+	{
+		Precache();
+		SetModel("models/items/boxmrounds.mdl");
+		BaseClass::Spawn();
+	}
+	void Precache(void)
+	{
+		PrecacheModel("models/items/boxmrounds.mdl");
+	}
+	bool MyTouch(CBasePlayer *pPlayer)
+	{
+		if (ITEM_GiveAmmo(pPlayer, SIZE_AMMO_CELL_LARGE, "cell"))
+		{
+			if (g_pGameRules->ItemShouldRespawn(this) == GR_ITEM_RESPAWN_NO)
+			{
+				UTIL_Remove(this);
+			}
+			return true;
+		}
+		return false;
+	}
+};
+LINK_ENTITY_TO_CLASS(item_ammo_cell_large, CItem_LargeBoxCellRounds);
+
+// ========================================================================
+//	>> LargeBoxNailRounds
+// ========================================================================
+class CItem_LargeBoxNailRounds : public CItem
+{
+public:
+	DECLARE_CLASS(CItem_LargeBoxNailRounds, CItem);
+
+	void Spawn(void)
+	{
+		Precache();
+		SetModel("models/items/boxmrounds.mdl");
+		BaseClass::Spawn();
+	}
+	void Precache(void)
+	{
+		PrecacheModel("models/items/boxmrounds.mdl");
+	}
+	bool MyTouch(CBasePlayer *pPlayer)
+	{
+		if (ITEM_GiveAmmo(pPlayer, SIZE_AMMO_NAIL_LARGE, "nail"))
+		{
+			if (g_pGameRules->ItemShouldRespawn(this) == GR_ITEM_RESPAWN_NO)
+			{
+				UTIL_Remove(this);
+			}
+			return true;
+		}
+		return false;
+	}
+};
+LINK_ENTITY_TO_CLASS(item_ammo_nail_large, CItem_LargeBoxNailRounds);
+
+// ========================================================================
+//	>> LargeBoxNailRounds
+// ========================================================================
+class CItem_LargeBoxExplosiveRounds : public CItem
+{
+public:
+	DECLARE_CLASS(CItem_LargeBoxExplosiveRounds, CItem);
+
+	void Spawn(void)
+	{
+		Precache();
+		SetModel("models/items/boxmrounds.mdl");
+		BaseClass::Spawn();
+	}
+	void Precache(void)
+	{
+		PrecacheModel("models/items/boxmrounds.mdl");
+	}
+	bool MyTouch(CBasePlayer *pPlayer)
+	{
+		if (ITEM_GiveAmmo(pPlayer, SIZE_AMMO_EXPLOSIVE_LARGE, "explosive"))
+		{
+			if (g_pGameRules->ItemShouldRespawn(this) == GR_ITEM_RESPAWN_NO)
+			{
+				UTIL_Remove(this);
+			}
+			return true;
+		}
+		return false;
+	}
+};
+LINK_ENTITY_TO_CLASS(item_ammo_explosive_large, CItem_LargeBoxExplosiveRounds);
+
+
 // ==================================================================
 // Ammo crate which will supply infinite ammo of the specified type
 // ==================================================================

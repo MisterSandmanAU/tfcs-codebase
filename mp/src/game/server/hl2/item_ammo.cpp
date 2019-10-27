@@ -689,7 +689,7 @@ public:
 LINK_ENTITY_TO_CLASS(item_ammo_nail_large, CItem_LargeBoxNailRounds);
 
 // ========================================================================
-//	>> LargeBoxNailRounds
+//	>> LargeBoxExplosiveRounds
 // ========================================================================
 class CItem_LargeBoxExplosiveRounds : public CItem
 {
@@ -720,6 +720,55 @@ public:
 	}
 };
 LINK_ENTITY_TO_CLASS(item_ammo_explosive_large, CItem_LargeBoxExplosiveRounds);
+
+// ========================================================================
+//	>> LargeBoxBackpackRounds
+// ========================================================================
+class CItem_LargeBoxBackPackRounds : public CItem
+{
+public:
+	DECLARE_CLASS(CItem_LargeBoxBackPackRounds, CItem);
+
+	void Spawn(void)
+	{
+		Precache();
+		SetModel("models/items/boxmrounds.mdl");
+		BaseClass::Spawn();
+	}
+	void Precache(void)
+	{
+		PrecacheModel("models/items/boxmrounds.mdl");
+	}
+	bool MyTouch(CBasePlayer *pPlayer)
+	{
+		if (pPlayer)
+		{
+			ITEM_GiveAmmo(pPlayer, SIZE_AMMO_EXPLOSIVE_LARGE, "AR2");
+			ITEM_GiveAmmo(pPlayer, SIZE_AMMO_EXPLOSIVE_LARGE, "AR2AltFire");
+			ITEM_GiveAmmo(pPlayer, SIZE_AMMO_EXPLOSIVE_LARGE, "Pistol");
+			ITEM_GiveAmmo(pPlayer, SIZE_AMMO_EXPLOSIVE_LARGE, "SMG1");
+			ITEM_GiveAmmo(pPlayer, SIZE_AMMO_EXPLOSIVE_LARGE, "357");
+			ITEM_GiveAmmo(pPlayer, SIZE_AMMO_EXPLOSIVE_LARGE, "XBowBolt");
+			ITEM_GiveAmmo(pPlayer, SIZE_AMMO_EXPLOSIVE_LARGE, "Buckshot");
+			ITEM_GiveAmmo(pPlayer, SIZE_AMMO_EXPLOSIVE_LARGE, "RPG_Round");
+			ITEM_GiveAmmo(pPlayer, SIZE_AMMO_EXPLOSIVE_LARGE, "ASMG1_Grenade");
+			ITEM_GiveAmmo(pPlayer, SIZE_AMMO_EXPLOSIVE_LARGE, "Grenade");
+			ITEM_GiveAmmo(pPlayer, SIZE_AMMO_EXPLOSIVE_LARGE, "slam");
+			ITEM_GiveAmmo(pPlayer, SIZE_AMMO_EXPLOSIVE_LARGE, "shell");
+			ITEM_GiveAmmo(pPlayer, SIZE_AMMO_EXPLOSIVE_LARGE, "cell");
+			ITEM_GiveAmmo(pPlayer, SIZE_AMMO_EXPLOSIVE_LARGE, "nail");
+			ITEM_GiveAmmo(pPlayer, SIZE_AMMO_EXPLOSIVE_LARGE, "explosive");
+
+			if (g_pGameRules->ItemShouldRespawn(this) == GR_AMMO_RESPAWN_YES)
+			{
+				UTIL_Remove(this);
+			}
+			return true;
+		}
+		return false;
+	}
+};
+LINK_ENTITY_TO_CLASS(item_ammo_backpack, CItem_LargeBoxBackPackRounds);
 
 
 // ==================================================================

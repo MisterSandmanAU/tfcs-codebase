@@ -73,9 +73,6 @@
 			// to the "game" path go.
 			game+game_write		hl2mp
 
-			// Where the game's binaries are
-			gamebin				hl2mp/bin
-
 			// Last, mount in shared HL2 loose files
 			game				|all_source_engine_paths|hl2mp
 			game				|all_source_engine_paths|hl2

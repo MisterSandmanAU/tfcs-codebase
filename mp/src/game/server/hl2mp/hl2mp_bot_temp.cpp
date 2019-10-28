@@ -21,7 +21,6 @@
 void ClientPutInServer( edict_t *pEdict, const char *playername );
 void Bot_Think( CHL2MP_Player *pBot );
 
-#ifdef DEBUG
 
 ConVar bot_forcefireweapon( "bot_forcefireweapon", "", 0, "Force bots with the specified weapon to fire." );
 ConVar bot_forceattack2( "bot_forceattack2", "0", 0, "When firing, use attack2." );
@@ -95,6 +94,16 @@ CBasePlayer *BotPutInServer( bool bFrozen, int iTeam )
 	pPlayer->ClearFlags();
 	pPlayer->AddFlag( FL_CLIENT | FL_FAKECLIENT );
 
+	pPlayer->GiveNamedItem("tfc_weapon_crowbar");
+
+	pPlayer->GiveNamedItem("tfc_weapon_nailgun");
+
+	pPlayer->GiveNamedItem("tfc_weapon_supernailgun");
+
+	pPlayer->GiveNamedItem("tfc_weapon_shotgun");
+
+	pPlayer->GiveNamedItem("tfc_weapon_shotgun12gauge");
+
 	if ( bFrozen )
 		pPlayer->AddEFlags( EFL_BOT_FROZEN );
 
@@ -105,6 +114,20 @@ CBasePlayer *BotPutInServer( bool bFrozen, int iTeam )
 
 	return pPlayer;
 }
+
+void Bot_add_team_2()
+{
+	BotPutInServer(0, 2);
+}
+
+void Bot_add_team_3()
+{
+	BotPutInServer(0, 3);
+}
+
+ConCommand bot_add_2("bot_add_2", Bot_add_team_2, "Add a bot to Team 2.", FCVAR_CHEAT);
+
+ConCommand bot_add_3("bot_add_3", Bot_add_team_3, "Add a bot to Team 3.", FCVAR_CHEAT);
 
 //-----------------------------------------------------------------------------
 // Purpose: Run through all the Bots in the game and let them think.
@@ -430,6 +453,4 @@ void Bot_Think( CHL2MP_Player *pBot )
 
 
 
-
-#endif
 

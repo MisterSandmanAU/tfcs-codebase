@@ -11,7 +11,7 @@ WeaponData
 	"bucket_position"	"0"
 
 	"clip_size"			"-1"
-	"primary_ammo"		"Pistol"
+	"primary_ammo"		"nail"
 	"secondary_ammo"	"None"
 
 	"weight"			"2"

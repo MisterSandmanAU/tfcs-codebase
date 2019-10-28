@@ -11,7 +11,7 @@ WeaponData
 	"bucket_position"		"0"
 
 	"clip_size"				"16"
-	"primary_ammo"			"Buckshot"
+	"primary_ammo"			"shell"
 	"secondary_ammo"		"None"
 
 	"weight"				"4"

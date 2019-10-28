@@ -15,7 +15,7 @@ WeaponData
 	"default_clip"			"4"
 	"default_clip2"			"-1"
 
-	"primary_ammo"			"rpg_round"
+	"primary_ammo"			"explosive"
 	"secondary_ammo"		"None"
 
 	"weight"				"0"

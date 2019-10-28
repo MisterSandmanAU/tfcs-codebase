@@ -16,7 +16,7 @@ WeaponData
 	"default_clip"			"-1"
 	"default_clip2"			"-1"
 
-	"primary_ammo"			"TFC_AMMO_NAILS"
+	"primary_ammo"			"nail"
 	"secondary_ammo"		"None"
 
 	"weight"				"3"

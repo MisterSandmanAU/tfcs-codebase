@@ -56,6 +56,10 @@ public:
 
 	CHL2MP_Player		*GetOuter();
 
+#if defined ( TFC_USE_PLAYERCLASSES )
+	int GetPlayerClass(int iIndex);
+#endif
+
 private:
 	void				GetOuterAbsVelocity( Vector& vel );
 
@@ -92,6 +96,12 @@ private:
 	QAngle				m_angRender;
 
 	float				m_flTurnCorrectionTime;
+
+protected:
+
+#if defined ( TFC_USE_PLAYERCLASSES )
+	int		m_iPlayerClass[MAX_PLAYERS + 1];
+#endif
 };
 
 #endif //HL2MP_PLAYER_SHARED_h

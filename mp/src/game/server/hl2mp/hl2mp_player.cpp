@@ -51,6 +51,10 @@ IMPLEMENT_SERVERCLASS_ST(CHL2MP_Player, DT_HL2MP_Player)
 	
 	SendPropExclude( "DT_BaseAnimating", "m_flPoseParameter" ),
 	SendPropExclude( "DT_BaseFlex", "m_viewtarget" ),
+#if defined ( TFC_USE_PLAYERCLASSES )
+	SendPropInt( SENDINFO( m_iPlayerClass), 4 ),
+	SendPropInt( SENDINFO( m_iDesiredPlayerClass ), 4 ),
+#endif
 
 //	SendPropExclude( "DT_ServerAnimationData" , "m_flCycle" ),	
 //	SendPropExclude( "DT_AnimTimeMustBeFirst" , "m_flAnimTime" ),
@@ -173,6 +177,14 @@ void CHL2MP_Player::GiveAllItems( void )
 	CBasePlayer::GiveAmmo( 1,	"grenade" );
 	CBasePlayer::GiveAmmo( 2,	"slam" );
 
+	CBasePlayer::GiveAmmo(255, "nail");
+
+	CBasePlayer::GiveAmmo(255, "shell");
+
+	CBasePlayer::GiveAmmo(255, "cell");
+
+	CBasePlayer::GiveAmmo(255, "explosive");
+
 	GiveNamedItem( "weapon_crowbar" );
 	GiveNamedItem( "weapon_stunstick" );
 	GiveNamedItem( "weapon_pistol" );
@@ -191,8 +203,44 @@ void CHL2MP_Player::GiveAllItems( void )
 	GiveNamedItem( "weapon_slam" );
 
 	GiveNamedItem( "weapon_physcannon" );
+
+	GiveNamedItem("tfc_weapon_crowbar");
+
+	GiveNamedItem("tfc_weapon_nailgun");
+
+	GiveNamedItem("tfc_weapon_supernailgun");
+
+	GiveNamedItem("tfc_weapon_shotgun");
+
+	GiveNamedItem("tfc_weapon_shotgun12gauge");
 	
 }
+
+void CHL2MP_Player::GiveTFCItems(void)
+{
+	EquipSuit();
+
+	CBasePlayer::GiveAmmo(255, "nail");
+
+	CBasePlayer::GiveAmmo(255, "shell");
+
+	CBasePlayer::GiveAmmo(255, "cell");
+
+	CBasePlayer::GiveAmmo(255, "explosive");
+
+
+	GiveNamedItem("tfc_weapon_crowbar");
+
+	GiveNamedItem("tfc_weapon_nailgun");
+
+	GiveNamedItem("tfc_weapon_supernailgun");
+
+	GiveNamedItem("tfc_weapon_shotgun");
+
+	GiveNamedItem("tfc_weapon_shotgun12gauge");
+
+}
+
 
 void CHL2MP_Player::GiveDefaultItems( void )
 {
@@ -987,6 +1035,27 @@ bool CHL2MP_Player::ClientCommand( const CCommand &args )
 		}
 		return true;
 	}
+	else if (!Q_strncmp(args[0], "cls_", 4))
+	{
+#if defined ( TFC_USE_PLAYERCLASSES )
+		CSDKTeam *pTeam = GetGlobalSDKTeam(GetTeamNumber());
+
+		Assert(pTeam);
+
+		int iClassIndex = PLAYERCLASS_UNDEFINED;
+
+		if (pTeam->IsClassOnTeam(args[0], iClassIndex))
+		{
+			HandleCommand_JoinClass(iClassIndex);
+		}
+		else
+		{
+			DevMsg("player tried to join a class that isn't on this team ( %s )\n", pcmd);
+			ShowClassSelectMenu();
+		}
+#endif
+		return true;
+	}
 	else if ( FStrEq( args[0], "joingame" ) )
 	{
 		return true;
@@ -1006,6 +1075,13 @@ void CHL2MP_Player::CheatImpulseCommands( int iImpulse )
 					GiveAllItems();
 				}
 			}
+		case 99:
+		{
+			if (sv_cheats->GetBool())
+			{
+				GiveTFCItems();
+			}
+		}
 			break;
 
 		default:

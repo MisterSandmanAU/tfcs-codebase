@@ -1,4 +1,4 @@
-//========= Copyright Valve Corporation, All rights reserved. ============//
+//========= Copyright © 1996-2008, Valve Corporation, All rights reserved. ============//
 //
 // Purpose: 
 //
@@ -6,6 +6,7 @@
 
 #include "cbase.h"
 #include "weapon_sdkbase.h"
+#include "sdk_shareddefs.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -64,8 +65,8 @@ const char *pszTeamNames[] =
 const char *pszPossiblePlayerModels[] =
 {
 	SDK_PLAYER_MODEL,
-	"models/player/american_rifleman.mdl",
-	"models/player/german_rifleman.mdl",
+	"models/player/blue_player.mdl",
+	"models/player/red_player.mdl",
 	NULL
 };
 

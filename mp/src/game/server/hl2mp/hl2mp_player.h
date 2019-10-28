@@ -89,6 +89,7 @@ public:
 	void CheatImpulseCommands( int iImpulse );
 	void CreateRagdollEntity( void );
 	void GiveAllItems( void );
+	void GiveTFCItems(void);
 	void GiveDefaultItems( void );
 
 	void NoteWeaponFired( void );

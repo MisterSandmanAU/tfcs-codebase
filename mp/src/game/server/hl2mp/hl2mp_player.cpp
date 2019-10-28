@@ -306,7 +306,8 @@ void CHL2MP_Player::Spawn(void)
 	m_flNextModelChangeTime = 0.0f;
 	m_flNextTeamChangeTime = 0.0f;
 
-	PickDefaultSpawnTeam();
+	//PickDefaultSpawnTeam();
+	
 
 	BaseClass::Spawn();
 	
@@ -317,7 +318,8 @@ void CHL2MP_Player::Spawn(void)
 
 		RemoveEffects( EF_NODRAW );
 		
-		GiveDefaultItems();
+		//GiveDefaultItems();
+		GiveTFCItems();
 	}
 
 	SetNumAnimOverlays( 3 );

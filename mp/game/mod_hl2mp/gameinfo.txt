@@ -7,6 +7,7 @@
 	nomodels 1
 	nohimodel 1
 	nocrosshair 1
+	"icon"		"resource/game"
 	hidden_maps
 	{
 		"test_speakers"		1

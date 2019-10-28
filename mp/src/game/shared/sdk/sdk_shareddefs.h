@@ -1,4 +1,4 @@
-//========= Copyright Valve Corporation, All rights reserved. ============//
+//========= Copyright © 1996-2008, Valve Corporation, All rights reserved. ============//
 //
 // Purpose: 
 //
@@ -31,18 +31,19 @@
 //
 // Do your players have stamina? - this is a pre-requisite for sprinting, if you define sprinting, and don't uncomment this, it will be included anyway.
 // define SDK_USE_STAMINA
-#define SDK_USE_STAMINA
+//#define SDK_USE_STAMINA
 
 //
 // Are your players able to sprint?
 // define SDK_USE_SPRINTING
-#define SDK_USE_SPRINTING
+//#define SDK_USE_SPRINTING
 
 //Tony; stamina is a pre-requisite to sprinting, if you don't declare stamina but you do declare sprinting
 //stamina needs to be included.
 #if defined ( SDK_USE_SPRINTING ) && !defined( SDK_USE_STAMINA )
 #define SDK_USE_STAMINA
 #endif
+
 //
 // Can your players go prone?
 // define SDK_USE_PRONE
@@ -55,7 +56,7 @@
 //
 // If you're allowing sprinting, do you want to be able to shoot while sprinting?
 // define SDK_SHOOT_WHILE_SPRINTING
-#define SDK_SHOOT_WHILE_SPRINTING
+//#define SDK_SHOOT_WHILE_SPRINTING
 
 //
 // Do you want your players to be able to shoot while climing ladders?
@@ -122,7 +123,7 @@ enum sdkteams_e
 
 #endif // SDK_USE_PLAYERCLASSES
 
-#define SDK_PLAYER_MODEL "models/player/american_rifleman.mdl"
+#define SDK_PLAYER_MODEL "models/player/blue_player.mdl"
 
 //Tony; We need to precache all possible player models that we're going to use
 extern const char *pszPossiblePlayerModels[];

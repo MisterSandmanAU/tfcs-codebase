@@ -1,4 +1,4 @@
-//========= Copyright Valve Corporation, All rights reserved. ============//
+//========= Copyright © 1996-2008, Valve Corporation, All rights reserved. ============//
 //
 // Purpose: Base code for any melee based weapon
 //
@@ -103,10 +103,12 @@ void CWeaponSDKMelee::PrimaryAttack()
 	
 #ifndef CLIENT_DLL
 	CSDKPlayer *pPlayer = ToSDKPlayer( GetPlayerOwner() );
+	pPlayer->NoteWeaponFired();
 	// Move other players back to history positions based on local player's lag
 	lagcompensation->StartLagCompensation( pPlayer, pPlayer->GetCurrentCommand() );
 #endif
 	Swing( false );
+
 #ifndef CLIENT_DLL
 	// Move other players back to history positions based on local player's lag
 	lagcompensation->FinishLagCompensation( pPlayer );

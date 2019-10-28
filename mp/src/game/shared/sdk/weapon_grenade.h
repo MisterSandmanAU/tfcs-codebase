@@ -1,4 +1,4 @@
-//========= Copyright Valve Corporation, All rights reserved. ============//
+//========= Copyright © 1996-2005, Valve Corporation, All rights reserved. ============//
 //
 // Purpose: 
 //
@@ -15,34 +15,35 @@
 
 #ifdef CLIENT_DLL
 	
-	#define CSDKGrenade C_SDKGrenade
+	#define CWeaponGrenade C_WeaponGrenade
 
 #endif
 
 //-----------------------------------------------------------------------------
 // Fragmentation grenades
 //-----------------------------------------------------------------------------
-class CSDKGrenade : public CBaseSDKGrenade
+class CWeaponGrenade : public CBaseSDKGrenade
 {
 public:
-	DECLARE_CLASS( CSDKGrenade, CBaseSDKGrenade );
+	DECLARE_CLASS( CWeaponGrenade, CBaseSDKGrenade );
 	DECLARE_NETWORKCLASS();
 	DECLARE_PREDICTABLE();
+	DECLARE_ACTTABLE();
 
-	CSDKGrenade() {}
+	CWeaponGrenade() {}
 
-	virtual SDKWeaponID GetWeaponID( void ) const		{ return WEAPON_GRENADE; }
+	virtual SDKWeaponID GetWeaponID( void ) const		{ return SDK_WEAPON_GRENADE; }
 
 #ifdef CLIENT_DLL
 
 #else
 	DECLARE_DATADESC();
 
-	virtual void EmitGrenade( Vector vecSrc, QAngle vecAngles, Vector vecVel, AngularImpulse angImpulse, CBasePlayer *pPlayer );
+	virtual void EmitGrenade( Vector vecSrc, QAngle vecAngles, Vector vecVel, AngularImpulse angImpulse, CBasePlayer *pPlayer, CWeaponSDKBase *pWeapon );
 	
 #endif
 
-	CSDKGrenade( const CSDKGrenade & ) {}
+	CWeaponGrenade( const CWeaponGrenade & ) {}
 };
 
 

@@ -1,4 +1,4 @@
-//========= Copyright Valve Corporation, All rights reserved. ============//
+//========= Copyright © 1996-2005, Valve Corporation, All rights reserved. ============//
 //
 // Purpose: 
 //
@@ -13,6 +13,7 @@
 
 #include "playerclass_info_parse.h"
 #include "networkvar.h"
+#include "sdk_shareddefs.h"
 
 #if defined ( SDK_USE_PLAYERCLASSES )
 //--------------------------------------------------------------------------------------------------------

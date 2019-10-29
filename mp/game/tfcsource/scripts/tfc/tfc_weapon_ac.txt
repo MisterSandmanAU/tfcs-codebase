@@ -22,14 +22,10 @@ WeaponData
 	SoundData
 	{
 
-		"empty"				"Weapon_AC.Empty"
-		"reload"			"Weapon_AC.Reload"
+		"empty"			"Weapon_AC.Empty"
 		"special1"			"Weapon_AC.Special1"
+		"special2"		"Weapon_AC.Special2"
 		"single_shot"		"Weapon_AC.Single"
-		"double_shot"		"Weapon_AC.Double"
-		// NPC WEAPON SOUNDS
-		"reload_npc"		"Weapon_AC.NPC_Reload"
-		"single_shot_npc"	"Weapon_AC.NPC_Single"
 	}
 
 	// Weapon Sprite data is loaded by the Client DLL.
@@ -37,19 +33,19 @@ WeaponData
 	{
 		"weapon"
 		{
-				"file"		"sprites/tfchud04"
+				"file"		"sprites/tfchud03"
 				"x"	                "0"
 				"y"	                "130"
 				"width"	                "170"
-                                "height"                "45"
+                            			"height"                "45"
 		}
 		"weapon_s"
 		{	
-				"file"          "sprites/tfchud04
-                                "x"	                "0"
+				"file"          "sprites/tfchud04"
+                            			"x"	                "0"
 				"y"	                "130"
 				"width"	                "170"
-                                "height"                "45"
+                                		"height"                	"45"
 		}
 		"ammo"
 		{

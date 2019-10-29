@@ -1,16 +1,16 @@
-// Super Shotgun
+// 12 Gauge
 
 WeaponData
 {
 	// Weapon data is loaded by both the Game and Client DLLs.
-	"printname"	"#TFC_Shotgun"
+	"printname"	"#TFC_12Gauge"
 	"viewmodel"				"models/weapons/v_shotgun.mdl"
 	"playermodel"			"models/weapons/w_shotgun.mdl"
 	"anim_prefix"			"shotgun"
-	"bucket"				"3"
-	"bucket_position"		"0"
+	"bucket"				"1"
+	"bucket_position"		"2"
 
-	"clip_size"				"16"
+	"clip_size"				"8"
 	"primary_ammo"			"shell"
 	"secondary_ammo"		"None"
 
@@ -37,13 +37,19 @@ WeaponData
 	{
 		"weapon"
 		{
-				"font"		"WeaponIcons"
-				"character"	"b"
+			"file"		"sprites/tfchud01"
+			"x"			"0"
+			"y"			"170"
+			"width"		"170"
+			"height"	"45"
 		}
 		"weapon_s"
-		{	
-				"font"		"WeaponIconsSelected"
-				"character"	"b"
+		{
+			"file"		"sprites/tfchud02"
+			"x"			"0"
+			"y"			"170"
+			"width"		"170"
+			"height"	"45"
 		}
 		"ammo"
 		{

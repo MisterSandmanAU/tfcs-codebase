@@ -306,8 +306,8 @@
 
 	"rndwave"
 	{
-		"wave"		"weapons/crowbar/crowbar_impact1.wav"
-		"wave"		"weapons/crowbar/crowbar_impact2.wav"
+		"wave"		"weapons/crowbar_world1.wav"
+		"wave"		"weapons/crowbar_world2.wav"
 	}
 }
 

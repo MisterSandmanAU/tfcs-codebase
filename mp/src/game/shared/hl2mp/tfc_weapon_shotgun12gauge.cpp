@@ -309,7 +309,7 @@ void CTfc_WeaponShotgun12gauge::PrimaryAttack(void)
 
 	// Don't fire again until fire animation has completed
 	m_flNextPrimaryAttack = gpGlobals->curtime + SequenceDuration();
-	m_iClip1 -= 2;
+	m_iClip1 -= 1;
 
 	// player "shoot" animation
 	pPlayer->SetAnimation( PLAYER_ATTACK1 );

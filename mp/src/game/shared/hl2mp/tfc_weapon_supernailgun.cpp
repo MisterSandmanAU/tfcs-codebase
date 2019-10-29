@@ -226,7 +226,7 @@ void CWeaponSuperNailGun::PrimaryAttack(void)
 		m_iClip1 -= iBulletsToFire;
 	}
 
-	CHL2MP_Player *pHL2MPPlayer = ToHL2MPPlayer(pPlayer);
+	//CHL2MP_Player *pHL2MPPlayer = ToHL2MPPlayer(pPlayer);
 
 	// Fire the Nails
 
@@ -263,11 +263,11 @@ void CWeaponSuperNailGun::PrimaryAttack(void)
 	// Decrease ammo
 	if (UsesClipsForAmmo1())
 	{
-		pPlayer->RemoveAmmo(1, m_iClip1);
+		pPlayer->RemoveAmmo(2, m_iClip1);
 	}
 	else
 	{
-		pPlayer->RemoveAmmo(1, m_iPrimaryAmmoType);
+		pPlayer->RemoveAmmo(2, m_iPrimaryAmmoType);
 	}
 
 

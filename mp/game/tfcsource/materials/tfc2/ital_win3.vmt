@@ -1,0 +1,9 @@
+"LightmappedGeneric"
+{
+	// Original shader: BaseTimesLightmapPlusMaskedSphericalEnvMap
+	"$basetexture" "tfc2/ital_win3"
+	"$envmapsphere" 1
+	"$envmap" "environment maps/envmap_01a"
+	"$envmapmask" "tfc2/ital_win2r"
+	"$surfaceprop" "glass"
+}

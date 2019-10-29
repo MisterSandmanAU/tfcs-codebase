@@ -1,0 +1,6 @@
+"LightmappedGeneric"
+{
+	// Original shader: BaseTimesLightmap
+	"$basetexture" "tfc2/i_door_wood1"
+	"$surfaceprop" "wood"
+}

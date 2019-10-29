@@ -1,0 +1,5 @@
+"LightmappedGeneric"
+{
+	// Original shader: BaseTimesLightmap
+	"$basetexture" "tfc/out_wall6c4"
+}

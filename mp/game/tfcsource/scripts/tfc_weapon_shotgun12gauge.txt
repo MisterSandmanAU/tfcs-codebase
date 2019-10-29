@@ -39,7 +39,7 @@ WeaponData
 		{
 			"file"		"sprites/tfchud01"
 			"x"			"0"
-			"y"			"165"
+			"y"			"175"
 			"width"		"170"
 			"height"	"45"
 		}
@@ -47,7 +47,7 @@ WeaponData
 		{
 			"file"		"sprites/tfchud02"
 			"x"			"0"
-			"y"			"165"
+			"y"			"175"
 			"width"		"170"
 			"height"	"45"
 		}

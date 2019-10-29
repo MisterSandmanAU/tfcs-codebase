@@ -1,0 +1,65 @@
+"UnlitGeneric"
+{
+	"$basetexture" "liquids/!water2b"
+	"%tooltexture" "liquids/!water2b"
+
+	"%compilewater" 1
+	"$surfaceprop" "water"
+	"$bottommaterial" "liquids/water_risingblue"
+	"$subdivsize" 64
+
+	"$fogenable" 1
+	"$fogcolor" "{15 18 20}"
+	"$fogstart" 1.00
+	"$fogend" 1000.00
+}
+
+"Water"
+{
+	"$basetexture" "liquids/!water2b"
+	"%tooltexture" "liquids/!water2b"
+	"$refracttexture" "_rt_WaterRefraction"
+	"$refractamount" "1.0"
+	"$refracttint" "[0.9 1.0 0.95]"
+	"$envmap" "env_cubemap"
+
+	"$reflecttexture" "_rt_WaterReflection"
+	"$reflectamount" "1.0"
+	"$reflecttint" "[.9 .9 .9]"
+
+	"$scale" "[1 1]"
+
+	"$bumpmap" "dev/water_dudv"
+	"$normalmap" "dev/water_normal"
+	"$forcecheap" 1
+
+	"%compilewater" 1
+	"$surfaceprop" "water"
+	"$bottommaterial" "liquids/water_cheap1beneath"
+	"$subdivsize" 64
+	"$bumpframe" "0"
+
+	"$fogenable" 1
+	"$fogcolor" "{30 70 89}"
+	"$fogstart" 1.00
+	"$fogend" 400.00
+
+	"$bumpoffset" "[0 0]"
+
+	"Proxies"
+	{
+		"AnimatedTexture"
+		{
+			"animatedtexturevar" "$normalmap"
+			"animatedtextureframenumvar" "$bumpframe"
+			"animatedtextureframerate" 30.00
+		}
+
+		"TextureScroll"
+		{
+			"texturescrollvar" "$bumptransform"
+			"texturescrollrate" .05
+			"texturescrollangle" 45.00
+		}
+	}
+}

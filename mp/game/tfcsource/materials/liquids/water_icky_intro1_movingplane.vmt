@@ -1,0 +1,50 @@
+"LightmappedGeneric"
+{
+	"$basetexture" "dev/water_moving"
+	"$bumpmap" "dev/water_normal"
+//	"$selfillum" "1"
+	"$color" "{52 49 44}"
+	"$translucent" "1"
+	"$surfaceprop" "water"
+	"$envmap" "env_cubemap"
+//	"$envmaptint" "[1 .9 .8]"
+//	"$envmapcontrast" "1"
+	"%keywords" "wasteland"
+	"%compilewater" 1
+	"$abovewater" 1
+	"$bottommaterial" "liquids/water_icky_intro1_dx70_beneath"
+	"$normalmapalphaenvmapmask" 1
+
+	// Enable water volumetric fog.
+	"$fogenable" 1
+
+	// This is the color of the fog in the water when looking from above.
+	// You'll have the same thing in the bottom material for when looking from 
+	// below.
+	"$fogcolor" "{42 39 34}"
+
+	// This is the distance in inches from the eye which water fog starts.
+	// This has to be 0.0 for edge fading to work properly.
+	"$fogstart" 1.00
+
+	// This is the distance in inches from the eye which water fog ends.
+	"$fogend" 300.00
+	
+	"$bumpframe" 0	// Needed for dx7 
+
+	"Proxies"
+	{
+		"AnimatedTexture"
+		{
+			"animatedtexturevar" "$basetexture"
+			"animatedtextureframenumvar" "$frame"
+			"animatedtextureframerate" 21.00
+		}
+		"AnimatedTexture"
+		{
+			"animatedtexturevar" "$bumpmap"
+			"animatedtextureframenumvar" "$bumpframe"
+			"animatedtextureframerate" 21.00
+		}
+	}
+}

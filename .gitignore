@@ -34,6 +34,11 @@ ipch
 obj*/
 !devtools/*.mak
 !utils/smdlexp/smdlexp.mak
+*.vpc_crc
+*_osx32
+*_osx32_hl2mp
+*_osx32_hl2mp.vpc_crc
+.DS_Store
 
 # Specific Source build products
 client.pdb

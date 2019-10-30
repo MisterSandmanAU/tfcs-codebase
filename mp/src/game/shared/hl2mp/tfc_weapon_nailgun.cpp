@@ -226,7 +226,7 @@ void CWeaponNailGun::PrimaryAttack(void)
 		m_iClip1 -= iBulletsToFire;
 	}
 
-	CHL2MP_Player *pHL2MPPlayer = ToHL2MPPlayer(pPlayer);
+	//CHL2MP_Player *pHL2MPPlayer = ToHL2MPPlayer(pPlayer);
 
 	// Fire the Nails
 
@@ -272,7 +272,7 @@ void CWeaponNailGun::PrimaryAttack(void)
 	
 
 	// Can shoot again immediately
-	m_flNextPrimaryAttack = gpGlobals->curtime + 0.5f;
+	m_flNextPrimaryAttack = gpGlobals->curtime + 0.2f;
 
 }
 

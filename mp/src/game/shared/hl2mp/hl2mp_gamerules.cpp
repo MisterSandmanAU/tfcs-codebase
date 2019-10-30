@@ -938,7 +938,7 @@ CAmmoDef *GetAmmoDef()
 		def.AddAmmoType("shell",			DMG_BULLET,					TRACER_LINE_AND_WHIZ,	0,			0,			200,		BULLET_IMPULSE(200, 1225),	0 );
 		def.AddAmmoType("cell",				DMG_BURN,					TRACER_LINE_AND_WHIZ,	0,			0,			200,		BULLET_IMPULSE(200, 1225),	0 );
 		def.AddAmmoType("nail",				DMG_BULLET,					TRACER_LINE_AND_WHIZ,	0,			0,			200,		BULLET_IMPULSE(200, 1225),	0 );
-		def.AddAmmoType("explosive",		DMG_BURN,					TRACER_LINE_AND_WHIZ,	0,			0,			200,		BULLET_IMPULSE(200, 1225),	0 );
+		def.AddAmmoType("explosive",		DMG_BURN,					TRACER_LINE_AND_WHIZ,	0,			0,			50,		BULLET_IMPULSE(200, 1225),	0 );
 	}
 
 	return &def;

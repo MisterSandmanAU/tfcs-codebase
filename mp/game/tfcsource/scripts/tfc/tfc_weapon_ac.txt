@@ -25,7 +25,7 @@ WeaponData
 		"empty"			"Weapon_AC.Empty"
 		"special1"			"Weapon_AC.Special1"
 		"special2"		"Weapon_AC.Special2"
-		"special2"		"Weapon_AC.Special3"
+		"special3"		"Weapon_AC.Special3"
 		"single_shot"		"Weapon_AC.Single"
 	}
 

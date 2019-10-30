@@ -7,8 +7,8 @@ WeaponData
 	"viewmodel"				"models/weapons/v_shotgun.mdl"
 	"playermodel"			"models/weapons/w_shotgun.mdl"
 	"anim_prefix"			"shotgun"
-	"bucket"				"3"
-	"bucket_position"		"2"
+	"bucket"				"2"
+	"bucket_position"		"3"
 
 	"clip_size"				"16"
 	"primary_ammo"			"shell"
@@ -39,7 +39,7 @@ WeaponData
 		{
 			"file"		"sprites/640hud1"
 			"x"			"0"
-			"y"			"170"
+			"y"			"175"
 			"width"		"170"
 			"height"	"45"
 		}
@@ -47,7 +47,7 @@ WeaponData
 		{	
 			"file"		"sprites/640hud4"
 			"x"			"0"
-			"y"			"170"
+			"y"			"175"
 			"width"		"170"
 			"height"	"45"
 		}
@@ -55,7 +55,7 @@ WeaponData
 		{
 			"file"		"sprites/640hud1"
 			"x"			"0"
-			"y"			"170"
+			"y"			"175"
 			"width"		"170"
 			"height"	"45"
 		}

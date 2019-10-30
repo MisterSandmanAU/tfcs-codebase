@@ -11,7 +11,7 @@
 #ifdef CLIENT_DLL
 #include "c_hl2mp_player.h"
 #else
-#include "grenade_ar2.h"
+#include "tfc_baseprojectile.h"
 #include "hl2mp_player.h"
 #include "basegrenade_shared.h"
 #endif
@@ -238,14 +238,14 @@ void CWeaponSuperNailGun::PrimaryAttack(void)
 
 #ifndef CLIENT_DLL
 	//Create the grenade
-	CGrenadeAR2 *pGrenade = (CGrenadeAR2*)Create("grenade_ar2", vecSrc, vec3_angle, pPlayer);
-	pGrenade->SetAbsVelocity(vecThrow);
+	CTFCBaseprojectile *pNail = (CTFCBaseprojectile*)Create("tfc_base_projectile", vecSrc, vec3_angle, pPlayer);
+	pNail->SetAbsVelocity(vecThrow);
 
-	pGrenade->SetLocalAngularVelocity(RandomAngle(-400, 400));
-	pGrenade->SetMoveType(MOVETYPE_FLYGRAVITY, MOVECOLLIDE_FLY_BOUNCE);
-	pGrenade->SetThrower(GetOwner());
-	pGrenade->SetDamage(SMG1_GRENADE_DAMAGE);
-	pGrenade->SetDamageRadius(SMG1_GRENADE_RADIUS);
+	pNail->SetLocalAngularVelocity(RandomAngle(-400, 400));
+	//pNail->SetMoveType(MOVETYPE_FLYGRAVITY, MOVECOLLIDE_FLY_BOUNCE);
+	//pNail->SetThrower(GetOwner());
+	pNail->SetDamage(SMG1_GRENADE_DAMAGE);
+	//pNail->SetDamageRadius(SMG1_GRENADE_RADIUS);
 #endif
 
 	//Factor in the view kick

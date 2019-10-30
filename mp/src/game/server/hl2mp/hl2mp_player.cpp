@@ -306,7 +306,7 @@ void CHL2MP_Player::Spawn(void)
 	m_flNextModelChangeTime = 0.0f;
 	m_flNextTeamChangeTime = 0.0f;
 
-	//PickDefaultSpawnTeam();
+	PickDefaultSpawnTeam();
 	
 
 	BaseClass::Spawn();
@@ -928,6 +928,7 @@ void CHL2MP_Player::ChangeTeam( int iTeam )
 	}*/
 
 	bool bKill = false;
+	bool bTeamPlayer = true;
 
 	if ( HL2MPRules()->IsTeamplay() != true && iTeam != TEAM_SPECTATOR )
 	{
@@ -940,6 +941,10 @@ void CHL2MP_Player::ChangeTeam( int iTeam )
 		if ( iTeam != GetTeamNumber() && GetTeamNumber() != TEAM_UNASSIGNED )
 		{
 			bKill = true;
+		}
+		if( GetTeamNumber() < TEAM_RED )
+		{
+			bTeamPlayer = false;
 		}
 	}
 
@@ -966,6 +971,10 @@ void CHL2MP_Player::ChangeTeam( int iTeam )
 	if ( bKill == true )
 	{
 		CommitSuicide();
+	}
+	if( bTeamPlayer == false )
+	{
+		ForceRespawn();
 	}
 }
 

@@ -330,3 +330,64 @@
 		"wave"	"*vo/npc/$gender01/pain09.wav"
 	}
 }
+
+// TFC Player Lines
+
+"TFCPlayer.Pain"
+	"channel"		"CHAN_VOICE"
+	"volume"		"VOL_NORM"
+	"pitch"		"PITCH_NORM"
+
+	"soundlevel"	"SNDLVL_NORM"
+
+	"rndwave"
+	{
+		"wave"	"player/pain1.wav"
+		"wave"	"player/pain2.wav"
+		"wave"	"player/pain3.wav"
+		"wave"	"player/pain4.wav"
+		"wave"	"player/pain5.wav"
+		"wave"	"player/pain6.wav"
+	}
+}
+
+"TFCPlayer.Death"
+	"channel"		"CHAN_VOICE"
+	"volume"		"VOL_NORM"
+	"pitch"		"PITCH_NORM"
+
+	"soundlevel"	"SNDLVL_NORM"
+
+	"rndwave"
+	{
+		"wave"	"player/death1.wav"
+		"wave"	"player/death2.wav"
+		"wave"	"player/death3.wav"
+		"wave"	"player/death4.wav"
+		"wave"	"player/death5.wav"
+	}
+}
+
+"TFCPlayer.Medic"
+	"channel"		"CHAN_VOICE"
+	"volume"		"VOL_NORM"
+	"pitch"		"PITCH_NORM"
+
+	"soundlevel"	"SNDLVL_NORM"
+
+	"rndwave"
+	{
+		"wave"	"player/saveme1.wav"
+		"wave"	"player/saveme2.wav"
+	}
+}
+
+"TFCPlayer.Jump"
+	"channel"		"CHAN_VOICE"
+	"volume"		"VOL_NORM"
+	"pitch"		"PITCH_NORM"
+
+	"soundlevel"	"SNDLVL_NORM"
+	"wave" 		"player/plyrjmp8.wav"
+
+}

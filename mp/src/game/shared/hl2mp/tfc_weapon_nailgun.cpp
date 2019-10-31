@@ -11,7 +11,7 @@
 #ifdef CLIENT_DLL
 	#include "c_hl2mp_player.h"
 #else
-	#include "tfc_baseprojectile.h"
+	#include "nail_projectile.h"
 	#include "hl2mp_player.h"
 	#include "basegrenade_shared.h"
 #endif
@@ -28,6 +28,8 @@
 
 #define SMG1_GRENADE_DAMAGE 100.0f
 #define SMG1_GRENADE_RADIUS 250.0f
+#define BOLT_AIR_VELOCITY	3500
+#define BOLT_WATER_VELOCITY	1500
 
 class CWeaponNailGun : public CHL2MPMachineGun
 {
@@ -114,7 +116,7 @@ CWeaponNailGun::CWeaponNailGun()
 void CWeaponNailGun::Precache(void)
 {
 #ifndef CLIENT_DLL
-	UTIL_PrecacheOther("grenade_ar2");
+	UTIL_PrecacheOther("projectile_nail");
 #endif
 
 	BaseClass::Precache();
@@ -226,26 +228,30 @@ void CWeaponNailGun::PrimaryAttack(void)
 		m_iClip1 -= iBulletsToFire;
 	}
 
-	//CHL2MP_Player *pHL2MPPlayer = ToHL2MPPlayer(pPlayer);
+	//Fire the Nails
+	CBasePlayer *pOwner = ToBasePlayer(GetOwner());
 
-	// Fire the Nails
-
-	Vector vecSrc = pPlayer->Weapon_ShootPosition();
-	Vector	vecThrow;
-	// Don't autoaim on grenade tosses
-	AngleVectors(pPlayer->EyeAngles() + pPlayer->GetPunchAngle(), &vecThrow);
-	VectorScale(vecThrow, 1000.0f, vecThrow);
+	if (pOwner == NULL)
+		return;
 
 #ifndef CLIENT_DLL
-	//Create the grenade
-	CTFCBaseprojectile *pNail = (CTFCBaseprojectile*)Create("tfc_base_projectile", vecSrc, vec3_angle, pPlayer);
-	pNail->SetAbsVelocity(vecThrow);
+	Vector vecAiming = pOwner->GetAutoaimVector(0);
+	Vector vecSrc = pOwner->Weapon_ShootPosition();
 
-	pNail->SetLocalAngularVelocity(RandomAngle(-400, 400));
-	//pNail->SetMoveType(MOVETYPE_FLYGRAVITY, MOVECOLLIDE_FLY_BOUNCE);
-	//pNail->SetThrower(GetOwner());
-	pNail->SetDamage(SMG1_GRENADE_DAMAGE);
-	//pNail->SetDamageRadius(SMG1_GRENADE_RADIUS);
+	QAngle angAiming;
+	VectorAngles(vecAiming, angAiming);
+
+	CNailProjectile *pBolt = CNailProjectile::BoltCreate(vecSrc, angAiming, GetHL2MPWpnData().m_iPlayerDamage, pOwner);
+
+	if (pOwner->GetWaterLevel() == 3)
+	{
+		pBolt->SetAbsVelocity(vecAiming * BOLT_WATER_VELOCITY);
+	}
+	else
+	{
+		pBolt->SetAbsVelocity(vecAiming * BOLT_AIR_VELOCITY);
+	}
+
 #endif
 
 	//Factor in the view kick

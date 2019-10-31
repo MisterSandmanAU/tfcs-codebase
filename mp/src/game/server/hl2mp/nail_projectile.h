@@ -1,6 +1,6 @@
 #include "cbase.h"
-#include <iostream>
-#include "weapon_hl2mpbasehlmpcombatweapon.h"
+#include "npcevent.h"
+#include "in_buttons.h"
 
 #ifdef CLIENT_DLL
 #include "c_hl2mp_player.h"
@@ -8,35 +8,33 @@
 #else
 #include "hl2mp_player.h"
 #include "te_effect_dispatch.h"
+#include "IEffects.h"
 #include "Sprite.h"
+#include "SpriteTrail.h"
+#include "beam_shared.h"
 #endif
-using namespace std;
 
 //-----------------------------------------------------------------------------
 // Crossbow Bolt
 //-----------------------------------------------------------------------------
-class CTFCBaseprojectile : public CBaseCombatCharacter
+class CNailProjectile : public CBaseCombatCharacter
 {
-	DECLARE_CLASS(CTFCBaseprojectile, CBaseCombatCharacter);
+	DECLARE_CLASS(CNailProjectile, CBaseCombatCharacter);
 
 public:
-	CTFCBaseprojectile() {};
-	~CTFCBaseprojectile();
-	
+	CNailProjectile() { };
+	~CNailProjectile();
+
 	Class_T Classify(void) { return CLASS_NONE; }
-	
 
 public:
 	void Spawn(void);
 	void Precache(void);
-	void SetWorldModel(const char*  Model);
 	void BubbleThink(void);
 	void BoltTouch(CBaseEntity *pOther);
 	bool CreateVPhysics(void);
 	unsigned int PhysicsSolidMaskForEntity() const;
-	static  CTFCBaseprojectile *ProjectileCreate(const Vector &vecOrigin, const QAngle &angAngles, int iDamage, CBasePlayer *pentOwner = NULL);
-
-	const char* WorldModel = "models/crossbow_bolt.mdl";
+	static CNailProjectile *BoltCreate(const Vector &vecOrigin, const QAngle &angAngles, int iDamage, CBasePlayer *pentOwner = NULL);
 
 protected:
 
@@ -48,5 +46,5 @@ protected:
 	int		m_iDamage;
 
 	DECLARE_DATADESC();
-	DECLARE_SERVERCLASS();
+	//DECLARE_SERVERCLASS();
 };

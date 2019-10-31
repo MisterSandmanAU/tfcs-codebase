@@ -130,8 +130,6 @@ $Project "Client (TFCSOURCE)"
 
 			$Folder	"Weapons"
 			{
-				$File	"$SRCDIR\game\shared\hl2mp\tfc_baseprojectile.cpp"
-				$File	"$SRCDIR\game\shared\hl2mp\tfc_baseprojectile.h"
 				$File	"$SRCDIR\game\shared\hl2mp\weapon_357.cpp"
 				$File	"$SRCDIR\game\shared\hl2mp\weapon_ar2.cpp"
 				$File	"$SRCDIR\game\shared\hl2mp\weapon_ar2.h"

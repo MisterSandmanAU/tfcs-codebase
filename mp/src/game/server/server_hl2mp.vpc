@@ -261,8 +261,8 @@ $Project "Server (TFCSOURCE)"
 			
 			$Folder	"Weapons"
 			{
-				$File	"$SRCDIR\game\shared\hl2mp\tfc_baseprojectile.cpp"
-				$File	"$SRCDIR\game\shared\hl2mp\tfc_baseprojectile.h"
+				$File	"hl2mp\nail_projectile.cpp"
+				$File	"hl2mp\nail_projectile.h"
 				$File	"hl2mp\grenade_satchel.cpp"
 				$File	"hl2mp\grenade_satchel.h"
 				$File	"hl2mp\grenade_tripmine.cpp"

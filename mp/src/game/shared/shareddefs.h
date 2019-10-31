@@ -244,6 +244,8 @@ enum CastVote
 #define TEAM_SPECTATOR			1	// spectator team
 #define TEAM_RED				2
 #define TEAM_BLU				3
+#define TEAM_YLW				4
+#define TEAM_GRN				5
 // Start your team numbers after this
 #define LAST_SHARED_TEAM		TEAM_SPECTATOR
 

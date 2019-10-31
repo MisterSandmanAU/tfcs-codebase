@@ -1,13 +1,13 @@
 "GameInfo"
 {
 	game	"Team Fortress Classic: Source"
-	title	"TEAM FORTRESS"
+	title	"TEAM FORTRESS 1.5"
 	title2	""
 	type multiplayer_only
 	nomodels 1
 	nohimodel 1
 	nocrosshair 1
-	"icon"		"resource/game"
+	icon		"resource/game"
 	hidden_maps
 	{
 		"test_speakers"		1

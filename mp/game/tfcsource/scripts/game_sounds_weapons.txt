@@ -1308,6 +1308,33 @@
 	"wave"		"weapons/crossbow/bolt_skewer1.wav"
 	
 }
+
+//Super Nailgun
+
+"Weapon_SNailgun.Single"
+{
+	"channel"		"CHAN_WEAPON"
+	"volume"		"0.6"
+	"soundlevel"		"SNDLVL_90db"
+	"soundlevel"	"SNDLVL_GUNFIRE"
+	"pitch"			"95,105"
+
+	"wave"			"weapons/snailgun_shoot.wav"
+}
+
+//Nailgun
+"Weapon_Nailgun.Single"
+{
+	"channel"		"CHAN_WEAPON"
+	"volume"		"0.6"
+	"soundlevel"		"SNDLVL_90db"
+	"soundlevel"	"SNDLVL_GUNFIRE"
+	"pitch"			"95,105"
+
+	"wave"			"weapons/nailgun_shoot.wav"
+}
+
+
 // *************
 // BASE GRENADES
 

@@ -28,6 +28,7 @@
 
 const char *WeaponIDToAlias(int id);
 int AliasToWeaponID(const char *alias);
+#endif
 //--------------------------------------------------------------------------------------------------------
 //
 // Weapon IDs for all SDK Game weapons

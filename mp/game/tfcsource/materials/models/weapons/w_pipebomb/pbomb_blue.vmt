@@ -1,4 +1,4 @@
 "VertexLitGeneric"
 {
-	"$basetexture"			"models/weapons/w_napalm/napalm"
+	"$basetexture"			"models/weapons/w_pipebomb/pbomb_blue"
 }

@@ -6,7 +6,7 @@
 
 #include "cbase.h"
 #include "sdk_playerclass_info_parse.h"
-#include "weapon_sdkbase.h"
+
 #include <KeyValues.h>
 
 // memdbgon must be the last include file in a .cpp file!!!
@@ -16,14 +16,14 @@
 
 FilePlayerClassInfo_t* CreatePlayerClassInfo()
 {
-#if defined ( SDK_USE_PLAYERCLASSES )
+#if defined ( TFC_USE_PLAYERCLASSES )
 	return new CSDKPlayerClassInfo;
 #else
 	return new FilePlayerClassInfo_t;
 #endif
 }
 
-#if defined ( SDK_USE_PLAYERCLASSES )
+#if defined ( TFC_USE_PLAYERCLASSES )
 
 CSDKPlayerClassInfo::CSDKPlayerClassInfo()
 {

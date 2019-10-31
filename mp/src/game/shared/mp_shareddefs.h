@@ -11,6 +11,42 @@
 
 #include "shareddefs.h"
 
+#define TFC_USE_PLAYERCLASSES
+
+#if defined ( TFC_USE_PLAYERCLASSES )
+#define SDK_NUM_PLAYERCLASSES 3		//Tony; our template sample has 3 player classes.
+#define SDK_PLAYERCLASS_IMAGE_LENGTH 64
+
+#define PLAYERCLASS_RANDOM		-2
+#define PLAYERCLASS_UNDEFINED	-1
+
+
+//Tony; these defines handle the default speeds for all of these - all are listed regardless of which option is enabled.
+#define SDK_DEFAULT_PLAYER_RUNSPEED			220
+#define SDK_DEFAULT_PLAYER_SPRINTSPEED		330
+#define SDK_DEFAULT_PLAYER_PRONESPEED		50
+
+const char *WeaponIDToAlias(int id);
+int AliasToWeaponID(const char *alias);
+//--------------------------------------------------------------------------------------------------------
+//
+// Weapon IDs for all SDK Game weapons
+//
+typedef enum
+{
+	WEAPON_NONE = 0,
+
+	SDK_WEAPON_NONE = WEAPON_NONE,
+	SDK_WEAPON_MP5,
+	SDK_WEAPON_SHOTGUN,
+	SDK_WEAPON_GRENADE,
+	SDK_WEAPON_PISTOL,
+	SDK_WEAPON_CROWBAR,
+
+
+	WEAPON_MAX,		// number of weapons weapon index
+} TFCWeaponID;
+
 //-----------------------------------------------------------------------------
 // TF Concepts
 //-----------------------------------------------------------------------------

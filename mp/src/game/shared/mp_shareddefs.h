@@ -11,7 +11,7 @@
 
 #include "shareddefs.h"
 
-#define TFC_USE_PLAYERCLASSES
+//#define TFC_USE_PLAYERCLASSES
 
 #if defined ( TFC_USE_PLAYERCLASSES )
 #define SDK_NUM_PLAYERCLASSES 3		//Tony; our template sample has 3 player classes.

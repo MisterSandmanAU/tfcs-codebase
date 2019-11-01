@@ -126,9 +126,16 @@ private:
 	Vector  m_vWorld;
 };
 
-void CreateCrossbowBolt( const Vector &vecOrigin, const Vector &vecDirection )
+void CreateCrossbowBolt( const Vector &vecOrigin, const Vector &vecDirection, char cBoltType )
 {
-	model_t *pModel = (model_t *)engine->LoadModel( "models/crossbow_bolt.mdl" );
+	model_t *pModel = null;
+
+	if( cBoltType == 0 )
+		pModel = ( model_t * )engine->LoadModel( "models/crossbow_bolt.mdl" );
+
+	if ( cBoltType == 1 )
+		pModel = ( model_t * )engine->LoadModel( "models/weapons/w_models/w_nail.mdl" );
+	
 
 	QAngle vAngles;
 
@@ -144,7 +151,7 @@ void CreateCrossbowBolt( const Vector &vecOrigin, const Vector &vecDirection )
 	}
 }
 
-void StickRagdollNow( const Vector &vecOrigin, const Vector &vecDirection )
+void StickRagdollNow( const Vector &vecOrigin, const Vector &vecDirection, char cBoltType )
 {
 	Ray_t	shotRay;
 	trace_t tr;
@@ -161,7 +168,7 @@ void StickRagdollNow( const Vector &vecOrigin, const Vector &vecDirection )
 	CRagdollBoltEnumerator	ragdollEnum( shotRay, vecOrigin );
 	partition->EnumerateElementsAlongRay( PARTITION_CLIENT_RESPONSIVE_EDICTS, shotRay, false, &ragdollEnum );
 	
-	CreateCrossbowBolt( vecOrigin, vecDirection );
+	CreateCrossbowBolt( vecOrigin, vecDirection, cBoltType );
 }
 
 //-----------------------------------------------------------------------------
@@ -170,7 +177,15 @@ void StickRagdollNow( const Vector &vecOrigin, const Vector &vecDirection )
 //-----------------------------------------------------------------------------
 void StickyBoltCallback( const CEffectData &data )
 {
-	 StickRagdollNow( data.m_vOrigin, data.m_vNormal );
+	 StickRagdollNow( data.m_vOrigin, data.m_vNormal, 0 );
 }
 
 DECLARE_CLIENT_EFFECT( "BoltImpact", StickyBoltCallback );
+
+
+void StickyNailCallback( const CEffectData &data )
+{
+	StickRagdollNow( data.m_vOrigin, data.m_vNormal, 1 );
+}
+
+DECLARE_CLIENT_EFFECT( "NailImpact", StickyNailCallback );

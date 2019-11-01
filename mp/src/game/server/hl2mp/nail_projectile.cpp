@@ -141,7 +141,7 @@ void CNailProjectile::Precache(void)
 	PrecacheModel(BOLT_MODEL);
 
 	// This is used by C_TEStickyBolt, despte being different from above!!!
-	PrecacheModel("models/crossbow_bolt.mdl");
+	PrecacheModel("models/weapons/w_models/w_nail.mdl");
 
 	PrecacheModel("sprites/light_glow02_noz.vmt");
 }
@@ -211,7 +211,7 @@ void CNailProjectile::BoltTouch(CBaseEntity *pOther)
 				data.m_vNormal = vForward;
 				data.m_nEntIndex = tr2.fraction != 1.0f;
 
-				DispatchEffect("BoltImpact", data);
+				DispatchEffect("NailImpact", data);
 			}
 		}
 
@@ -251,7 +251,7 @@ void CNailProjectile::BoltTouch(CBaseEntity *pOther)
 			data.m_vNormal = vForward;
 			data.m_nEntIndex = 0;
 
-			DispatchEffect("BoltImpact", data);
+			DispatchEffect("NailImpact", data);
 
 			UTIL_ImpactTrace(&tr, DMG_BULLET);
 

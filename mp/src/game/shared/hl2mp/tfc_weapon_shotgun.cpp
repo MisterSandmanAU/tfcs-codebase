@@ -237,7 +237,7 @@ void CTfc_WeaponShotgun::FillClip(void)
 	{
 		if ( Clip1() < GetMaxClip1() )
 		{
-			m_iClip1 += 2;
+			m_iClip1 += 1;
 			pOwner->RemoveAmmo( 1, m_iPrimaryAmmoType );
 		}
 	}

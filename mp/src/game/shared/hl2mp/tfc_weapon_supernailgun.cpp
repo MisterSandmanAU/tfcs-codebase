@@ -28,8 +28,8 @@
 
 #define SMG1_GRENADE_DAMAGE 100.0f
 #define SMG1_GRENADE_RADIUS 250.0f
-#define BOLT_AIR_VELOCITY	3500
-#define BOLT_WATER_VELOCITY	1500
+#define BOLT_AIR_VELOCITY	1500
+#define BOLT_WATER_VELOCITY	1000
 
 class CWeaponSuperNailGun : public CHL2MPMachineGun
 {
@@ -177,7 +177,7 @@ bool CWeaponSuperNailGun::Reload(void)
 void CWeaponSuperNailGun::AddViewKick(void)
 {
 #define	EASY_DAMPEN			0.5f
-#define	MAX_VERTICAL_KICK	1.0f	//Degrees
+#define	MAX_VERTICAL_KICK	0.0f	//Degrees
 #define	SLIDE_LIMIT			2.0f	//Seconds
 
 	//Get the view kick
@@ -278,7 +278,7 @@ void CWeaponSuperNailGun::PrimaryAttack(void)
 
 
 	// Can shoot again immediately
-	m_flNextPrimaryAttack = gpGlobals->curtime + 0.5f;
+	m_flNextPrimaryAttack = gpGlobals->curtime + 0.125f;
 
 }
 

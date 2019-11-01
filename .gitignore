@@ -77,3 +77,7 @@ voice_ban.dt
 
 # shader files
 *.tmp
+
+# map compile products
+*.prt
+*.vmx

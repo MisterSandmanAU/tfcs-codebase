@@ -31,6 +31,8 @@ int g_iLastCombineModel = 0;
 
 CBaseEntity	 *g_pLastCombineSpawn = NULL;
 CBaseEntity	 *g_pLastRebelSpawn = NULL;
+CBaseEntity	 *g_pLastYellowSpawn = NULL;
+CBaseEntity	 *g_pLastGreenSpawn = NULL;
 extern CBaseEntity				*g_pLastSpawn;
 
 #define HL2MP_COMMAND_MAX_RATE 0.3
@@ -434,6 +436,30 @@ void CHL2MP_Player::SetPlayerTeamModel( void )
 
 		m_iModelType = TEAM_REBELS;
 	}
+	else if (GetTeamNumber() == TEAM_YELLOW)
+	{
+		if (!Q_stristr(szModelName, "models/human"))
+		{
+			int nHeads = ARRAYSIZE(g_ppszRandomCitizenModels);
+
+			g_iLastCitizenModel = (g_iLastCitizenModel + 1) % nHeads;
+			szModelName = g_ppszRandomCitizenModels[g_iLastCitizenModel];
+		}
+
+		m_iModelType = TEAM_YELLOW;
+	}
+	else if (GetTeamNumber() == TEAM_GREEN)
+	{
+		if (!Q_stristr(szModelName, "models/human"))
+		{
+			int nHeads = ARRAYSIZE(g_ppszRandomCitizenModels);
+
+			g_iLastCitizenModel = (g_iLastCitizenModel + 1) % nHeads;
+			szModelName = g_ppszRandomCitizenModels[g_iLastCitizenModel];
+		}
+
+		m_iModelType = TEAM_GREEN;
+	}
 	
 	SetModel( szModelName );
 	SetupPlayerSoundsByModel( szModelName );
@@ -480,6 +506,24 @@ void CHL2MP_Player::SetPlayerModel( void )
 		szModelName = g_ppszRandomCitizenModels[g_iLastCitizenModel];
 
 		m_iModelType = TEAM_REBELS;
+	}
+	else if (GetTeamNumber() == TEAM_YELLOW)
+	{
+		int nHeads = ARRAYSIZE(g_ppszRandomCitizenModels);
+
+		g_iLastCitizenModel = (g_iLastCitizenModel + 1) % nHeads;
+		szModelName = g_ppszRandomCitizenModels[g_iLastCitizenModel];
+
+		m_iModelType = TEAM_YELLOW;
+	}
+	else if (GetTeamNumber() == TEAM_GREEN)
+	{
+		int nHeads = ARRAYSIZE(g_ppszRandomCitizenModels);
+
+		g_iLastCitizenModel = (g_iLastCitizenModel + 1) % nHeads;
+		szModelName = g_ppszRandomCitizenModels[g_iLastCitizenModel];
+
+		m_iModelType = TEAM_GREEN;
 	}
 	else
 	{

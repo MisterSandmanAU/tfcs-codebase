@@ -30,8 +30,8 @@ enum
 {
 	TEAM_COMBINE = 2,
 	TEAM_REBELS,
-	TEAM_Yellow,
-	TEAM_Green,
+	TEAM_YELLOW,
+	TEAM_GREEN,
 };
 
 

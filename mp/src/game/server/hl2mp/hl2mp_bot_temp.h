@@ -12,9 +12,6 @@
 
 #include "cbase.h"
 
-void Bot_add_team_2();
-void Bot_add_team_3();
-
 // If iTeam or iClass is -1, then a team or class is randomly chosen.
 CBasePlayer *BotPutInServer( bool bFrozen, int iTeam );
 

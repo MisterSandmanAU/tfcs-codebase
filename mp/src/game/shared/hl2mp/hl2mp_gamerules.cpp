@@ -32,6 +32,7 @@
 	#include "voice_gamemgr.h"
 	#include "hl2mp_gameinterface.h"
 	#include "hl2mp_cvars.h"
+	#include "hl2mp_bot_temp.h"
 
 #ifdef DEBUG	
 	#include "hl2mp_bot_temp.h"
@@ -49,6 +50,8 @@ extern ConVar mp_chattime;
 
 extern CBaseEntity	 *g_pLastCombineSpawn;
 extern CBaseEntity	 *g_pLastRebelSpawn;
+extern CBaseEntity	 *g_pLastYellowSpawn;
+extern CBaseEntity	 *g_pLastGreenSpawn;
 
 #define WEAPON_MAX_DISTANCE_FROM_SPAWN 64
 
@@ -179,8 +182,10 @@ char *sTeamNames[] =
 {
 	"Unassigned",
 	"Spectator",
-	"Combine",
-	"Rebels",
+	"Blu",
+	"Red",
+	"Yellow",
+	"Green",
 };
 
 CHL2MPRules::CHL2MPRules()
@@ -239,6 +244,8 @@ void CHL2MPRules::CreateStandardEntities( void )
 
 	g_pLastCombineSpawn = NULL;
 	g_pLastRebelSpawn = NULL;
+	g_pLastYellowSpawn = NULL;
+	g_pLastGreenSpawn = NULL;
 
 #ifdef DBGFLAG_ASSERT
 	CBaseEntity *pEnt = 
@@ -327,8 +334,10 @@ void CHL2MPRules::Think( void )
 		{
 			CTeam *pCombine = g_Teams[TEAM_COMBINE];
 			CTeam *pRebels = g_Teams[TEAM_REBELS];
+			CTeam *pYellow = g_Teams[TEAM_YELLOW];
+			CTeam *pGreen = g_Teams[TEAM_GREEN];
 
-			if ( pCombine->GetScore() >= flFragLimit || pRebels->GetScore() >= flFragLimit )
+			if ( pCombine->GetScore() >= flFragLimit || pRebels->GetScore() >= flFragLimit || pYellow->GetScore() >= flFragLimit || pGreen->GetScore() >= flFragLimit )
 			{
 				GoToIntermission();
 				return;
@@ -807,6 +816,7 @@ void CHL2MPRules::ClientSettingsChanged( CBasePlayer *pPlayer )
 			{
 				pHL2Player->ChangeTeam( TEAM_COMBINE );
 			}
+
 		}
 	}
 	if ( sv_report_client_settings.GetInt() == 1 )
@@ -954,7 +964,7 @@ CAmmoDef *GetAmmoDef()
 
 #else
 
-#ifdef DEBUG
+
 
 	// Handler for the "bot" command.
 	void Bot_f()
@@ -976,9 +986,10 @@ CAmmoDef *GetAmmoDef()
 	}
 
 
+
 	ConCommand cc_Bot( "bot", Bot_f, "Add a bot.", FCVAR_CHEAT );
 
-#endif
+
 
 	bool CHL2MPRules::FShouldSwitchWeapon( CBasePlayer *pPlayer, CBaseCombatWeapon *pWeapon )
 	{		
@@ -1036,6 +1047,8 @@ void CHL2MPRules::RestartGame()
 
 	CTeam *pRebels = GetGlobalTeam( TEAM_REBELS );
 	CTeam *pCombine = GetGlobalTeam( TEAM_COMBINE );
+	CTeam *pYellow = GetGlobalTeam(TEAM_YELLOW);
+	CTeam *pGreen = GetGlobalTeam(TEAM_GREEN);
 
 	if ( pRebels )
 	{
@@ -1045,6 +1058,16 @@ void CHL2MPRules::RestartGame()
 	if ( pCombine )
 	{
 		pCombine->SetScore( 0 );
+	}
+
+	if (pYellow)
+	{
+		pYellow->SetScore(0);
+	}
+
+	if (pGreen)
+	{
+		pGreen->SetScore(0);
 	}
 
 	m_flIntermissionEndTime = 0;

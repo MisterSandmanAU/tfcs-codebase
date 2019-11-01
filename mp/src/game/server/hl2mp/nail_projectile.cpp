@@ -118,6 +118,7 @@ void CNailProjectile::Spawn(void)
 	SetModel(BOLT_MODEL);
 	SetMoveType(MOVETYPE_FLYGRAVITY, MOVECOLLIDE_FLY_CUSTOM);
 	UTIL_SetSize(this, -Vector(1, 1, 1), Vector(1, 1, 1));
+	SetCollisionGroup(COLLISION_GROUP_PROJECTILE);
 	SetSolid(SOLID_BBOX);
 	SetGravity(0.01f);
 
@@ -182,8 +183,8 @@ void CNailProjectile::BoltTouch(CBaseEntity *pOther)
 
 		ApplyMultiDamage();
 
-		//Adrian: keep going through the glass.
-		if (pOther->GetCollisionGroup() == COLLISION_GROUP_BREAKABLE_GLASS)
+		//Anthony: keep going through the projectile's.
+		if (pOther->GetCollisionGroup() == COLLISION_GROUP_PROJECTILE)
 			return;
 
 		SetAbsVelocity(Vector(0, 0, 0));

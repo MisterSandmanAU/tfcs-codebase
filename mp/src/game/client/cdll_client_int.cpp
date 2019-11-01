@@ -1154,7 +1154,7 @@ int CHLClient::Init( CreateInterfaceFn appSystemFactory, CreateInterfaceFn physi
 		discordPresence.state = "In-Game";
 		discordPresence.details = "Main Menu";
 		discordPresence.startTimestamp = startTimestamp;
-		discordPresence.largeImageKey = "tfcs";
+		discordPresence.largeImageKey = "icon";
 		Discord_UpdatePresence(&discordPresence);
 	}
 
@@ -1708,7 +1708,7 @@ void CHLClient::LevelInitPreEntity( char const* pMapName )
 		discordPresence.state = "In-Game";
 		sprintf(buffer, "Map: %s", pMapName);
 		discordPresence.details = buffer;
-		discordPresence.largeImageKey = "tfcs";
+		discordPresence.largeImageKey = "icon";
 		Discord_UpdatePresence(&discordPresence);
 	}
 
@@ -1726,7 +1726,7 @@ void CHLClient::LevelInitPreEntity( char const* pMapName )
 		discordPresence.state = "In-Game";
 		discordPresence.details = "Main Menu";
 		discordPresence.startTimestamp = startTimestamp;
-		discordPresence.largeImageKey = "tfcs";
+		discordPresence.largeImageKey = "icon";
 		Discord_UpdatePresence(&discordPresence);
 	}
 

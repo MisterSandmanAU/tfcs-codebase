@@ -183,6 +183,7 @@ void CMissile::Spawn( void )
 	SetTouch( &CMissile::MissileTouch );
 
 	SetMoveType( MOVETYPE_FLYGRAVITY, MOVECOLLIDE_FLY_BOUNCE );
+	SetCollisionGroup(COLLISION_GROUP_PROJECTILE);
 	SetThink( &CMissile::IgniteThink );
 	
 	SetNextThink( gpGlobals->curtime + 0.3f );

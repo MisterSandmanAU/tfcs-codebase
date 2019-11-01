@@ -262,7 +262,7 @@ Scheme
 		// Top-left corner of the "BETA" on the main screen
 		"Main.Title3.X"		"460"
 		"Main.Title3.Y"		"-10"
-		"Main.Title3.Color"	"255 255 0 255"
+		"Main.Title3.Color"	"160 0 0 255"
 
 		// Top-left corner of the menu on the main screen
 		"Main.Menu.X"		"32"

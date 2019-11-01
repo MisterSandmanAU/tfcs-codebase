@@ -11,14 +11,23 @@
 
 #include "shareddefs.h"
 
-//#define TFC_USE_PLAYERCLASSES
+#define TFC_USE_PLAYERCLASSES
 
 #if defined ( TFC_USE_PLAYERCLASSES )
-#define SDK_NUM_PLAYERCLASSES 3		//Tony; our template sample has 3 player classes.
+#define SDK_NUM_PLAYERCLASSES 12		//Tony; our template sample has 3 player classes.
 #define SDK_PLAYERCLASS_IMAGE_LENGTH 64
 
 #define PLAYERCLASS_RANDOM		-2
 #define PLAYERCLASS_UNDEFINED	-1
+#define PLAYERCLASS_SCOUT		0
+#define PLAYERCLASS_SOLDIER		1
+#define PLAYERCLASS_PYRO		2
+#define PLAYERCLASS_HEAVY		3
+#define PLAYERCLASS_DEMOMAN		4
+#define PLAYERCLASS_ENGINEER	5
+#define PLAYERCLASS_MEDIC		6
+#define PLAYERCLASS_SNIPER		7
+#define PLAYERCLASS_SPY			8
 
 
 //Tony; these defines handle the default speeds for all of these - all are listed regardless of which option is enabled.

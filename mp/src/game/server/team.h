@@ -14,6 +14,15 @@
 #include "shareddefs.h"
 #include "utlvector.h"
 
+
+#define TFC_USE_PLAYERCLASSES
+#include "playerclass_info_parse.h"
+#include "sdk_playerclass_info_parse.h"
+
+#if defined ( TFC_USE_PLAYERCLASSES )
+typedef CUtlLinkedList< PLAYERCLASS_FILE_INFO_HANDLE, int > PlayerClassInfoList;
+#endif
+
 class CBasePlayer;
 class CTeamSpawnPoint;
 
@@ -78,6 +87,17 @@ public:
 
 	virtual int GetAliveMembers( void );
 
+#if defined ( TFC_USE_PLAYERCLASSES )
+	const unsigned char *GetEncryptionKey(void) { return g_pGameRules->GetEncryptionKey(); }
+	CSDKPlayerClassInfo const &GetPlayerClassInfo(int iPlayerClass) const;
+
+	void AddPlayerClass(const char *pszClassName);
+
+	bool IsClassOnTeam(const char *pszClassName, int &iClassNum) const;
+	int GetNumPlayerClasses(void) { return m_hPlayerClassInfoHandles.Count(); }
+#endif  // SDK_USE_PLAYERCLASSES
+
+
 public:
 	CUtlVector< CTeamSpawnPoint * > m_aSpawnPoints;
 	CUtlVector< CBasePlayer * >		m_aPlayers;
@@ -92,6 +112,11 @@ public:
 	int		m_iLastSpawn;		// Index of the last spawnpoint used
 
 	CNetworkVar( int, m_iTeamNum );			// Which team is this?
+
+private:
+#if defined ( TFC_USE_PLAYERCLASSES )
+	CUtlVector < PLAYERCLASS_FILE_INFO_HANDLE >		m_hPlayerClassInfoHandles;
+#endif  // SDK_USE_PLAYERCLASSES
 };
 
 extern CUtlVector< CTeam * > g_Teams;

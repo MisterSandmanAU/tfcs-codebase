@@ -16,6 +16,8 @@
 #include "client_thinklist.h"
 
 
+
+
 class C_BasePlayer;
 
 class C_Team : public C_BaseEntity
@@ -49,6 +51,8 @@ public:
 	int		GetRoundsWon(void) { return m_iRoundsWon; }
 
 	void	RemoveAllPlayers();
+
+
 
 
 // IClientThinkable overrides.

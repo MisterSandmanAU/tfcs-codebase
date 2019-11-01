@@ -118,6 +118,8 @@ private:
 
 	int	  m_iSpawnInterpCounter;
 	int	  m_iSpawnInterpCounterCache;
+	int	  m_iPlayerClass;
+	int	  m_iDesiredPlayerClass;
 
 	int	  m_iPlayerSoundType;
 

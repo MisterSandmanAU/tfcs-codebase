@@ -59,6 +59,7 @@ public:
 	virtual void PlayerDeathThink( void );
 	virtual void SetAnimation( PLAYER_ANIM playerAnim );
 	virtual bool HandleCommand_JoinTeam( int team );
+	virtual bool HandleCommand_JoinClass(int iclass);
 	virtual bool ClientCommand( const CCommand &args );
 	virtual void CreateViewModel( int viewmodelindex = 0 );
 	virtual bool BecomeRagdollOnClient( const Vector &force );
@@ -148,6 +149,8 @@ private:
 	int m_iModelType;
 	CNetworkVar( int, m_iSpawnInterpCounter );
 	CNetworkVar( int, m_iPlayerSoundType );
+	CNetworkVar(int, m_iPlayerClass);
+	CNetworkVar(int, m_iDesiredPlayerClass);
 
 	float m_flNextModelChangeTime;
 	float m_flNextTeamChangeTime;

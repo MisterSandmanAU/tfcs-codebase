@@ -50,13 +50,14 @@ IMPLEMENT_SERVERCLASS_ST(CHL2MP_Player, DT_HL2MP_Player)
 	SendPropEHandle( SENDINFO( m_hRagdoll ) ),
 	SendPropInt( SENDINFO( m_iSpawnInterpCounter), 4 ),
 	SendPropInt( SENDINFO( m_iPlayerSoundType), 3 ),
+#if defined ( TFC_USE_PLAYERCLASSES )
+	SendPropInt(SENDINFO( m_iPlayerClass), 4),
+	SendPropInt(SENDINFO( m_iDesiredPlayerClass), 4),
+#endif
 	
 	SendPropExclude( "DT_BaseAnimating", "m_flPoseParameter" ),
 	SendPropExclude( "DT_BaseFlex", "m_viewtarget" ),
-#if defined ( TFC_USE_PLAYERCLASSES )
-	SendPropInt( SENDINFO( m_iPlayerClass), 4 ),
-	SendPropInt( SENDINFO( m_iDesiredPlayerClass ), 4 ),
-#endif
+
 
 //	SendPropExclude( "DT_ServerAnimationData" , "m_flCycle" ),	
 //	SendPropExclude( "DT_AnimTimeMustBeFirst" , "m_flAnimTime" ),
@@ -1065,6 +1066,20 @@ bool CHL2MP_Player::HandleCommand_JoinTeam( int team )
 	return true;
 }
 
+bool CHL2MP_Player::HandleCommand_JoinClass(int iclass)
+{
+	if (iclass == -1 || iclass > 8)
+	{
+		Warning("HandleCommand_JoinClass( %d ) - invalid class index.\n", iclass);
+		return false;
+	}
+
+	// Switch their actual team...
+	//ChangeTeam(team);
+
+	return true;
+}
+
 bool CHL2MP_Player::ClientCommand( const CCommand &args )
 {
 	if ( FStrEq( args[0], "spectate" ) )
@@ -1090,24 +1105,31 @@ bool CHL2MP_Player::ClientCommand( const CCommand &args )
 		}
 		return true;
 	}
-	else if (!Q_strncmp(args[0], "cls_", 4))
+	else if (FStrEq(args[0], "joinclass"))
 	{
+		if (args.ArgC() < 2)
+		{
+			Warning("Player sent bad joinclass syntax\n");
+		}
 #if defined ( TFC_USE_PLAYERCLASSES )
-		CSDKTeam *pTeam = GetGlobalSDKTeam(GetTeamNumber());
+		CTeam *pTeam = GetGlobalTeam(GetTeamNumber());
 
 		Assert(pTeam);
 
 		int iClassIndex = PLAYERCLASS_UNDEFINED;
 
-		if (pTeam->IsClassOnTeam(args[0], iClassIndex))
+		int iClass = atoi(args[1]);
+		HandleCommand_JoinClass (iClass);
+
+		/*if (pTeam->IsClassOnTeam(args[0], iClassIndex))
 		{
 			HandleCommand_JoinClass(iClassIndex);
 		}
 		else
 		{
-			DevMsg("player tried to join a class that isn't on this team ( %s )\n", pcmd);
-			ShowClassSelectMenu();
-		}
+			DevMsg("player tried to join a class that isn't on this team ( %s )\n", args[0]);
+			//ShowClassSelectMenu();
+		}*/
 #endif
 		return true;
 	}

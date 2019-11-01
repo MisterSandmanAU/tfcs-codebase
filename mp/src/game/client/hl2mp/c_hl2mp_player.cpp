@@ -15,6 +15,7 @@
 #include "r_efx.h"
 #include "dlight.h"
 
+#define TFC_USE_PLAYERCLASSES
 // Don't alias here
 #if defined( CHL2MP_Player )
 #undef CHL2MP_Player	
@@ -31,8 +32,8 @@ IMPLEMENT_CLIENTCLASS_DT(C_HL2MP_Player, DT_HL2MP_Player, CHL2MP_Player)
 
 	RecvPropBool( RECVINFO( m_fIsWalking ) ),
 #if defined ( TFC_USE_PLAYERCLASSES )
-	RecvPropInt(RECVINFO(m_iPlayerClass)),
-	RecvPropInt(RECVINFO(m_iDesiredPlayerClass)),
+	RecvPropInt(RECVINFO( m_iPlayerClass)),
+	RecvPropInt(RECVINFO( m_iDesiredPlayerClass)),
 #endif
 END_RECV_TABLE()
 

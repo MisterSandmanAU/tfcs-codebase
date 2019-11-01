@@ -18,6 +18,7 @@
 
 #define PLAYER_UNCONNECTED_NAME	"unconnected"
 #define PLAYER_ERROR_NAME		"ERRORNAME"
+#define TFC_USE_PLAYERCLASSES
 
 class C_PlayerResource : public C_BaseEntity, public IGameResources
 {
@@ -56,6 +57,10 @@ public : // IGameResources intreface
 	virtual void ClientThink();
 	virtual	void	OnDataChanged(DataUpdateType_t updateType);
 
+#if defined ( TFC_USE_PLAYERCLASSES )
+	int GetPlayerClass(int iIndex);
+#endif
+
 protected:
 	void	UpdatePlayerName( int slot );
 
@@ -71,6 +76,10 @@ protected:
 	int		m_iHealth[MAX_PLAYERS+1];
 	Color	m_Colors[MAX_TEAMS];
 	string_t m_szUnconnectedName;
+
+#if defined ( TFC_USE_PLAYERCLASSES )
+	int		m_iPlayerClass[MAX_PLAYERS + 1];
+#endif
 
 };
 

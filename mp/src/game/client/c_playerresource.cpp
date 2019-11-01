@@ -26,6 +26,9 @@ IMPLEMENT_CLIENTCLASS_DT_NOBASE(C_PlayerResource, DT_PlayerResource, CPlayerReso
 	RecvPropArray3( RECVINFO_ARRAY(m_iTeam), RecvPropInt( RECVINFO(m_iTeam[0]))),
 	RecvPropArray3( RECVINFO_ARRAY(m_bAlive), RecvPropInt( RECVINFO(m_bAlive[0]))),
 	RecvPropArray3( RECVINFO_ARRAY(m_iHealth), RecvPropInt( RECVINFO(m_iHealth[0]))),
+#if defined ( TFC_USE_PLAYERCLASSES )
+	RecvPropArray3(RECVINFO_ARRAY(m_iPlayerClass), RecvPropInt(RECVINFO(m_iPlayerClass[0]))),
+#endif
 END_RECV_TABLE()
 
 BEGIN_PREDICTION_DATA( C_PlayerResource )

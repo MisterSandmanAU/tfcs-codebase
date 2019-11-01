@@ -193,7 +193,7 @@ void CTeamMenu::Update()
 	{
 		TeamMenureload - 1;
 		LoadControlSettings("Resource/UI/FourTeamMenu.res");
-		SetScheme("Resource/UI/FourTeamMenu.res");
+		//SetScheme("Resource/UI/FourTeamMenu.res");
 	}
 	else if (sr_4team.GetInt() == 0 && TeamMenureload == 1)
 	{

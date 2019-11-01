@@ -191,7 +191,7 @@ void CTeamMenu::Update()
 	
 	if (sr_4team.GetInt() == 1 && TeamMenureload != 1)
 	{
-		TeamMenureload - 1;
+		TeamMenureload = 1;
 		LoadControlSettings("Resource/UI/FourTeamMenu.res");
 		//SetScheme("Resource/UI/FourTeamMenu.res");
 	}

@@ -1111,12 +1111,7 @@ bool CHL2MP_Player::ClientCommand( const CCommand &args )
 		{
 			Warning("Player sent bad joinclass syntax\n");
 		}
-#if defined ( TFC_USE_PLAYERCLASSES )
-		CTeam *pTeam = GetGlobalTeam(GetTeamNumber());
-
-		Assert(pTeam);
-
-		int iClassIndex = PLAYERCLASS_UNDEFINED;
+#ifdef TFC_USE_PLAYERCLASSES
 
 		int iClass = atoi(args[1]);
 		HandleCommand_JoinClass (iClass);

@@ -11,7 +11,6 @@
 #ifdef CLIENT_DLL
 #include "c_hl2mp_player.h"
 #else
-#include "nail_projectile.h"
 #include "hl2mp_player.h"
 #include "basegrenade_shared.h"
 #endif
@@ -241,7 +240,7 @@ void CWeaponSuperNailGun::PrimaryAttack(void)
 	QAngle angAiming;
 	VectorAngles(vecAiming, angAiming);
 
-	CNailProjectile *pBolt = CNailProjectile::BoltCreate(vecSrc, angAiming, GetHL2MPWpnData().m_iPlayerDamage, pOwner);
+	CBaseEntity* pBolt = CBaseEntity::Create("crossbow_bolt", pOwner->Weapon_ShootPosition(), angAiming, pOwner);
 
 	if (pOwner->GetWaterLevel() == 3)
 	{

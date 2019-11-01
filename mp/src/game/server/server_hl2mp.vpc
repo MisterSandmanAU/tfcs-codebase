@@ -258,6 +258,10 @@ $Project "Server (TFCSOURCE)"
 			$File	"$SRCDIR\game\shared\hl2mp\hl2mp_player_shared.h"
 			$File	"$SRCDIR\game\shared\hl2mp\hl2mp_weapon_parse.cpp"
 			$File	"$SRCDIR\game\shared\hl2mp\hl2mp_weapon_parse.h"
+			$File	"hl2mp\playerclass_info_parse.cpp"
+			$File	"hl2mp\playerclass_info_parse.h"
+			$File	"hl2mp\sdk_playerclass_info_parse.cpp"
+			$File	"hl2mp\sdk_playerclass_info_parse.h"
 			
 			$Folder	"Weapons"
 			{

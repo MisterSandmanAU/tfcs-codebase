@@ -1,0 +1,78 @@
+"lang" 
+{ 
+"Language" "English" 
+"Tokens" 
+{ 
+
+"hl2_AmmoFull"			"FULL"
+"TM_Join_Team_3"			"RED"	
+"TM_Join_Team_2"			"BLUE"
+"TM_Join_Team_4"			"GREEN"
+"TM_Join_Team_5"			"YELLOW"
+
+"TFC_Title"					"TEAM FORTRESS"
+"TFC_Special_Bind"			"Use Special Weapon Function"
+"TFC_Throw_Primary_Grenade"	"Throw Primary Grenade"
+"TFC_Throw_Secondary_Grenade"	"Throw Secondary Grenade"
+"TFC_Drop_Flag"			"Drop Flag"
+"TFC_Display_Flag_Status"		"Display Flag Status"
+"TFC_Drop_Spare_Ammo"		"Drop Spare Ammo"
+"TFC_Call_For_Medic"		"Call for a Medic"
+"TFC_Set_Detpack"			"(Demoman) Set 5 Second DetPack"
+"TFC_Spy_Feign_Death"		"(Spy) Feign Death"
+"TFC_Spy_Feign_Death_Silently"	"(Spy) Feign Death Silently"
+"TFC_Switch_Classes"		"Switch Classes"
+     
+"TFC_Medic"	"Combat Medic"
+"TFC_Pyro"	"Pyro"
+"TFC_Soldier"	"Soldier"
+"TFC_Spy"	"Spy"
+
+"TFC_12Gauge"	"12 GAUGE SHOTGUN"
+"TFC_SNail"	"SUPER NAILGUN"
+"TFC_Umbrella"	"UMBRELLA"
+"TFC_Crowbar"	"CROWBAR"
+"TFC_Medkit"	"MEDKIT"
+"TFC_Flame"	"FLAME THROWER"
+"TFC_GL"		"GRENADE LAUNCHER"
+"TFC_Railgun"	"RAILGUN"
+"TFC_SRifle"	"SNIPER RIFLE"
+"TFC_ARifle"	"AUTO RIFLE"
+"TFC_Tranq"	"TRANQUILIZER GUN"
+"TFC_Team2"	"Defenders"
+
+"ScoreBoard_Player"		"%s1    -   %s2 player"
+"ScoreBoard_Players"		"%s1    -   %s2 players"
+"ScoreBoard_Deathmatch"		"Deathmatch"
+"ScoreBoard_TeamDeathmatch"	"Team Deathmatch"
+"Scoreboard_FourTeamDeathmatch" "Four Team Deathmatch"
+"ScoreBoard_CTF"			"Capture the Flag"
+"ScoreBoard_CP"			"Command Points"
+"ScoreBoard_AD"			"Attack & Defend"
+"ScoreBoard_Hunted"		"VIP Escort"
+"Playerid_sameteam"		"Friend: %s1 Health: %s2"
+"Playerid_diffteam"			"Enemy: %s1"
+"Playerid_noteam"			"%s1 Health:%s2"
+"Team"				"Team %s1"
+
+"Game_connected"			"%s1 connected"
+"Game_disconnected"		"%s1 has left the game"
+"Cannot_Be_Spectator"		"This server does not allow spectating"
+
+// Radio and chat strings can have control characters embedded to set colors.  For the control characters to be used, one must be at the start of the string.
+// The control characters can be copied and pasted in notepad.
+//  = 0x02 (STX) - Use team color up to the end of the player name.  This only works at the start of the string, and precludes using the other control characters.
+//  = 0x03 (ETX) - Use team color from this point forward
+//  = 0x04 (EOT) - Use location color from this point forward
+//  = 0x01 (SOH) - Use normal color from this point forward
+"HL2MP_Chat_Team_Loc"		"(TEAM) %s1 @ %s3 :  %s2"
+"HL2MP_Chat_Team"			"(TEAM) %s1 :  %s2"
+"HL2MP_Chat_Team_Dead"		"*DEAD*(TEAM) %s1 :  %s2"
+"HL2MP_Chat_Spec"			"(Spectator) %s1 :  %s2"
+"HL2MP_Chat_All"			"%s1 :  %s2"
+"HL2MP_Chat_AllDead"		"*DEAD* %s1 :  %s2"
+"HL2MP_Chat_AllSpec"		"*SPEC* %s1 :  %s2"
+"HL2MP_Name_Change"		"* %s1 changed identity to %s2"
+
+} 
+}

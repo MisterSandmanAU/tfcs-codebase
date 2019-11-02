@@ -7,7 +7,7 @@ vpc_osx binary
 
 *.sh text
 *.bat text
-*.txt text
+*.txt diff
 *.c text
 *.h text
 *.H text

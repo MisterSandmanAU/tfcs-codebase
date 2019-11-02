@@ -131,13 +131,29 @@ public:
 	virtual bool StartObserverMode( int mode );
 	virtual void StopObserverMode( void );
 
+#if defined ( TFC_USE_PLAYERCLASSES )
+	void	SetDesiredPlayerClass(int playerclass);
+	int		DesiredPlayerClass(void);
 
+	void	SetPlayerClass(int playerclass);
+	int		PlayerClass(void);
+
+	int		SpawnArmorValue(void) const { return m_iSpawnArmorValue; }
+	void	SetSpawnArmorValue(int i) { m_iSpawnArmorValue = i; }
+#endif
+
+#if defined ( TFC_USE_PLAYERCLASSES )
+	CNetworkVar(int, m_iPlayerClass);
+	CNetworkVar(int, m_iDesiredPlayerClass);
+#endif
 	Vector m_vecTotalBulletForce;	//Accumulator for bullet force in a single frame
 
 	// Tracks our ragdoll entity.
 	CNetworkHandle( CBaseEntity, m_hRagdoll );	// networked entity handle 
 
 	virtual bool	CanHearAndReadChatFrom( CBasePlayer *pPlayer );
+
+//	CNetworkVarEmbedded(CHL2MPPlayerShared, m_eShared);
 
 		
 private:
@@ -149,8 +165,7 @@ private:
 	int m_iModelType;
 	CNetworkVar( int, m_iSpawnInterpCounter );
 	CNetworkVar( int, m_iPlayerSoundType );
-	CNetworkVar(int, m_iPlayerClass);
-	CNetworkVar(int, m_iDesiredPlayerClass);
+	int m_iSpawnArmorValue;
 
 	float m_flNextModelChangeTime;
 	float m_flNextTeamChangeTime;

@@ -1,6 +1,6 @@
 # Files to ignore when considering what GIT should commit.
 
-# Visual Studio 
+# Visual Studio
 *.suo
 *.user
 *.sln.docstates
@@ -38,6 +38,7 @@ obj*/
 *_osx32
 *_osx32_hl2mp
 *_osx32_hl2mp.vpc_crc
+*.project
 .DS_Store
 
 # Specific Source build products

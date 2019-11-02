@@ -20,8 +20,11 @@
 #if defined( CHL2MP_Player )
 #undef CHL2MP_Player	
 #endif
+//EXTERN_RECV_TABLE(DT_HL2MPPlayerShared);
 
 LINK_ENTITY_TO_CLASS( player, C_HL2MP_Player );
+
+
 
 IMPLEMENT_CLIENTCLASS_DT(C_HL2MP_Player, DT_HL2MP_Player, CHL2MP_Player)
 	RecvPropFloat( RECVINFO( m_angEyeAngles[0] ) ),
@@ -35,6 +38,7 @@ IMPLEMENT_CLIENTCLASS_DT(C_HL2MP_Player, DT_HL2MP_Player, CHL2MP_Player)
 	RecvPropInt(RECVINFO( m_iPlayerClass)),
 	RecvPropInt(RECVINFO( m_iDesiredPlayerClass)),
 #endif
+	//RecvPropDataTable(RECVINFO_DT(m_eShared), 0, &REFERENCE_RECV_TABLE(DT_HL2MPPlayerShared)),
 END_RECV_TABLE()
 
 BEGIN_PREDICTION_DATA( C_HL2MP_Player )

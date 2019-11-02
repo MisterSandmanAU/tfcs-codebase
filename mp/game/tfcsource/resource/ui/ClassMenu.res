@@ -60,7 +60,7 @@
 		"brighttext"	"0"
 		"font"		"MenuTitle"
 	}
-	"joinclass1"
+	"joinclass0"
 	{
 		"ControlName"		"Button"
 		"fieldName"		"joinclass1"
@@ -77,12 +77,12 @@
 		"textAlignment"		"west"
 		"dulltext"		"0"
 		"brighttext"		"0"
-		"command"		"jointeam 1"
+		"command"		"joinclass 0"
 	}
-	"joinclass2"
+	"joinclass1"
 	{
 		"ControlName"		"Button"
-		"fieldName"		"joinclass2"
+		"fieldName"		"joinclass1"
 		"xpos"			"76"
 		"ypos"			"132"
 		"wide"			"148"
@@ -96,9 +96,9 @@
 		"textAlignment"		"west"
 		"dulltext"		"0"
 		"brighttext"		"0"
-		"command"		"joinclass 2"
+		"command"		"joinclass 1"
         }
-	"joinclass3"
+	"joinclass2"
 	{
 		"ControlName"		"Button"
 		"fieldName"		"joinclass3"
@@ -115,12 +115,12 @@
 		"textAlignment"		"west"
 		"dulltext"		"0"
 		"brighttext"		"0"
-		"command"		"joinclass 3"
+		"command"		"joinclass 2"
 	}
-	"joinclass4"
+	"joinclass3"
 	{
 		"ControlName"		"Button"
-		"fieldName"		"joinclass4"
+		"fieldName"		"joinclass3"
 		"xpos"			"76"
 		"ypos"			"196"
 		"wide"			"148"
@@ -134,13 +134,13 @@
 		"textAlignment"		"west"
 		"dulltext"		"0"
 		"brighttext"		"0"
-		"command"		"joinclass 4"
+		"command"		"joinclass 3"
 		"Default"		"1"
 	}
-        "joinclass5"
+        "joinclass4"
         {
                 "ControlName"           "Button"
-                "fieldName"             "joinclass5"
+                "fieldName"             "joinclass4"
                 "xpos"                  "76"
                 "ypos"                  "228"
                 "wide"                  "148"
@@ -154,13 +154,13 @@
                 "textAlignment"         "west"
                 "dulltext"              "0"
                 "brighttext"            "0"
-                "command"               "joinclass 5"
+                "command"               "joinclass 4"
                 "Default"               "1"
         }
-	"joinclass6"
+	"joinclass5"
 	{
 		"ControlName"		"Button"
-		"fieldName"		"joinclass6"
+		"fieldName"		"joinclass5"
 		"xpos"			"76"
 		"ypos"			"260"
 		"wide"			"148"
@@ -174,12 +174,12 @@
 		"textAlignment"		"west"
 		"dulltext"		"0"
 		"brighttext"		"0"
-		"command"		"joinclass 6"
+		"command"		"joinclass 5"
 	}
-	"joinclass7"
+	"joinclass6"
 	{
 		"ControlName"		"Button"
-		"fieldName"		"joinclass7"
+		"fieldName"		"joinclass6"
 		"xpos"			"76"
 		"ypos"			"292"
 		"wide"			"148"
@@ -193,13 +193,13 @@
 		"textAlignment"		"west"
 		"dulltext"		"0"
 		"brighttext"		"0"
-		"command"		"joinclass 7"
+		"command"		"joinclass 6"
 		"Default"		"1"
 	}
-        "joinclass8"
+        "joinclass7"
         {
                 "ControlName"           "Button"
-                "fieldName"             "joinclass8"
+                "fieldName"             "joinclass7"
                 "xpos"                  "76"
                 "ypos"                  "324"
                 "wide"                  "148"
@@ -213,13 +213,13 @@
                 "textAlignment"         "west"
                 "dulltext"              "0"
                 "brighttext"            "0"
-                "command"               "joinclass 8"
+                "command"               "joinclass 7"
                 "Default"               "1"
         }
-	"joinclass9"
+	"joinclass8"
 	{
 		"ControlName"		"Button"
-		"fieldName"		"joinclass9"
+		"fieldName"		"joinclass8"
 		"xpos"			"76"
 		"ypos"			"356"
 		"wide"			"148"
@@ -233,12 +233,12 @@
 		"textAlignment"		"west"
 		"dulltext"		"0"
 		"brighttext"		"0"
-		"command"		"joinclass 9"
+		"command"		"joinclass 8"
 	}
-	"joinclass10"
+	"joinclass9"
 	{
 		"ControlName"		"Button"
-		"fieldName"		"joinclass10"
+		"fieldName"		"joinclass9"
 		"xpos"			"76"
 		"ypos"			"388"
 		"wide"			"148"
@@ -252,13 +252,13 @@
 		"textAlignment"		"west"
 		"dulltext"		"0"
 		"brighttext"		"0"
-		"command"		"joinclass 10"
+		"command"		"joinclass 9"
 		"Default"		"1"
 	}
-        "joinclass11"
+        "joinclass-2"
         {
                 "ControlName"           "Button"
-                "fieldName"             "joinclass11"
+                "fieldName"             "joinclass-2"
                 "xpos"                  "76"
                 "ypos"                  "420"
                 "wide"                  "148"
@@ -272,7 +272,7 @@
                 "textAlignment"         "west"
                 "dulltext"              "0"
                 "brighttext"            "0"
-                "command"               "joinclass 11"
+                "command"               "joinclass -2"
                 "Default"               "1"
 	}
 }

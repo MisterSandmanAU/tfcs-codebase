@@ -1,4 +1,5 @@
 "Vox.RedCap"
+{
 	"channel"		"CHAN_VOICE"
 	"volume"		"VOL_NORM"
 	"pitch"		"PITCH_NORM"
@@ -9,6 +10,7 @@
 }
 
 "Vox.BlueCap"
+{
 	"channel"		"CHAN_VOICE"
 	"volume"		"VOL_NORM"
 	"pitch"		"PITCH_NORM"
@@ -19,6 +21,7 @@
 }
 
 "Vox.GreenCap"
+{
 	"channel"		"CHAN_VOICE"
 	"volume"		"VOL_NORM"
 	"pitch"		"PITCH_NORM"
@@ -29,6 +32,7 @@
 }
 
 "Vox.YellowCap"
+{
 	"channel"		"CHAN_VOICE"
 	"volume"		"VOL_NORM"
 	"pitch"		"PITCH_NORM"
@@ -39,6 +43,7 @@
 }
 
 "Vox.EnemyFlag"
+{
 	"channel"		"CHAN_VOICE"
 	"volume"		"VOL_NORM"
 	"pitch"		"PITCH_NORM"
@@ -49,6 +54,7 @@
 }
 
 "Vox.EnemyCapture"
+{
 	"channel"		"CHAN_VOICE"
 	"volume"		"VOL_NORM"
 	"pitch"		"PITCH_NORM"
@@ -59,6 +65,7 @@
 }
 
 "Vox.TeamFlag"
+{
 	"channel"		"CHAN_VOICE"
 	"volume"		"VOL_NORM"
 	"pitch"		"PITCH_NORM"
@@ -69,6 +76,7 @@
 }
 
 "Vox.TeamCapture"
+{
 	"channel"		"CHAN_VOICE"
 	"volume"		"VOL_NORM"
 	"pitch"		"PITCH_NORM"

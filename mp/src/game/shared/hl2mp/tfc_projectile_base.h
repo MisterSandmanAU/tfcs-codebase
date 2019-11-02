@@ -7,10 +7,6 @@
 #include "cbase.h"
 #include "baseprojectile.h"
 
-#ifdef CLIENT_DLL
-#include "tempent.h"
-#endif
-
 //
 // projectile base (some generic projectile to derive off)
 //
@@ -18,21 +14,26 @@ class CTFCProjectileBase : public CBaseProjectile
 {
 public:
 	DECLARE_CLASS(CTFCProjectileBase, CBaseProjectile);
-	DECLARE_DATADESC();
 	DECLARE_NETWORKCLASS();
+#ifdef GAME_DLL
+	DECLARE_DATADESC();
+#endif
+
+
 
 	CTFCProjectileBase();
 	~CTFCProjectileBase();
 
 	void Precache(void);
 	void Spawn(void);
-	const char *GetProjectileModelName(void);
-	#ifdef GAME_DLL
-	virtual void ProjectileTouch(CBaseEntity *pOther);
-	#endif
-protected:
+#ifdef GAME_DLL
+	static CTFCProjectileBase* Create(const char* pszClassname, const Vector& vecOrigin,
+		const QAngle& vecAngles, CBaseEntity* pOwner, const Vector& vecVelocity, float flDamage);
+#endif
+	virtual void ProjectileTouch(CBaseEntity* pOther);
 	virtual void ProjectileThink(void);
-	float m_flDamageAmount;
+	virtual const char* GetProjectileModelName(void) { return ""; }
+	float flDamage;
 };
 
 #endif //TFC_PROJECTILE_BASE_H

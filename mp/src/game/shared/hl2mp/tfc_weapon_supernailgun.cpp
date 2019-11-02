@@ -17,6 +17,7 @@
 
 #include "weapon_hl2mpbase.h"
 #include "weapon_hl2mpbase_machinegun.h"
+#include "tfc_projectile_base.h"
 
 #ifdef CLIENT_DLL
 #define CWeaponSuperNailGun C_WeaponSuperNailGun
@@ -240,7 +241,7 @@ void CWeaponSuperNailGun::PrimaryAttack(void)
 	QAngle angAiming;
 	VectorAngles(vecAiming, angAiming);
 
-	CBaseEntity* pBolt = CBaseEntity::Create("crossbow_bolt", pOwner->Weapon_ShootPosition(), angAiming, pOwner);
+	CTFCProjectileBase* pBolt = CTFCProjectileBase::Create("tf_proj_nail", pOwner->Weapon_ShootPosition(), pOwner->EyeAngles(), pOwner, Vector(0, 0, 0), 20.0f);
 
 	if (pOwner->GetWaterLevel() == 3)
 	{

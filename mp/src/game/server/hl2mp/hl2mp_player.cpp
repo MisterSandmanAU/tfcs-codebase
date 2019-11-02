@@ -41,8 +41,8 @@ void DropPrimedFragGrenade( CHL2MP_Player *pPlayer, CBaseCombatWeapon *pGrenade 
 
 LINK_ENTITY_TO_CLASS( player, CHL2MP_Player );
 
-LINK_ENTITY_TO_CLASS( info_player_combine, CPointEntity );
-LINK_ENTITY_TO_CLASS( info_player_rebel, CPointEntity );
+LINK_ENTITY_TO_CLASS( info_player_blue, CPointEntity );
+LINK_ENTITY_TO_CLASS( info_player_red, CPointEntity );
 
 //EXTERN_SEND_TABLE(DT_HL2MPPlayerShared);
 
@@ -1691,12 +1691,12 @@ CBaseEntity* CHL2MP_Player::EntSelectSpawnPoint( void )
 	{
 		if ( GetTeamNumber() == TEAM_COMBINE )
 		{
-			pSpawnpointName = "info_player_combine";
+			pSpawnpointName = "info_player_blue";
 			pLastSpawnPoint = g_pLastCombineSpawn;
 		}
 		else if ( GetTeamNumber() == TEAM_REBELS )
 		{
-			pSpawnpointName = "info_player_rebel";
+			pSpawnpointName = "info_player_red";
 			pLastSpawnPoint = g_pLastRebelSpawn;
 		}
 

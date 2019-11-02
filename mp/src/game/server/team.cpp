@@ -128,6 +128,14 @@ void CTeam::Init( const char *pName, int iNumber )
 {
 	InitializeSpawnpoints();
 	InitializePlayers();
+#if defined ( TFC_USE_PLAYERCLASSES )
+	int i = 0;
+	while (pszPlayerClasses[i] != NULL)
+	{
+		AddPlayerClass(pszPlayerClasses[i]);
+		i++;
+	}
+#endif
 
 	m_iScore = 0;
 

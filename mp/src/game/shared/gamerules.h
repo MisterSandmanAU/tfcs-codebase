@@ -32,6 +32,7 @@
 #include "gamerules_register.h"
 
 
+
 //#include "items.h"
 class CBaseCombatWeapon;
 class CBaseCombatCharacter;
@@ -145,6 +146,7 @@ public:
 	virtual bool ShouldCollide( int collisionGroup0, int collisionGroup1 );
 
 	virtual int DefaultFOV( void ) { return 90; }
+	const char *GetPlayerClassName(int cls);
 
 	// This function is here for our CNetworkVars.
 	inline void NetworkStateChanged()

@@ -218,12 +218,30 @@ int GetMPConceptIndexFromString( const char *pszConcept )
 static const char * s_WeaponAliasInfo[] =
 {
 	"none",		// WEAPON_NONE
-	"mp5",		// SDK_WEAPON_MP5
-	"shotgun",	// SDK_WEAPON_SHOTGUN
+	"nailgun",		// TFC_WEAPON_NAILGUN
+	"supernailgun",		// TFC_WEAPON_SUPERNAILGUN
+	"shotgun",	// TFC_WEAPON_SHOTGUN
+	"shotgun12gauge",	// TFC_WEAPON_SHOTGUN12GAUGE
 	"grenade",	// SDK_WEAPON_GRENADE
 	"pistol",	// SDK_WEAPON_PISTOL
-	"crowbar",	// SDK_WEAPON_CROWBAR
+	"crowbar",	// TFC_WEAPON_CROWBAR
 	NULL,		// WEAPON_NONE
+};
+
+
+const char *pszPlayerClasses[] =
+{
+	"scout",
+	"soldier",
+	"pyro",
+	"HWguy",
+	"demoman",
+	"engineer",
+	"medic",
+	"sniper",
+	"spy",
+	"civilian",
+	NULL
 };
 
 //--------------------------------------------------------------------------------------------------------
@@ -241,6 +259,7 @@ int AliasToWeaponID(const char *alias)
 
 	return WEAPON_NONE;
 }
+
 
 //--------------------------------------------------------------------------------------------------------
 //

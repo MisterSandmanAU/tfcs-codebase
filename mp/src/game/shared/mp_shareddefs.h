@@ -14,7 +14,8 @@
 #define TFC_USE_PLAYERCLASSES
 
 #if defined ( TFC_USE_PLAYERCLASSES )
-#define SDK_NUM_PLAYERCLASSES 12		//Tony; our template sample has 3 player classes.
+#define TFC_PLAYER_MODEL "models/Combine_Soldier.mdl"
+#define SDK_NUM_PLAYERCLASSES 13		//Tony; our template sample has 3 player classes.
 #define SDK_PLAYERCLASS_IMAGE_LENGTH 64
 
 #define PLAYERCLASS_RANDOM		-2
@@ -28,6 +29,7 @@
 #define PLAYERCLASS_MEDIC		6
 #define PLAYERCLASS_SNIPER		7
 #define PLAYERCLASS_SPY			8
+#define PLAYERCLASS_CIV			9
 
 
 //Tony; these defines handle the default speeds for all of these - all are listed regardless of which option is enabled.
@@ -35,8 +37,11 @@
 #define SDK_DEFAULT_PLAYER_SPRINTSPEED		330
 #define SDK_DEFAULT_PLAYER_PRONESPEED		50
 
+extern const char *pszPlayerClasses[];
+
 const char *WeaponIDToAlias(int id);
 int AliasToWeaponID(const char *alias);
+int AliasToAmmoID(const char *alias);
 #endif
 //--------------------------------------------------------------------------------------------------------
 //
@@ -47,8 +52,10 @@ typedef enum
 	WEAPON_NONE = 0,
 
 	SDK_WEAPON_NONE = WEAPON_NONE,
-	SDK_WEAPON_MP5,
-	SDK_WEAPON_SHOTGUN,
+	TFC_WEAPON_NAILGUN,
+	TFC_WEAPON_SUPERNAILGUN,
+	TFC_WEAPON_SHOTGUN,
+	TFC_WEAPON_SHOTGON12GAUGE,
 	SDK_WEAPON_GRENADE,
 	SDK_WEAPON_PISTOL,
 	SDK_WEAPON_CROWBAR,
@@ -56,6 +63,7 @@ typedef enum
 
 	WEAPON_MAX,		// number of weapons weapon index
 } TFCWeaponID;
+
 
 //-----------------------------------------------------------------------------
 // TF Concepts

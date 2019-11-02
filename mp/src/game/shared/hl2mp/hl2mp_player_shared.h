@@ -11,6 +11,7 @@
 
 #define HL2MP_PUSHAWAY_THINK_INTERVAL		(1.0f / 20.0f)
 #include "studio.h"
+#include "networkvar.h"
 
 
 enum
@@ -33,7 +34,7 @@ enum HL2MPPlayerState
 #if defined( CLIENT_DLL )
 #define CHL2MP_Player C_HL2MP_Player
 #endif
-
+#define TFC_USE_PLAYERCLASSES
 class CPlayerAnimState
 {
 public:
@@ -103,5 +104,7 @@ protected:
 	int		m_iPlayerClass[MAX_PLAYERS + 1];
 #endif
 };
+
+
 
 #endif //HL2MP_PLAYER_SHARED_h

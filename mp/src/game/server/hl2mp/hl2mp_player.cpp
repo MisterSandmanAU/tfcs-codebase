@@ -44,12 +44,16 @@ LINK_ENTITY_TO_CLASS( player, CHL2MP_Player );
 LINK_ENTITY_TO_CLASS( info_player_combine, CPointEntity );
 LINK_ENTITY_TO_CLASS( info_player_rebel, CPointEntity );
 
+//EXTERN_SEND_TABLE(DT_HL2MPPlayerShared);
+
+
 IMPLEMENT_SERVERCLASS_ST(CHL2MP_Player, DT_HL2MP_Player)
 	SendPropAngle( SENDINFO_VECTORELEM(m_angEyeAngles, 0), 11, SPROP_CHANGES_OFTEN ),
 	SendPropAngle( SENDINFO_VECTORELEM(m_angEyeAngles, 1), 11, SPROP_CHANGES_OFTEN ),
 	SendPropEHandle( SENDINFO( m_hRagdoll ) ),
 	SendPropInt( SENDINFO( m_iSpawnInterpCounter), 4 ),
 	SendPropInt( SENDINFO( m_iPlayerSoundType), 3 ),
+	
 #if defined ( TFC_USE_PLAYERCLASSES )
 	SendPropInt(SENDINFO( m_iPlayerClass), 4),
 	SendPropInt(SENDINFO( m_iDesiredPlayerClass), 4),
@@ -57,7 +61,7 @@ IMPLEMENT_SERVERCLASS_ST(CHL2MP_Player, DT_HL2MP_Player)
 	
 	SendPropExclude( "DT_BaseAnimating", "m_flPoseParameter" ),
 	SendPropExclude( "DT_BaseFlex", "m_viewtarget" ),
-
+	//SendPropDataTable(SENDINFO_DT(m_eShared), &REFERENCE_SEND_TABLE(DT_HL2MPPlayerShared)),
 
 //	SendPropExclude( "DT_ServerAnimationData" , "m_flCycle" ),	
 //	SendPropExclude( "DT_AnimTimeMustBeFirst" , "m_flAnimTime" ),
@@ -120,6 +124,9 @@ CHL2MP_Player::CHL2MP_Player() : m_PlayerAnimState( this )
 	BaseClass::ChangeTeam( 0 );
 	
 //	UseClientSideAnimation();
+#if defined ( TFC_USE_PLAYERCLASSES )
+	SetDesiredPlayerClass(PLAYERCLASS_UNDEFINED);
+#endif
 }
 
 CHL2MP_Player::~CHL2MP_Player( void )
@@ -316,18 +323,145 @@ void CHL2MP_Player::Spawn(void)
 	
 	if ( !IsObserver() )
 	{
+#if defined ( TFC_USE_PLAYERCLASSES )
+		if (DesiredPlayerClass() == PLAYERCLASS_RANDOM)
+		{
+			//ChooseRandomClass(pPlayer);
+			ClientPrint(this, HUD_PRINTTALK, "#game_now_as", g_pGameRules->GetPlayerClassName(PlayerClass()));
+		}
+		else
+		{
+			SetPlayerClass(DesiredPlayerClass());
+		}
+
+		int playerclass = PlayerClass();
+
+		if (playerclass != PLAYERCLASS_UNDEFINED)
+		{
+			//Assert( PLAYERCLASS_UNDEFINED < playerclass && playerclass < NUM_PLAYERCLASSES );
+
+			int team = GetTeamNumber();
+			CTeam *pTeam = GetGlobalTeam(team);
+			const CSDKPlayerClassInfo &pClassInfo = pTeam->GetPlayerClassInfo(playerclass);
+
+			//Assert(pClassInfo.m_iTeam == team);
+
+			SetModel(pClassInfo.m_szPlayerModel);
+			
+			SetupPlayerSoundsByModel(pClassInfo.m_szPlayerModel);
+
+			m_flNextModelChangeTime = gpGlobals->curtime + MODEL_CHANGE_INTERVAL;
+
+			SetHitboxSet(0);
+
+			char buf[64];
+			int bufsize = sizeof(buf);
+
+			//Give weapons
+
+			// Primary weapon
+			Q_snprintf(buf, bufsize, "tfc_weapon_%s", WeaponIDToAlias(pClassInfo.m_iPrimaryWeapon));
+			CBaseEntity *pPrimaryWpn = GiveNamedItem(buf);
+			Assert(pPrimaryWpn);
+
+			// Secondary weapon
+			CBaseEntity *pSecondaryWpn = NULL;
+			if (pClassInfo.m_iSecondaryWeapon != WEAPON_NONE)
+			{
+				Q_snprintf(buf, bufsize, "tfc_weapon_%s", WeaponIDToAlias(pClassInfo.m_iSecondaryWeapon));
+				pSecondaryWpn = GiveNamedItem(buf);
+			}
+
+			// Melee weapon
+			if (pClassInfo.m_iMeleeWeapon)
+			{
+				Q_snprintf(buf, bufsize, "tfc_weapon_%s", WeaponIDToAlias(pClassInfo.m_iMeleeWeapon));
+				GiveNamedItem(buf);
+			}
+
+			CWeaponHL2MPBase *pWpn = NULL;
+
+			// Primary Ammo
+			pWpn = dynamic_cast<CWeaponHL2MPBase *>(pPrimaryWpn);
+
+			if (pWpn)
+			{
+				int iNumClip = pWpn->GetHL2MPWpnData().iDefaultClip1 - 1;	//account for one clip in the gun
+				int iClipSize = pWpn->GetHL2MPWpnData().iMaxClip1;
+				CBasePlayer::GiveAmmo(iNumClip * iClipSize, pWpn->GetHL2MPWpnData().szAmmo1);
+			}
+
+			// Secondary Ammo
+			if (pSecondaryWpn)
+			{
+				pWpn = dynamic_cast<CWeaponHL2MPBase *>(pSecondaryWpn);
+
+				if (pWpn)
+				{
+					int iNumClip = pWpn->GetHL2MPWpnData().iDefaultClip1 - 1;	//account for one clip in the gun
+					int iClipSize = pWpn->GetHL2MPWpnData().iMaxClip1;
+					CBasePlayer::GiveAmmo(iNumClip * iClipSize, pWpn->GetHL2MPWpnData().szAmmo1);
+				}
+			}
+
+			// Grenade Type 1
+			if (pClassInfo.m_iGrenType1 != WEAPON_NONE)
+			{
+				Q_snprintf(buf, bufsize, "tfc_weapon_%s", WeaponIDToAlias(pClassInfo.m_iGrenType1));
+				CBaseEntity *pGrenade = GiveNamedItem(buf);
+				Assert(pGrenade);
+
+				pWpn = dynamic_cast<CWeaponHL2MPBase *>(pGrenade);
+
+				if (pWpn)
+				{
+					CBasePlayer::GiveAmmo(pClassInfo.m_iNumGrensType1 - 1, pWpn->GetHL2MPWpnData().szAmmo1);
+				}
+			}
+
+			// Grenade Type 2
+			if (pClassInfo.m_iGrenType2 != WEAPON_NONE)
+			{
+				Q_snprintf(buf, bufsize, "tfc_weapon_%s", WeaponIDToAlias(pClassInfo.m_iGrenType2));
+				CBaseEntity *pGrenade2 = GiveNamedItem(buf);
+				Assert(pGrenade2);
+
+				pWpn = dynamic_cast<CWeaponHL2MPBase *>(pGrenade2);
+
+				if (pWpn)
+				{
+					CBasePlayer::GiveAmmo(pClassInfo.m_iNumGrensType2 - 1, pWpn->GetHL2MPWpnData().szAmmo1);
+				}
+			}
+
+			Weapon_Switch((CBaseCombatWeapon *)pPrimaryWpn);
+
+			SetMaxSpeed(pClassInfo.m_flRunSpeed);
+
+			//			DevMsg("setting spawn armor to: %d\n", pClassInfo.m_iArmor );
+			SetSpawnArmorValue(pClassInfo.m_iArmor);
+			
+
+		}
+		else
+		{
+			//			Assert( !"Player spawning with PLAYERCLASS_UNDEFINED" );
+			SetModel(TFC_PLAYER_MODEL);
+		}
+#endif
 		pl.deadflag = false;
 		RemoveSolidFlags( FSOLID_NOT_SOLID );
 
 		RemoveEffects( EF_NODRAW );
 		
 		//GiveDefaultItems();
-		GiveTFCItems();
+		//GiveTFCItems();
+		SetArmorValue(SpawnArmorValue());
 	}
 
 	SetNumAnimOverlays( 3 );
 	ResetAnimation();
-
+	
 	m_nRenderFX = kRenderNormal;
 
 	m_Local.m_iHideHUD = 0;
@@ -961,6 +1095,28 @@ bool CHL2MP_Player::BumpWeapon( CBaseCombatWeapon *pWeapon )
 	return true;
 }
 
+#if defined ( TFC_USE_PLAYERCLASSES )
+void CHL2MP_Player::SetDesiredPlayerClass(int playerclass)
+{
+	m_iDesiredPlayerClass = playerclass;
+}
+
+int CHL2MP_Player::DesiredPlayerClass(void)
+{
+	return m_iDesiredPlayerClass;
+}
+
+void CHL2MP_Player::SetPlayerClass(int playerclass)
+{
+	m_iPlayerClass = playerclass;
+}
+
+int CHL2MP_Player::PlayerClass(void)
+{
+	return m_iPlayerClass;
+}
+#endif
+
 void CHL2MP_Player::ChangeTeam( int iTeam )
 {
 /*	if ( GetNextTeamChangeTime() >= gpGlobals->curtime )
@@ -999,7 +1155,7 @@ void CHL2MP_Player::ChangeTeam( int iTeam )
 
 	if ( HL2MPRules()->IsTeamplay() == true )
 	{
-		SetPlayerTeamModel();
+		//SetPlayerTeamModel();
 	}
 	else
 	{
@@ -1021,6 +1177,99 @@ void CHL2MP_Player::ChangeTeam( int iTeam )
 	{
 		ForceRespawn();
 	}
+#if defined ( TFC_USE_PLAYERCLASSES )
+	// Force them to choose a new class
+	SetDesiredPlayerClass(PLAYERCLASS_UNDEFINED);
+	SetPlayerClass(PLAYERCLASS_UNDEFINED);
+#endif
+}
+#if defined ( TFC_USE_PLAYERCLASSES )
+//Tony; we don't have to check anything special for SDK_USE_TEAMS here; it's all pretty generic, except for the one assert.
+bool CHL2MP_Player::HandleCommand_JoinClass(int iClass)
+{
+	Assert(GetTeamNumber() != TEAM_SPECTATOR);
+#if defined ( SDK_USE_TEAMS )
+	Assert(GetTeamNumber() != TEAM_UNASSIGNED);
+#endif
+
+	if (iClass == PLAYERCLASS_UNDEFINED || iClass > 9)
+	{
+		Warning("HandleCommand_JoinClass( %d ) - invalid class index.\n", iClass);
+		return false;
+	}
+	if (GetTeamNumber() == TEAM_SPECTATOR)
+		return false;
+
+	/*if (iClass == PLAYERCLASS_UNDEFINED)
+		return false;	//they typed in something weird
+	*/
+
+	int iOldPlayerClass = DesiredPlayerClass();
+
+	// See if we're joining the class we already are
+	if (iClass == iOldPlayerClass)
+		return true;
+
+	/*if (!GameRules()->IsPlayerClassOnTeam(iClass, GetTeamNumber()))
+		return false;*/
+
+	const char *classname = GameRules()->GetPlayerClassName(iClass);
+
+	SetDesiredPlayerClass(iClass);	//real class value is set when the player spawns
+
+	//Tony; don't do this until we have a spawn timer!!
+	//		if( State_Get() == STATE_PICKINGCLASS )
+	//			State_Transition( STATE_OBSERVER_MODE );
+
+	if (iClass == PLAYERCLASS_RANDOM)
+	{
+		if (IsAlive())
+		{
+			ClientPrint(this, HUD_PRINTTALK, "#game_respawn_asrandom");
+		}
+		else
+		{
+			ClientPrint(this, HUD_PRINTTALK, "#game_spawn_asrandom");
+		}
+	}
+	else
+	{
+		if (IsAlive())
+		{
+			ClientPrint(this, HUD_PRINTTALK, "#game_respawn_as", classname);
+		}
+		else
+		{
+			ClientPrint(this, HUD_PRINTTALK, "#game_spawn_as", classname);
+		}
+	}
+
+	IGameEvent * event = gameeventmanager->CreateEvent("player_changeclass");
+	if (event)
+	{
+		event->SetInt("userid", GetUserID());
+		event->SetInt("class", iClass);
+
+		gameeventmanager->FireEvent(event);
+	}
+	/*else
+	{
+		ClientPrint(this, HUD_PRINTTALK, "#game_class_limit", classname);
+		//ShowClassSelectMenu();
+	}*/
+
+	// Incase we don't get the class menu message before the spawn timer
+	// comes up, fake that we've closed the menu.
+	//SetClassMenuOpen(false);
+
+	//Tony; TODO; this is temp, I may integrate with the teamplayroundrules; If I do, there will be wavespawn too.
+
+	/*if (State_Get() == STATE_PICKINGCLASS || IsDead())	Tony; undone, don't transition if dead; only go into active state at this point if we were picking class.
+		State_Transition(STATE_ACTIVE); Done picking stuff and we're in the pickingclass state, or dead, so we can spawn now.
+	*/
+
+	return true;
+#endif
 }
 
 bool CHL2MP_Player::HandleCommand_JoinTeam( int team )
@@ -1066,20 +1315,6 @@ bool CHL2MP_Player::HandleCommand_JoinTeam( int team )
 	return true;
 }
 
-bool CHL2MP_Player::HandleCommand_JoinClass(int iclass)
-{
-	if (iclass == -1 || iclass > 8)
-	{
-		Warning("HandleCommand_JoinClass( %d ) - invalid class index.\n", iclass);
-		return false;
-	}
-
-	// Switch their actual team...
-	//ChangeTeam(team);
-
-	return true;
-}
-
 bool CHL2MP_Player::ClientCommand( const CCommand &args )
 {
 	if ( FStrEq( args[0], "spectate" ) )
@@ -1113,8 +1348,17 @@ bool CHL2MP_Player::ClientCommand( const CCommand &args )
 		}
 #ifdef TFC_USE_PLAYERCLASSES
 
-		int iClass = atoi(args[1]);
-		HandleCommand_JoinClass (iClass);
+
+		if (GetTeamNumber() >= 2)
+		{
+			int iClass = atoi(args[1]);
+			HandleCommand_JoinClass(iClass);
+		}
+		else
+		{
+			DevMsg("player tried to join a class but the player isn't on a valid team ( %s )\n", GetTeamNumber());
+		}
+		
 
 		/*if (pTeam->IsClassOnTeam(args[0], iClassIndex))
 		{

@@ -1,4 +1,4 @@
-"lang" { "Language" "English" "Tokens" { "hl2_AmmoFull"			"FULL"
+"lang" { "Language" "English" "Tokens" { "hl2_AmmoFull"			"FULL"
 "TM_Join_Team"			"SELECT YOUR TEAM"
 "TM_Join_Team_3"			"RED"	"TM_Join_Team_2"			"BLUE""TM_Join_Team_4"			"GREEN""TM_Join_Team_5"			"YELLOW"
 "TM_Join_Team_1"			"SPECTATE""TM_Auto_Join"			"AUTO ASSIGN""TM_Cancel"			"CANCEL""CM_Select_Class"		"SELECT A CLASS" "CM_Join_Class_1"               "SCOUT""CM_Join_Class_2"               "SOLDIER""CM_Join_Class_3"               "PYRO""CM_Join_Class_4"               "DEMOLITIONS MAN""CM_Join_Class_5"               "HWGUY""CM_Join_Class_6"               "ENGINEER""CM_Join_Class_7"               "COMBAT MEDIC""CM_Join_Class_8"               "SNIPER""CM_Join_Class_9"               "SPY""CM_Join_Class_10"              "CIVILIAN""CM_Join_Class_11"              "RANDOMPC"

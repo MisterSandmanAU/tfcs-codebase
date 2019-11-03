@@ -2,7 +2,7 @@ versioninfo
 {
 	"editorversion" "400"
 	"editorbuild" "8357"
-	"mapversion" "10"
+	"mapversion" "12"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -20,7 +20,7 @@ viewsettings
 world
 {
 	"id" "0"
-	"mapversion" "10"
+	"mapversion" "12"
 	"classname" "worldspawn"
 	"detailmaterial" "detail/detailsprites"
 	"detailvbsp" "detail.vbsp"
@@ -47880,7 +47880,7 @@ world
 		{
 			"id" "4890"
 			"plane" "(512 1152 384) (512 896 384) (640 896 384)"
-			"material" "DEV/REFLECTIVITY_40"
+			"material" "DEV/REFLECTIVITY_50"
 			"uaxis" "[-1 0 0 0] 0.25"
 			"vaxis" "[0 1 0 -2] 0.25"
 			"rotation" "0"
@@ -47902,7 +47902,7 @@ world
 		{
 			"id" "4892"
 			"plane" "(512 896 512) (512 896 384) (512 1152 384)"
-			"material" "DEV/REFLECTIVITY_80"
+			"material" "DEV/REFLECTIVITY_50"
 			"uaxis" "[0 -1 0 2] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -108608,8 +108608,8 @@ cameras
 	"activecamera" "0"
 	camera
 	{
-		"position" "[-357.892 -175.696 221.467]"
-		"look" "[-558.381 -310.899 109.732]"
+		"position" "[313.405 787.489 661.505]"
+		"look" "[532.295 875.902 538.09]"
 	}
 	camera
 	{

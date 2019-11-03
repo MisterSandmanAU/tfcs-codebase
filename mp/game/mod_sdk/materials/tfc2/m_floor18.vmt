@@ -1,0 +1,6 @@
+"LightmappedGeneric"
+{
+	// Original shader: BaseTimesLightmap
+	"$basetexture" "tfc2/m_floor18"
+	"$surfaceprop" "tile"
+}

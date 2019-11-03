@@ -1,0 +1,8 @@
+"VertexLitGeneric"
+{
+	"$envmap" "models/weapons/w_emp/chrome1"
+	"$envmapsphere"			"1"
+	"$envmapmode" "1"
+
+	"$multipass" "1"
+}

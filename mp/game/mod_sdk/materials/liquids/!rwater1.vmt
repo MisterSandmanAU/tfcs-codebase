@@ -1,0 +1,20 @@
+"Water"
+{
+	"$basetexture" "liquids/!rwater1"
+//	"%compilewater" 1
+	"$bottommaterial" "liquids/!rwater1"
+
+//	"$scale" "[1 1]"
+
+	"$bumpmap" "dev/water_dudv"
+	"$normalmap" "dev/water_normal"
+
+	"$surfaceprop" "water"
+	"$bottommaterial" "dev/dev_waterbeneath2"
+	"$subdivsize" 64
+
+	"$fogenable" 1
+	"$fogcolor" "{22 20 10}"
+	"$fogstart" 1.00
+	"$fogend" 400.00
+}

@@ -1,0 +1,6 @@
+"LightmappedGeneric"
+{
+	// Original shader: BaseTimesLightmap
+	"$baseTexture" "tfc/+0_closed"
+	"$surfaceprop" "metal"
+}

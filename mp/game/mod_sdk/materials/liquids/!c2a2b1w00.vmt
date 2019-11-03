@@ -1,0 +1,19 @@
+"LightmappedGeneric"
+{
+	"$basetexture" "liquids/!c2a2b1w00"
+	"$envmap" "env_cubemap"
+	"%compilewater" 1
+	"$watertimefreq1" 0.30
+	"$watertimefreq2" 0.52
+	"$waterwaveheight" 3
+	"$waterwavelength" 256
+	"$waterdepth" 64
+	"$waterspecularmin" 0.20
+	"$waterspecularmax" 0.32
+	"$watercolor" "[ 0.00 0.10 0.10 ]"
+	"$watermurkiness" 0.95
+	"$waterbasefactor" 0.40
+	"$waterbasemovementdist" 0.10
+	"$waterbasemovementfreq" 25
+	"$surfaceprop" "water"
+}

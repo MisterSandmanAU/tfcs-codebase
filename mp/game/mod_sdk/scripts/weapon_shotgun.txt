@@ -17,7 +17,8 @@ WeaponData
 	"bucket_position"		"1"
 
 	"clip_size"			"8"
-	"NumClips"			"3"
+	"default_clip"			"8"
+	"NumClips"			"200"
 
 	
 	"primary_ammo"			"shotgun"

@@ -17,7 +17,8 @@ WeaponData
 	"bucket_position"		"4"
 
 	"clip_size"			"16"
-	"NumClips"			"3"
+	"default_clip"			"16"
+	"NumClips"			"200"
 
 	
 	"primary_ammo"			"shell"

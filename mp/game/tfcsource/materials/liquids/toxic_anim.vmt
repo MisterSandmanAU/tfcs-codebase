@@ -1,0 +1,14 @@
+"UnlitGeneric"
+{
+	"$basetexture" "liquids\toxic_anim"
+	"$additive"	1
+	"Proxies"
+	{
+		"AnimatedTexture"
+		{
+			"animatedtexturevar" "$basetexture"
+			"animatedtextureframenumvar" "$frame"
+			"animatedtextureframerate" 15
+		}
+	}
+}

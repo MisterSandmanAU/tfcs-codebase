@@ -1,0 +1,7 @@
+"LightmappedGeneric"
+{
+	// Original shader: BaseTimesLightmap
+	"$translucent" 1
+	"$basetexture" "tfc2/{woodrail"
+	"$surfaceprop" "wood"
+}

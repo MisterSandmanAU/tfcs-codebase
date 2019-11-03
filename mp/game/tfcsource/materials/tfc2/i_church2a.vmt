@@ -1,0 +1,5 @@
+"LightmappedGeneric"
+{
+	// Original shader: BaseTimesLightmap
+	"$basetexture" "tfc2/i_church2a"
+}

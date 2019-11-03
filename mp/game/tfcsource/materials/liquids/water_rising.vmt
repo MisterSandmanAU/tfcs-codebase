@@ -1,0 +1,15 @@
+"UnlitGeneric"
+{
+	"$basetexture" "liquids/!c2a542"
+	"%tooltexture" "dev/water_normal"
+
+	"%compilewater" 1
+	"$surfaceprop" "water"
+	"$bottommaterial" "liquids/water_rising"
+	"$subdivsize" 64
+
+	"$fogenable" 1
+	"$fogcolor" "{15 18 20}"
+	"$fogstart" 1.00
+	"$fogend" 1000.00
+}

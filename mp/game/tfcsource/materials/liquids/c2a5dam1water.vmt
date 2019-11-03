@@ -1,0 +1,54 @@
+"Water"
+{
+	"%tooltexture" "dev/water_normal"
+	"basetexture" "nature/water002a"
+	"$refracttexture" "Environment Maps/c2a5dam1"
+	"$refractamount" "50.0"
+	"$refracttint" "[0.9 1.0 0.95]"
+
+//	"$reflecttexture" "_rt_WaterReflection"
+	"$reflecttexture" "Environment Maps/c2a5dam1"
+	"$reflectamount" "50.0"
+	"$reflecttint" "[.9 .9 .9]"
+
+	"$envmap" "env_cubemap"
+
+	"$forcecheap" "1"
+
+	"$scale" "[1 1]"
+
+	"$bumpmap" "dev/water_dudv"
+	"$normalmap" "dev/water_normal"
+
+	"%compilewater" 1
+	"$surfaceprop" "water"
+	"$bottommaterial" "dev/dev_waterbeneath2"
+	"$subdivsize" 64
+	"$bumpframe" "0"
+
+	"$fogenable" 1
+	"$fogcolor" "{22 20 10}"
+	"$fogstart" 1.00
+	"$fogend" 180.00
+
+	"$bumpoffset" "[0 0]"
+
+	"Proxies"
+	{
+		"AnimatedTexture"
+		{
+			"animatedtexturevar" "$normalmap"
+			"animatedtextureframenumvar" "$bumpframe"
+			"animatedtextureframerate" 30.00
+		}
+
+		"TextureScroll"
+		{
+			"texturescrollvar" "$bumptransform"
+			"texturescrollrate" .05
+			"texturescrollangle" 45.00
+		}
+	}
+}
+
+skybox/tornskyft

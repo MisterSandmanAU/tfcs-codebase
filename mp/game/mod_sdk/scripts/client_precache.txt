@@ -1,5 +1,0 @@
-ClientPrecache
-{
-	"material"			"sprites/white.vmt"
-	"material"			"sprites/physbeam.vmt"
-}

@@ -5,7 +5,7 @@
 //-----------------------------------------------------------------------------
 
 $Macro SRCDIR		"..\.."
-$Macro GAMENAME 	"mod_sdk"
+$Macro GAMENAME 	"tfcsource"
 
 $Include "$SRCDIR\game\client\client_base.vpc"
 
@@ -18,7 +18,7 @@ $Configuration
 	}
 }
 
-$Project "Client (SDK)"
+$Project "Client (TFCSOURCE)"
 {
 
 	$Folder	"game_controls Header Files"

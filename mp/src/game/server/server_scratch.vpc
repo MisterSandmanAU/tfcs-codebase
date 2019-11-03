@@ -5,7 +5,7 @@
 //-----------------------------------------------------------------------------
 
 $Macro SRCDIR		"..\.."
-$Macro GAMENAME 	"mod_sdk"
+$Macro GAMENAME 	"tfcsource"
 
 $Include "$SRCDIR\game\server\server_base.vpc"
 $Include "$SRCDIR\game\server\nav_mesh.vpc" [$SOURCESDK]
@@ -19,7 +19,7 @@ $Configuration
 	}
 }
 
-$Project "Server (SDK)"
+$Project "Server (TFCSOURCE)"
 {
 	$Folder	"Source Files"
 	{

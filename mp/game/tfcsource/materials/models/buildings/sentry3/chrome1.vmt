@@ -1,0 +1,8 @@
+"VertexLitGeneric"
+{
+	"$envmap" "models/buildings/sentry3/chrome1"
+	"$envmapsphere"			"1"
+	"$envmapmode" "1"
+
+	"$multipass" "1"
+}

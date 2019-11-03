@@ -1,0 +1,6 @@
+"LightmappedGeneric"
+{
+	// Original shader: BaseTimesLightmap
+	"$basetexture" "tfc2/ital_wall5a"
+	"$surfaceprop" "brick"
+}

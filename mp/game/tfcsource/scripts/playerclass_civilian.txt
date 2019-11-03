@@ -1,0 +1,57 @@
+//
+// Team Fortress - Civllian Player Class
+//
+PlayerClass
+{
+	// Attributes.
+	"name"			"Civllian"
+	"printname"		"Civllian"
+	"playermodel"	"models/Combine_Soldier.mdl"
+	"classimage"	"ClassImagePathHere"
+	"classimagebg"	"ClassImageBackgroundPathHere"
+	"model_hwm"		"models/player/hwm/scout.mdl"
+	"model_hands"	"models/weapons/c_models/c_scout_arms.mdl"
+	"localize_name"	"TF_Class_Name_Scout"
+	"selectsmd"		""
+//	"speed_max"		"450"
+	"RunSpeed"		"400"
+//	"health_max"		"75"
+	"armor"		"50"
+	"health_max"		"125"
+	"armor_max"		"0"
+
+	// Grenades.
+	"numgrens"			"0"
+	"grenadetype"		"3"
+	"numgrens2"			"0"
+	"grenadetype2"		"3"
+
+	// Weapons.
+	"primaryweapon" "1"
+	"secondaryweapon" "2"
+	"meleeweapon" 	"7"
+	"weapon1"		"1"
+	"weapon2"		"2"
+	"weapon3"		"3"
+	"weapon4"		""
+	"weapon5"		""
+	"weapon6"		""
+	"weapon7"		""
+	"weapon8"		""
+	"weapon9"		""
+	"weapon10"		""
+	"weapon11"		""
+
+	"limitcvar"		"10"
+	
+	//Thirdperson
+	"cameraoffset_forward"	"85"
+	"cameraoffset_right"	"25"
+	"cameraoffset_up"	"0"
+
+	// Death Sounds
+	"sound_death"				"Scout.Death"
+	"sound_crit_death"				"Scout.CritDeath"
+	"sound_melee_death"			"Scout.MeleeDeath"
+	"sound_explosion_death"			"Scout.ExplosionDeath"	
+}

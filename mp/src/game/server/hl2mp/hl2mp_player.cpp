@@ -461,6 +461,8 @@ void CHL2MP_Player::Spawn(void)
 			Warning("Player spawning with PLAYERCLASS_UNDEFINED");
 			
 			SetModel(TFC_PLAYER_MODEL);
+
+			GiveTFCItems();
 		}
 #endif
 		SetArmorValue(SpawnArmorValue());

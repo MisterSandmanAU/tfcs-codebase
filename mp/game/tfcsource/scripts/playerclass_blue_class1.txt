@@ -2,7 +2,7 @@ PlayerClassDatafile
 {
 	// FilePLayerClassInfo_t members
 	"printname"			"#class_blue_class1"
-	"playermodel"			"models/player/blue_player.mdl"
+	"playermodel"			"models/player/scout.mdl"
 	"selectcmd"			"cls_blue_class1"
 
 	// CSDKPlayerClassInfo members
@@ -11,9 +11,9 @@ PlayerClassDatafile
 	"team"				"BLUE"
 
 	// Weapon Info
-	"primaryweapon"		"pistol"
-	"secondaryweapon"	"none"
-	"meleeweapon"		"crowbar"
+	"primaryweapon"		"nailgun"
+	"secondaryweapon"	"supernailgun"
+	"meleeweapon"		"12gauge"
 
 	"grenadetype"		"grenade"
 	"numgrens"		"1"
@@ -23,10 +23,10 @@ PlayerClassDatafile
 	"classimage"		"cls_blue_class1_active"
 	"classimagebg"		"cls_blue_class1_active_bg"
 
-	"armor"			"50"
+	"armor"			"25"
 
 	// Movement
-	"RunSpeed"		"240"
+	"RunSpeed"		"260"
 	"SprintSpeed"		"360"
 	"ProneSpeed"		"70"
 }

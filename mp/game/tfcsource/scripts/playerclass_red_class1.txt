@@ -2,7 +2,7 @@ PlayerClassDatafile
 {
 	// FilePLayerClassInfo_t members
 	"printname"			"#class_red_class1"	
-	"playermodel"			"models/player/red_player.mdl"
+	"playermodel"			"models/player/scout.mdl"
 	"selectcmd"			"cls_red_class1"
 
 	// CSDKPlayerClassInfo members
@@ -11,9 +11,9 @@ PlayerClassDatafile
 	"team"				"RED"
 
 	// Weapon Info
-	"primaryweapon"		"pistol"
-	"secondaryweapon"	"none"
-	"meleeweapon"		"crowbar"
+	"primaryweapon"		"nailgun"
+	"secondaryweapon"	"supernailgun"
+	"meleeweapon"		"12gauge"
 
 	"grenadetype"		"grenade"
 	"numgrens"		"1"

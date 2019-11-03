@@ -5,7 +5,7 @@ WeaponData
 	"Bullets"			"9"
 	"CycleTime"			"0.85"
 
-	"BuiltRightHanded"		"0"
+	"BuiltRightHanded"		"1"
 	
 	// Weapon data is loaded by both the Game and Client DLLs.
 	"printname"			"#SDK_Weapon_Shotgun"

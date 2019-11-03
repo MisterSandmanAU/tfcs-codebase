@@ -31,6 +31,17 @@ public:
 	int m_iSecondaryWeapon;
 	int m_iMeleeWeapon;
 
+	int m_iWeapon1;
+	int m_iWeapon2;
+	int m_iWeapon3;
+	int m_iWeapon4;
+	int m_iWeapon5;
+	int m_iWeapon6;
+	int m_iWeapon7;
+	int m_iWeapon8;
+	int m_iWeapon9;
+	int m_iWeapon10;
+
 	int m_iNumGrensType1;
 	int m_iGrenType1;
 

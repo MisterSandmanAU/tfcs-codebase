@@ -14,6 +14,16 @@ PlayerClassDatafile
 	"primaryweapon"		"mp5"
 	"secondaryweapon"	"shotgun"
 	"meleeweapon"		"crowbar"
+	"weapon1"			"nailgun"
+	"weapon2"			""
+	"weapon3"			""
+	"weapon4"			""
+	"weapon5"			""
+	"weapon6"			""
+	"weapon7"			""
+	"weapon8"			""
+	"weapon9"			""
+	"weapon10"			""
 
 	"grenadetype"		"grenade"
 	"numgrens"		"4"
@@ -23,10 +33,10 @@ PlayerClassDatafile
 	"classimage"		"cls_blue_class3_active"
 	"classimagebg"		"cls_blue_class3_active_bg"
 
-	"armor"			"150"
+	"armor"			"300"
 
 	// Movement
-	"RunSpeed"		"200"
+	"RunSpeed"		"150"
 	"SprintSpeed"		"280"
 	"ProneSpeed"		"50"
 }

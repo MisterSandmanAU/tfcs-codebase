@@ -15,7 +15,7 @@ class CTFCProjectileNail : public CTFCProjectileBase
 {
 public:
 	DECLARE_CLASS(CTFCProjectileNail, CTFCProjectileBase);
-	DECLARE_NETWORKCLASS();
+	//DECLARE_NETWORKCLASS();
 #ifdef GAME_DLL
 	DECLARE_DATADESC();
 #endif

@@ -50,8 +50,6 @@ int AliasToAmmoID(const char *alias);
 typedef enum
 {
 	WEAPON_NONE = 0,
-
-	SDK_WEAPON_NONE = WEAPON_NONE,
 	TFC_WEAPON_NAILGUN,
 	TFC_WEAPON_SUPERNAILGUN,
 	TFC_WEAPON_SHOTGUN,

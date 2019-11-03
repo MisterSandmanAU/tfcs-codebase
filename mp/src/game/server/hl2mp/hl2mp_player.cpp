@@ -126,6 +126,7 @@ CHL2MP_Player::CHL2MP_Player() : m_PlayerAnimState( this )
 //	UseClientSideAnimation();
 #if defined ( TFC_USE_PLAYERCLASSES )
 	SetDesiredPlayerClass(PLAYERCLASS_UNDEFINED);
+	
 #endif
 }
 
@@ -316,6 +317,7 @@ void CHL2MP_Player::Spawn(void)
 	m_flNextModelChangeTime = 0.0f;
 	m_flNextTeamChangeTime = 0.0f;
 
+	
 	PickDefaultSpawnTeam();
 	
 
@@ -323,6 +325,12 @@ void CHL2MP_Player::Spawn(void)
 	
 	if ( !IsObserver() )
 	{
+
+		pl.deadflag = false;
+		RemoveSolidFlags( FSOLID_NOT_SOLID );
+
+		RemoveEffects( EF_NODRAW );
+
 #if defined ( TFC_USE_PLAYERCLASSES )
 		if (DesiredPlayerClass() == PLAYERCLASS_RANDOM)
 		{
@@ -336,7 +344,9 @@ void CHL2MP_Player::Spawn(void)
 
 		int playerclass = PlayerClass();
 
-		if (playerclass != PLAYERCLASS_UNDEFINED)
+		DevMsg("Our Player class is: %d\n", PlayerClass());
+
+		if (playerclass != PLAYERCLASS_UNDEFINED )
 		{
 			//Assert( PLAYERCLASS_UNDEFINED < playerclass && playerclass < NUM_PLAYERCLASSES );
 
@@ -347,7 +357,7 @@ void CHL2MP_Player::Spawn(void)
 			//Assert(pClassInfo.m_iTeam == team);
 
 			SetModel(pClassInfo.m_szPlayerModel);
-			
+
 			SetupPlayerSoundsByModel(pClassInfo.m_szPlayerModel);
 
 			m_flNextModelChangeTime = gpGlobals->curtime + MODEL_CHANGE_INTERVAL;
@@ -363,6 +373,7 @@ void CHL2MP_Player::Spawn(void)
 			Q_snprintf(buf, bufsize, "tfc_weapon_%s", WeaponIDToAlias(pClassInfo.m_iPrimaryWeapon));
 			CBaseEntity *pPrimaryWpn = GiveNamedItem(buf);
 			Assert(pPrimaryWpn);
+			DevMsg("Giving Primary as: %s\n", GiveNamedItem(buf));
 
 			// Secondary weapon
 			CBaseEntity *pSecondaryWpn = NULL;
@@ -370,6 +381,7 @@ void CHL2MP_Player::Spawn(void)
 			{
 				Q_snprintf(buf, bufsize, "tfc_weapon_%s", WeaponIDToAlias(pClassInfo.m_iSecondaryWeapon));
 				pSecondaryWpn = GiveNamedItem(buf);
+				DevMsg("Giving Secondary as: %s\n", GiveNamedItem(buf));
 			}
 
 			// Melee weapon
@@ -377,6 +389,7 @@ void CHL2MP_Player::Spawn(void)
 			{
 				Q_snprintf(buf, bufsize, "tfc_weapon_%s", WeaponIDToAlias(pClassInfo.m_iMeleeWeapon));
 				GiveNamedItem(buf);
+				DevMsg("Giving Melee as: %s\n", GiveNamedItem(buf));
 			}
 
 			CWeaponHL2MPBase *pWpn = NULL;
@@ -438,26 +451,25 @@ void CHL2MP_Player::Spawn(void)
 
 			SetMaxSpeed(pClassInfo.m_flRunSpeed);
 
-			//			DevMsg("setting spawn armor to: %d\n", pClassInfo.m_iArmor );
+			DevMsg("setting spawn armor to: %d\n", pClassInfo.m_iArmor);
 			SetSpawnArmorValue(pClassInfo.m_iArmor);
-			
+
 
 		}
 		else
 		{
-			//			Assert( !"Player spawning with PLAYERCLASS_UNDEFINED" );
+			Warning("Player spawning with PLAYERCLASS_UNDEFINED");
+			
 			SetModel(TFC_PLAYER_MODEL);
 		}
 #endif
-		pl.deadflag = false;
-		RemoveSolidFlags( FSOLID_NOT_SOLID );
+		SetArmorValue(SpawnArmorValue());
 
-		RemoveEffects( EF_NODRAW );
-		
 		//GiveDefaultItems();
 		//GiveTFCItems();
-		SetArmorValue(SpawnArmorValue());
+		
 	}
+	
 
 	SetNumAnimOverlays( 3 );
 	ResetAnimation();
@@ -1157,10 +1169,10 @@ void CHL2MP_Player::ChangeTeam( int iTeam )
 	{
 		//SetPlayerTeamModel();
 	}
-	else
+	/*else
 	{
 		SetPlayerModel();
-	}
+	}*/
 
 	if ( iTeam == TEAM_SPECTATOR )
 	{
@@ -1177,11 +1189,6 @@ void CHL2MP_Player::ChangeTeam( int iTeam )
 	{
 		ForceRespawn();
 	}
-#if defined ( TFC_USE_PLAYERCLASSES )
-	// Force them to choose a new class
-	SetDesiredPlayerClass(PLAYERCLASS_UNDEFINED);
-	SetPlayerClass(PLAYERCLASS_UNDEFINED);
-#endif
 }
 #if defined ( TFC_USE_PLAYERCLASSES )
 //Tony; we don't have to check anything special for SDK_USE_TEAMS here; it's all pretty generic, except for the one assert.
@@ -1204,6 +1211,9 @@ bool CHL2MP_Player::HandleCommand_JoinClass(int iClass)
 		return false;	//they typed in something weird
 	*/
 
+	Warning("Our Desired class is: %d\n", DesiredPlayerClass());
+	
+
 	int iOldPlayerClass = DesiredPlayerClass();
 
 	// See if we're joining the class we already are
@@ -1213,7 +1223,7 @@ bool CHL2MP_Player::HandleCommand_JoinClass(int iClass)
 	/*if (!GameRules()->IsPlayerClassOnTeam(iClass, GetTeamNumber()))
 		return false;*/
 
-	const char *classname = GameRules()->GetPlayerClassName(iClass);
+	const char *classname = g_pGameRules->GetPlayerClassName(iClass);
 
 	SetDesiredPlayerClass(iClass);	//real class value is set when the player spawns
 
@@ -1255,7 +1265,7 @@ bool CHL2MP_Player::HandleCommand_JoinClass(int iClass)
 	/*else
 	{
 		ClientPrint(this, HUD_PRINTTALK, "#game_class_limit", classname);
-		//ShowClassSelectMenu();
+		//Chooseclass();
 	}*/
 
 	// Incase we don't get the class menu message before the spawn timer
@@ -1351,8 +1361,8 @@ bool CHL2MP_Player::ClientCommand( const CCommand &args )
 
 		if (GetTeamNumber() >= 2)
 		{
-			int iClass = atoi(args[1]);
-			HandleCommand_JoinClass(iClass);
+			int iClassIndex = atoi(args[1]);
+			HandleCommand_JoinClass(iClassIndex);
 		}
 		else
 		{

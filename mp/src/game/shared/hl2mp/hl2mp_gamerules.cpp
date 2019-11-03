@@ -200,6 +200,17 @@ CHL2MPRules::CHL2MPRules()
 		g_Teams.AddToTail( pTeam );
 	}
 
+	CTeam *pTeam = GetGlobalTeam(2);
+#if defined ( TFC_USE_PLAYERCLASSES )
+	int i = 0;
+	while (pszPlayerClasses[i] != NULL)
+	{
+		pTeam->AddPlayerClass(pszPlayerClasses[i]);
+		Warning("Playerclass_%s has been Loaded!\n", pszPlayerClasses[i]);
+		i++;
+	}
+#endif
+
 	m_bTeamPlayEnabled = true;
 	m_flIntermissionEndTime = 0.0f;
 	m_flGameStartTime = 0;

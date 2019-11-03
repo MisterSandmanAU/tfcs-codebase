@@ -81,6 +81,7 @@ void CSDKPlayerClassInfo::Parse( KeyValues *pKeyValuesData, const char *szWeapon
 #endif
 
 	const char *pszPrimaryWeapon = pKeyValuesData->GetString( "primaryweapon", NULL );
+	
 	m_iPrimaryWeapon = AliasToWeaponID( pszPrimaryWeapon );
 	Assert( m_iPrimaryWeapon != WEAPON_NONE );	// require player to have a primary weapon
 

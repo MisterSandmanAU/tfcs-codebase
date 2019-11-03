@@ -14,7 +14,7 @@ class CTFCProjectileBase : public CBaseProjectile
 {
 public:
 	DECLARE_CLASS(CTFCProjectileBase, CBaseProjectile);
-	DECLARE_NETWORKCLASS();
+	//DECLARE_NETWORKCLASS();
 #ifdef GAME_DLL
 	DECLARE_DATADESC();
 #endif

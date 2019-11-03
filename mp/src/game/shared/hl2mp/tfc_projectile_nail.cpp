@@ -9,10 +9,10 @@
 #include "hl2mp_player.h"
 #endif
 
-IMPLEMENT_NETWORKCLASS(CTFCProjectileNail, DT_CTFCProjectileNail)
+//IMPLEMENT_NETWORKCLASS(CTFCProjectileNail, DT_CTFCProjectileNail)
 
-BEGIN_NETWORK_TABLE(CTFCProjectileNail, DT_CTFCProjectileNail)
-END_NETWORK_TABLE()
+/*BEGIN_NETWORK_TABLE(CTFCProjectileNail, DT_CTFCProjectileNail)
+END_NETWORK_TABLE()*/
 
 #ifdef GAME_DLL
 BEGIN_DATADESC(CTFCProjectileNail)

@@ -821,7 +821,12 @@ const char *CGameRules::GetPlayerClassName(int cls)
 	{
 		return "#class_civillan";
 	}
-
+	else
+	{
+		DevMsg("Our input class ID is: /d", cls);
+		return "No matching class ID for name!";
+	}
+		
 	/*if (cls < 0 || cls >= pTeam->GetNumPlayerClasses())
 	{
 		Assert(false);
@@ -831,6 +836,8 @@ const char *CGameRules::GetPlayerClassName(int cls)
 	//const CSDKPlayerClassInfo &pClassInfo = pTeam->GetPlayerClassInfo(cls);
 
 	//return pClassInfo.m_szPrintName;
+
+	
 }
 #endif
 

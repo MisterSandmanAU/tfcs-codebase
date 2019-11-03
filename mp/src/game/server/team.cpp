@@ -128,14 +128,7 @@ void CTeam::Init( const char *pName, int iNumber )
 {
 	InitializeSpawnpoints();
 	InitializePlayers();
-#if defined ( TFC_USE_PLAYERCLASSES )
-	int i = 0;
-	while (pszPlayerClasses[i] != NULL)
-	{
-		AddPlayerClass(pszPlayerClasses[i]);
-		i++;
-	}
-#endif
+
 
 	m_iScore = 0;
 
@@ -178,7 +171,7 @@ void CTeam::AddPlayerClass(const char *szClassName)
 	else
 	{
 		Assert(!"missing playerclass script file");
-		Msg("Missing playerclass script file for class: %s\n", szClassName);
+		Warning("Missing playerclass script file for class: %s\n", szClassName);
 	}
 }
 

@@ -32,6 +32,10 @@ public:
 	int m_iSecondaryWeapon;
 	int m_iMeleeWeapon;
 
+	char *m_cPrimaryWeapon;
+	char *m_cSecondaryWeapon;
+	char *m_cMeleeWeapon;
+
 	int m_iNumGrensType1;
 	int m_iGrenType1;
 

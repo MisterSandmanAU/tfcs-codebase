@@ -108,11 +108,6 @@ bool CTeamplayRules::ClientCommand( CBaseEntity *pEdict, const CCommand &args )
 {
 	if( BaseClass::ClientCommand( pEdict, args ) )
 		return true;
-
-	if (pEdict->IsPlayer() && static_cast<CBasePlayer *>(pEdict)->ClientCommand(args))
-	{
-		return true;
-	}
 	
 	if ( FStrEq( args[0], "menuselect" ) )
 	{

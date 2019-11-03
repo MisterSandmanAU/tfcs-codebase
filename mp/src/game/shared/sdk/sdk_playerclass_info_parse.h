@@ -13,9 +13,8 @@
 
 #include "playerclass_info_parse.h"
 #include "networkvar.h"
-#include "mp_shareddefs.h"
 
-#if defined ( TFC_USE_PLAYERCLASSES )
+#if defined ( SDK_USE_PLAYERCLASSES )
 //--------------------------------------------------------------------------------------------------------
 class CSDKPlayerClassInfo : public FilePlayerClassInfo_t
 {

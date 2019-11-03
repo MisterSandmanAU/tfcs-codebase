@@ -26,9 +26,6 @@ IMPLEMENT_CLIENTCLASS_DT_NOBASE(C_PlayerResource, DT_PlayerResource, CPlayerReso
 	RecvPropArray3( RECVINFO_ARRAY(m_iTeam), RecvPropInt( RECVINFO(m_iTeam[0]))),
 	RecvPropArray3( RECVINFO_ARRAY(m_bAlive), RecvPropInt( RECVINFO(m_bAlive[0]))),
 	RecvPropArray3( RECVINFO_ARRAY(m_iHealth), RecvPropInt( RECVINFO(m_iHealth[0]))),
-#if defined ( TFC_USE_PLAYERCLASSES )
-	RecvPropArray3(RECVINFO_ARRAY(m_iPlayerClass), RecvPropInt(RECVINFO(m_iPlayerClass[0]))),
-#endif
 END_RECV_TABLE()
 
 BEGIN_PREDICTION_DATA( C_PlayerResource )
@@ -71,9 +68,7 @@ C_PlayerResource::C_PlayerResource()
 #ifdef HL2MP
 	m_Colors[TEAM_COMBINE] = COLOR_BLUE;
 	m_Colors[TEAM_REBELS] = COLOR_RED;
-	m_Colors[TEAM_YELLOW] = COLOR_YELLOW;
-	m_Colors[TEAM_GREEN] = COLOR_GREEN;
-	m_Colors[TEAM_UNASSIGNED] = COLOR_GREY;
+	m_Colors[TEAM_UNASSIGNED] = COLOR_YELLOW;
 #endif
 
 	g_PR = this;

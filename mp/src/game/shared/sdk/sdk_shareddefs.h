@@ -17,7 +17,7 @@
 //
 // Will your mod be team based?
 // define SDK_USE_TEAMS
-//#define SDK_USE_TEAMS
+#define SDK_USE_TEAMS
 
 //
 // Do you use player classes?
@@ -49,6 +49,11 @@
 // define SDK_USE_PRONE
 #define SDK_USE_PRONE
 
+//
+// Can your players use viewbob?
+// define SDK_USE_VIEWBOB
+//#define SDK_USE_VIEWBOB
+
 //=====================
 // EXTRA WEAPON OPTIONS
 //=====================
@@ -56,7 +61,7 @@
 //
 // If you're allowing sprinting, do you want to be able to shoot while sprinting?
 // define SDK_SHOOT_WHILE_SPRINTING
-//#define SDK_SHOOT_WHILE_SPRINTING
+#define SDK_SHOOT_WHILE_SPRINTING
 
 //
 // Do you want your players to be able to shoot while climing ladders?
@@ -70,7 +75,7 @@
 
 
 
-#define SDK_GAME_DESCRIPTION	"SDK Template mod v1"
+#define SDK_GAME_DESCRIPTION	"SDK Template 2013 mod v2"
 
 //================================================================================
 // Most elements below here are specific to the options above.
@@ -82,6 +87,8 @@ enum sdkteams_e
 	{
 		SDK_TEAM_BLUE = LAST_SHARED_TEAM+1,
 		SDK_TEAM_RED,
+		TFC_TEAM_YELLOW,
+		TFC_TEAM_GREEN,
 	};
 
 #endif // SDK_USE_TEAMS
@@ -135,6 +142,8 @@ extern const char *pszTeamNames[];
 #define SDK_DEFAULT_PLAYER_SPRINTSPEED		330
 #define SDK_DEFAULT_PLAYER_PRONESPEED		50
 
+#define SDK_PLAYER_INDEX_NONE			( MAX_PLAYERS + 1 )
+
 //--------------------------------------------------------------------------------------------------------
 //
 // Weapon IDs for all SDK Game weapons
@@ -146,9 +155,13 @@ typedef enum
 	SDK_WEAPON_NONE = WEAPON_NONE,
 	SDK_WEAPON_MP5,
 	SDK_WEAPON_SHOTGUN,
+	SDK_WEAPON_12GAUGE,
+	SDK_WEAPON_NAILGUN,
 	SDK_WEAPON_GRENADE,
 	SDK_WEAPON_PISTOL,
 	SDK_WEAPON_CROWBAR,
+	SDK_WEAPON_UMBRELLA,
+	SDK_WEAPON_SUPERNAILGUN,
 
 	
 	WEAPON_MAX,		// number of weapons weapon index

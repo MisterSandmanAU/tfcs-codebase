@@ -35,7 +35,6 @@
 #include "clientscoreboarddialog.h"
 #include "spectatorgui.h"
 #include "teammenu.h"
-#include "classmenu.h"
 #include "vguitextwindow.h"
 #include "IGameUIFuncs.h"
 #include "mapoverview.h"
@@ -100,20 +99,6 @@ CON_COMMAND( hidepanel, "Hides a viewport panel <name>" )
 		return;
 		
 	 gViewPortInterface->ShowPanel( args[ 1 ], false );
-}
-
-CON_COMMAND( chooseteam, "Opens a menu for teamchoose" )
-{
-	if( !gViewPortInterface )
-		return;
-	gViewPortInterface->ShowPanel( "team", true );
-}
-
-CON_COMMAND(chooseclass, "Opens a menu for classchoose")
-{
-	if (!gViewPortInterface)
-		return;
-	gViewPortInterface->ShowPanel("class", true);
 }
 
 /* global helper functions
@@ -254,10 +239,8 @@ void CBaseViewport::CreateDefaultPanels( void )
 	AddNewPanel( CreatePanelByName( PANEL_SCOREBOARD ), "PANEL_SCOREBOARD" );
 	AddNewPanel( CreatePanelByName( PANEL_INFO ), "PANEL_INFO" );
 	AddNewPanel( CreatePanelByName( PANEL_SPECGUI ), "PANEL_SPECGUI" );
-	AddNewPanel( CreatePanelByName( PANEL_SPECMENU ), "PANEL_SPECMENU" );
-	AddNewPanel( CreatePanelByName( PANEL_TEAM ), "PANEL_TEAM" );
-	AddNewPanel(CreatePanelByName(PANEL_CLASS), "PANEL_CLASS");
 #if !defined( TF_CLIENT_DLL )
+	AddNewPanel( CreatePanelByName( PANEL_SPECMENU ), "PANEL_SPECMENU" );
 	AddNewPanel( CreatePanelByName( PANEL_NAV_PROGRESS ), "PANEL_NAV_PROGRESS" );
 #endif // !TF_CLIENT_DLL
 #endif // !_XBOX
@@ -299,10 +282,6 @@ IViewPortPanel* CBaseViewport::CreatePanelByName(const char *szPanelName)
 	else if ( Q_strcmp(PANEL_TEAM, szPanelName) == 0 )
 	{
 		newpanel = new CTeamMenu( this );
-	}
-	else if (Q_strcmp(PANEL_CLASS, szPanelName) == 0)
-	{
-		newpanel = new CClassMenu(this);
 	}
 	else if ( Q_strcmp(PANEL_SPECMENU, szPanelName) == 0 )
 	{

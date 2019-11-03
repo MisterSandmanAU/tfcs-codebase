@@ -154,7 +154,7 @@ bool CWeaponShotgun::Reload()
 	else if ( m_iInSpecialReload == 2 ) // Sanity, make sure it's actually in the right state.
 	{
 		// Add them to the clip
-		m_iClip1 += 1;
+		m_iClip1 += 2;
 		
 #ifdef GAME_DLL
 		SendReloadEvents();
@@ -162,7 +162,7 @@ bool CWeaponShotgun::Reload()
 		CSDKPlayer *pPlayer = GetPlayerOwner();
 
 		if ( pPlayer )
-			 pPlayer->RemoveAmmo( 1, m_iPrimaryAmmoType );
+			 pPlayer->RemoveAmmo( 2, m_iPrimaryAmmoType );
 
 		m_iInSpecialReload = 1;
 	}

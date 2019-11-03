@@ -10,10 +10,7 @@
 #include "tier0/vprof.h"
 #include "KeyValues.h"
 #include "iachievementmgr.h"
-#include "mp_shareddefs.h"
 
-
-#define TFC_USE_PLAYERCLASSES
 #ifdef CLIENT_DLL
 
 	#include "usermessages.h"
@@ -772,74 +769,7 @@ bool CGameRules::ShouldCollide( int collisionGroup0, int collisionGroup1 )
 
 	return true;
 }
-//Tony; keep this in shared space.
-#if defined ( TFC_USE_PLAYERCLASSES )
-const char *CGameRules::GetPlayerClassName(int cls)
-{
 
-	if (cls == PLAYERCLASS_RANDOM)
-	{
-		return "#class_random";
-	}
-	else if (cls == PLAYERCLASS_SCOUT)
-	{
-		return "#class_scout";
-	}
-	else if (cls == PLAYERCLASS_SOLDIER)
-	{
-		return "#class_soldier";
-	}
-	else if (cls == PLAYERCLASS_PYRO)
-	{
-		return "#class_puro";
-	}
-	else if (cls == PLAYERCLASS_HEAVY)
-	{
-		return "#class_HWguy";
-	}
-	else if (cls == PLAYERCLASS_DEMOMAN)
-	{
-		return "#class_Demo";
-	}
-	else if (cls == PLAYERCLASS_ENGINEER)
-	{
-		return "#class_engineer";
-	}
-	else if (cls == PLAYERCLASS_MEDIC)
-	{
-		return "#class_medic";
-	}
-	else if (cls == PLAYERCLASS_SNIPER)
-	{
-		return "#class_sniper";
-	}
-	else if (cls == PLAYERCLASS_SPY)
-	{
-		return "#class_spy";
-	}
-	else if (cls == PLAYERCLASS_CIV)
-	{
-		return "#class_civillan";
-	}
-	else
-	{
-		DevMsg("Our input class ID is: /d", cls);
-		return "No matching class ID for name!";
-	}
-		
-	/*if (cls < 0 || cls >= pTeam->GetNumPlayerClasses())
-	{
-		Assert(false);
-		return NULL;
-	}*/
-
-	//const CSDKPlayerClassInfo &pClassInfo = pTeam->GetPlayerClassInfo(cls);
-
-	//return pClassInfo.m_szPrintName;
-
-	
-}
-#endif
 
 const CViewVectors* CGameRules::GetViewVectors() const
 {

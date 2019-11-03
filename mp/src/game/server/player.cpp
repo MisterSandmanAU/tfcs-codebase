@@ -69,7 +69,6 @@
 #include "dt_utlvector_send.h"
 #include "vote_controller.h"
 #include "ai_speech.h"
-#include "hl2mp_gamerules.h"
 
 #if defined USES_ECON_ITEMS
 #include "econ_wearable.h"
@@ -732,9 +731,13 @@ int CBasePlayer::ShouldTransmit( const CCheckTransmitInfo *pInfo )
 
 bool CBasePlayer::WantsLagCompensationOnEntity( const CBasePlayer *pPlayer, const CUserCmd *pCmd, const CBitVec<MAX_EDICTS> *pEntityTransmitBits ) const
 {
-	// Team members shouldn't be adjusted unless friendly fire is on.
-	if ( !friendlyfire.GetInt() && pPlayer->GetTeamNumber() == GetTeamNumber() )
-		return false;
+	//Tony; only check teams in teamplay
+	if ( gpGlobals->teamplay )
+	{
+		// Team members shouldn't be adjusted unless friendly fire is on.
+		if ( !friendlyfire.GetInt() && pPlayer->GetTeamNumber() == GetTeamNumber() )
+			return false;
+	}
 
 	// If this entity hasn't been transmitted to us and acked, then don't bother lag compensating it.
 	if ( pEntityTransmitBits && !pEntityTransmitBits->Get( pPlayer->entindex() ) )
@@ -1565,9 +1568,10 @@ void CBasePlayer::RemoveAllItems( bool removeSuit )
 	UpdateClientData();
 }
 
+//Tony; correct this for base code so that IsDead will be correct accross all games.
 bool CBasePlayer::IsDead() const
 {
-	return m_lifeState == LIFE_DEAD;
+	return m_lifeState != LIFE_ALIVE;
 }
 
 static float DamageForce( const Vector &size, float damage )
@@ -2873,6 +2877,10 @@ float CBasePlayer::GetHeldObjectMass( IPhysicsObject *pHeldObject )
 	return 0;
 }
 
+CBaseEntity	*CBasePlayer::GetHeldObject( void )
+{
+	return NULL;
+}
 
 //-----------------------------------------------------------------------------
 // Purpose:	Server side of jumping rules.  Most jumping logic is already
@@ -4898,6 +4906,55 @@ void CBasePlayer::InitialSpawn( void )
 }
 
 //-----------------------------------------------------------------------------
+// Purpose: clear our m_Local.m_TonemapParams to -1.
+//-----------------------------------------------------------------------------
+void CBasePlayer::ClearTonemapParams( void )
+{
+	//Tony; clear all the variables to -1.0
+	m_Local.m_TonemapParams.m_flAutoExposureMin = -1.0f;
+	m_Local.m_TonemapParams.m_flAutoExposureMax = -1.0f;
+	m_Local.m_TonemapParams.m_flTonemapScale = -1.0f;
+	m_Local.m_TonemapParams.m_flBloomScale = -1.0f;
+	m_Local.m_TonemapParams.m_flTonemapRate = -1.0f;
+}
+void CBasePlayer::InputSetTonemapScale( inputdata_t &inputdata )
+{
+	m_Local.m_TonemapParams.m_flTonemapScale = inputdata.value.Float();
+}
+
+void CBasePlayer::InputSetTonemapRate( inputdata_t &inputdata )
+{
+	m_Local.m_TonemapParams.m_flTonemapRate = inputdata.value.Float();
+}
+void CBasePlayer::InputSetAutoExposureMin( inputdata_t &inputdata )
+{
+	m_Local.m_TonemapParams.m_flAutoExposureMin = inputdata.value.Float();
+}
+
+void CBasePlayer::InputSetAutoExposureMax( inputdata_t &inputdata )
+{
+	m_Local.m_TonemapParams.m_flAutoExposureMax = inputdata.value.Float();
+}
+
+void CBasePlayer::InputSetBloomScale( inputdata_t &inputdata )
+{
+	m_Local.m_TonemapParams.m_flBloomScale = inputdata.value.Float();
+}
+
+//Tony; restore defaults (set min/max to -1.0 so nothing gets overridden)
+void CBasePlayer::InputUseDefaultAutoExposure( inputdata_t &inputdata )
+{
+	m_Local.m_TonemapParams.m_flAutoExposureMin = -1.0f;
+	m_Local.m_TonemapParams.m_flAutoExposureMax = -1.0f;
+	m_Local.m_TonemapParams.m_flTonemapRate = -1.0f;
+}
+void CBasePlayer::InputUseDefaultBloomScale( inputdata_t &inputdata )
+{
+	m_Local.m_TonemapParams.m_flBloomScale = -1.0f;
+}
+//	void	InputSetBloomScaleRange( inputdata_t &inputdata );
+
+//-----------------------------------------------------------------------------
 // Purpose: Called everytime the player respawns
 //-----------------------------------------------------------------------------
 void CBasePlayer::Spawn( void )
@@ -4907,6 +4964,9 @@ void CBasePlayer::Spawn( void )
 	{
 		Hints()->ResetHints();
 	}
+
+	//Tony; make sure tonemap params is cleared.
+	ClearTonemapParams();
 
 	SetClassname( "player" );
 
@@ -5992,6 +6052,8 @@ void CBasePlayer::ImpulseCommands( )
 	m_nImpulse = 0;
 }
 
+#ifdef HL2_DLL
+
 #ifdef HL2_EPISODIC
 
 //-----------------------------------------------------------------------------
@@ -6107,7 +6169,7 @@ void CC_CH_CreateAirboat( void )
 }
 
 static ConCommand ch_createairboat( "ch_createairboat", CC_CH_CreateAirboat, "Spawn airboat in front of the player.", FCVAR_CHEAT );
-
+#endif // HL2_DLL
 
 //=========================================================
 //=========================================================
@@ -6144,6 +6206,7 @@ void CBasePlayer::CheatImpulseCommands( int iImpulse )
 		GiveNamedItem( "weapon_cubemap" );
 		break;
 
+#ifdef HL2_DLL
 	case 82:
 		// Cheat to create a jeep in front of the player
 		CreateJeep( this );
@@ -6153,12 +6216,14 @@ void CBasePlayer::CheatImpulseCommands( int iImpulse )
 		// Cheat to create a airboat in front of the player
 		CreateAirboat( this );
 		break;
+#endif // HL2_DLL
 
 	case 101:
 		gEvilImpulse101 = true;
 
 		EquipSuit();
 
+#ifdef HL2_DLL
 		// Give the player everything!
 		GiveAmmo( 255,	"Pistol");
 		GiveAmmo( 255,	"AR2");
@@ -6187,6 +6252,8 @@ void CBasePlayer::CheatImpulseCommands( int iImpulse )
 #ifdef HL2_EPISODIC
 		// GiveNamedItem( "weapon_magnade" );
 #endif
+#endif // HL2_DLL
+
 		if ( GetHealth() < 100 )
 		{
 			TakeHealth( 25, DMG_GENERIC );
@@ -6566,39 +6633,6 @@ bool CBasePlayer::ClientCommand( const CCommand &args )
 		}
 		return true;
 	}
-	else if( stricmp( cmd, "jointeam" ) == 0 ) //start jointeam
-	{
-		if( args.ArgC() < 2 )
-			return true;
-
-		int team = atoi( args.Arg( 1 ) );
-
-		//don't do anything if you join your own team
-		if( team == GetTeamNumber() )
-			return true;
-
-		//auto assign if you join team 0
-		if( team == 0 )
-		{
-			if( g_Teams[TEAM_RED]->GetNumPlayers() > g_Teams[TEAM_BLU]->GetNumPlayers() )
-				team = TEAM_RED;
-			else
-				team = TEAM_BLU;
-		}
-
-		if( !IsDead() )
-		{
-			if( GetTeamNumber() != TEAM_UNASSIGNED )
-			{
-				CommitSuicide();
-				IncrementFragCount( 1 ); //adds 1 frag to balance out the 1 subtracted for killing yourself
-			}
-		}
-
-		ChangeTeam( team );
-
-		return true;
-	} //end jointeam
 
 	return false;
 }
@@ -8891,6 +8925,14 @@ bool CBasePlayer::HandleVoteCommands( const CCommand &args )
 //-----------------------------------------------------------------------------
 const char *CBasePlayer::GetNetworkIDString()
 {
+	//Tony; bots don't have network id's, and this can potentially crash, especially with plugins creating them.
+	if (IsBot())
+		return "__BOT__";
+
+	//Tony; if networkidstring is null for any reason, the strncpy will crash!
+	if (!m_szNetworkIDString)
+		return "NULLID";
+
 	const char *pStr = engine->GetPlayerNetworkIDString( edict() );
 	Q_strncpy( m_szNetworkIDString, pStr ? pStr : "", sizeof(m_szNetworkIDString) );
 	return m_szNetworkIDString; 

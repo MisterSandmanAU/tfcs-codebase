@@ -23,6 +23,9 @@
 	#include "client_virtualreality.h"
 	#define CRecipientFilter C_RecipientFilter
 	#include "sourcevr/isourcevirtualreality.h"
+#ifdef SDK_USE_VIEWBOB
+	#include "c_sdk_player.h"
+#endif
 
 #else
 
@@ -32,6 +35,9 @@
 	#include "doors.h"
 	#include "ai_basenpc.h"
 	#include "env_zoom.h"
+#ifdef SDK_USE_VIEWBOB
+	#include "sdk_player.h"
+#endif
 
 	extern int TrainSpeed(int iSpeed, int iMax);
 	
@@ -163,12 +169,30 @@ void CBasePlayer::ItemPreFrame()
 	// Handle use events
 	PlayerUse();
 
-	CBaseCombatWeapon *pActive = GetActiveWeapon();
+	//Tony; re-ordered this for efficiency and to make sure that certain things happen in the correct order!
+    if ( gpGlobals->curtime < m_flNextAttack )
+	{
+		return;
+	}
 
+	if (!GetActiveWeapon())
+		return;
+
+#if defined( CLIENT_DLL )
+	// Not predicting this weapon
+	if ( !GetActiveWeapon()->IsPredicted() )
+		return;
+#endif
+
+	GetActiveWeapon()->ItemPreFrame();
+
+	CBaseCombatWeapon *pWeapon;
+
+	CBaseCombatWeapon *pActive = GetActiveWeapon();
 	// Allow all the holstered weapons to update
 	for ( int i = 0; i < WeaponCount(); ++i )
 	{
-		CBaseCombatWeapon *pWeapon = GetWeapon( i );
+		pWeapon = GetWeapon( i );
 
 		if ( pWeapon == NULL )
 			continue;
@@ -178,20 +202,6 @@ void CBasePlayer::ItemPreFrame()
 
 		pWeapon->ItemHolsterFrame();
 	}
-
-    if ( gpGlobals->curtime < m_flNextAttack )
-		return;
-
-	if (!pActive)
-		return;
-
-#if defined( CLIENT_DLL )
-	// Not predicting this weapon
-	if ( !pActive->IsPredicted() )
-		return;
-#endif
-
-	pActive->ItemPreFrame();
 }
 
 //-----------------------------------------------------------------------------
@@ -1615,6 +1625,29 @@ void CBasePlayer::CalcPlayerView( Vector& eyeOrigin, QAngle& eyeAngles, float& f
 	Vector vecBaseEyePosition = eyeOrigin;
 
 	CalcViewRoll( eyeAngles );
+
+#ifdef SDK_USE_VIEWBOB
+	// Sprint effects
+	CSDKPlayer *pPlayer = ToSDKPlayer( this );
+	if(!pPlayer)
+		return;
+
+	if( pPlayer->m_Shared.IsSprinting( ) )
+	{
+		int iVelocityLength = GetAbsVelocity( ).Length2D( );
+
+		eyeAngles[ ROLL ] += cos( 9.0f * gpGlobals->curtime ) * ( iVelocityLength * 0.00375f );
+		eyeAngles[ PITCH ] += cos( 13.0f * gpGlobals->curtime ) * ( iVelocityLength * 0.0035f );
+	}
+
+	if( !pPlayer->m_Shared.IsSprinting() && GetAbsVelocity().Length2D() > 0 )
+	{
+		int iVelocityLength = GetAbsVelocity( ).Length2D( );
+
+		eyeAngles[ ROLL ] += cos( 7.0f * gpGlobals->curtime ) * ( iVelocityLength * 0.0025f );
+		eyeAngles[ PITCH ] += cos( 7.0f * gpGlobals->curtime ) * ( iVelocityLength * 0.0013f );
+	}
+#endif
 
 	// Apply punch angle
 	VectorAdd( eyeAngles, m_Local.m_vecPunchAngle, eyeAngles );

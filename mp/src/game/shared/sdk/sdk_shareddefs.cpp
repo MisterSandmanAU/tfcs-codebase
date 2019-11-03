@@ -6,7 +6,6 @@
 
 #include "cbase.h"
 #include "weapon_sdkbase.h"
-#include "sdk_shareddefs.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -80,9 +79,13 @@ static const char * s_WeaponAliasInfo[] =
 	"none",		// WEAPON_NONE
 	"mp5",		// SDK_WEAPON_MP5
 	"shotgun",	// SDK_WEAPON_SHOTGUN
+	"12gauge",	// SDK_WEAPON_SHOTGUN12GAUGE
+	"nailgun",	// SDK_WEAPON_NAILGUN
 	"grenade",	// SDK_WEAPON_GRENADE
 	"pistol",	// SDK_WEAPON_PISTOL
 	"crowbar",	// SDK_WEAPON_CROWBAR
+	"umbrella",	// SDK_WEAPON_UMBRELLA
+	"supernailgun",	// SDK_WEAPON_SUPERNAILGUN
 	NULL,		// WEAPON_NONE
 };
 

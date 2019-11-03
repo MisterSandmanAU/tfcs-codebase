@@ -1,4 +1,4 @@
-//========= Copyright Valve Corporation, All rights reserved. ============//
+//========= Copyright © 1996-2004, Valve LLC, All rights reserved. ============
 //
 // Purpose: Simple HUD element
 //
@@ -29,6 +29,8 @@ public:
 	{
 		// Set our parent window
 		SetParent( g_pClientMode->GetViewport() );
+
+		SetPaintBackgroundEnabled( false );
 		
 		m_pIcon = NULL;
 

@@ -25,10 +25,10 @@
 
 #ifdef CLIENT_DLL
 	
-	#include "hl2mp/c_sdk_player.h"
-	#include "hl2mp/c_sdk_team.h"
+	#include "c_sdk_player.h"
+	#include "c_sdk_team.h"
 	#include "prediction.h"
-	#include "hl2mp/clientmode_sdk.h"
+	#include "clientmode_sdk.h"
 	#include "vgui_controls/AnimationController.h"
 
 	#define CRecipientFilter C_RecipientFilter
@@ -469,6 +469,18 @@ void CSDKPlayerShared::SetJumping( bool bJumping )
 	{
 		ForceUnzoom();
 	}
+}
+
+// Consider the weapon's built-in accuracy, this character's proficiency with
+// the weapon, and the status of the target. Use this information to determine
+// how accurately to shoot at the target.
+//-----------------------------------------------------------------------------
+Vector CSDKPlayerShared::GetAttackSpread(CBaseCombatWeapon *pWeapon, CBaseEntity *pTarget)
+{
+	if (pWeapon)
+		return pWeapon->GetBulletSpread(WEAPON_PROFICIENCY_PERFECT);
+
+	return VECTOR_CONE_15DEGREES;
 }
 
 void CSDKPlayerShared::ForceUnzoom( void )

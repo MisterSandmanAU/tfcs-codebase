@@ -4,13 +4,6 @@
 //
 // $NoKeywords: $
 //=============================================================================//
-
-//========= Copyright © 1996-2001, Valve LLC, All rights reserved. ============
-//
-// Purpose: 
-//
-// $NoKeywords: $
-//=============================================================================
 #include "cbase.h"
 #include "gamemovement.h"
 #include "sdk_gamerules.h"
@@ -63,13 +56,13 @@ public:
 	bool CanUnprone();
 #endif // SDK_USE_PRONE
 
-	virtual const Vector&	GetPlayerMins( void ) const; // uses local player
-	virtual const Vector&	GetPlayerMaxs( void ) const; // uses local player
+	virtual  Vector	GetPlayerMins( void ) const; // uses local player
+	virtual  Vector	GetPlayerMaxs( void ) const; // uses local player
 
 	// IGameMovement interface
-	virtual const Vector&	GetPlayerMins( bool ducked ) const { return BaseClass::GetPlayerMins(ducked); }
-	virtual const Vector&	GetPlayerMaxs( bool ducked ) const { return BaseClass::GetPlayerMaxs(ducked); }
-	virtual const Vector&	GetPlayerViewOffset( bool ducked ) const { return BaseClass::GetPlayerViewOffset(ducked); }
+	virtual  Vector	GetPlayerMins( bool ducked ) const { return BaseClass::GetPlayerMins(ducked); }
+	virtual  Vector	GetPlayerMaxs( bool ducked ) const { return BaseClass::GetPlayerMaxs(ducked); }
+	virtual  Vector	GetPlayerViewOffset( bool ducked ) const { return BaseClass::GetPlayerViewOffset(ducked); }
 
 	virtual unsigned int PlayerSolidMask( bool brushOnly = false );
 
@@ -300,10 +293,10 @@ void CSDKGameMovement::CheckFalling( void )
 	{
 		if ( player->m_Local.m_flFallVelocity >= PLAYER_FALL_PUNCH_THRESHOLD )
 		{
-//Tony; left for playing a sound if you want.
-//			CPASFilter filter( player->GetAbsOrigin() );
-//			filter.UsePredictionRules();
-//			player->EmitSound( filter, player->entindex(), "Player.JumpLanding" );
+
+			CPASFilter filter( player->GetAbsOrigin() );
+			filter.UsePredictionRules();
+			player->EmitSound( filter, player->entindex(), "Player.JumpLanding" );
 		}
 
 		if ( m_pSDKPlayer->m_Shared.IsJumping() )
@@ -766,11 +759,10 @@ bool CSDKGameMovement::CheckJumpButton( void )
 	m_pSDKPlayer->PlayStepSound( (Vector &)mv->GetAbsOrigin(), player->GetSurfaceData(), 1.0, true );
 	m_pSDKPlayer->DoAnimationEvent( PLAYERANIMEVENT_JUMP );
 
-//Tony; liek the landing sound, leaving this here if as an example for playing a jump sound.
-//	// make the jump sound
-//	CPASFilter filter( m_pSDKPlayer->GetAbsOrigin() );
-//	filter.UsePredictionRules();
-//	m_pSDKPlayer->EmitSound( filter, m_pSDKPlayer->entindex(), "Player.Jump" );
+	// make the jump sound
+	CPASFilter filter( m_pSDKPlayer->GetAbsOrigin() );
+	filter.UsePredictionRules();
+	m_pSDKPlayer->EmitSound( filter, m_pSDKPlayer->entindex(), "Player.Jump" );
 
 	float flGroundFactor = 1.0f;
 	if ( player->GetSurfaceData() )
@@ -1310,7 +1302,7 @@ unsigned int CSDKGameMovement::PlayerSolidMask( bool brushOnly )
 // Input  : 
 // Output : const Vector
 //-----------------------------------------------------------------------------
-const Vector& CSDKGameMovement::GetPlayerMins( void ) const
+Vector CSDKGameMovement::GetPlayerMins( void ) const
 {
 	if ( !player )
 	{
@@ -1339,7 +1331,7 @@ const Vector& CSDKGameMovement::GetPlayerMins( void ) const
 // Input  : 
 // Output : const Vector
 //-----------------------------------------------------------------------------
-const Vector& CSDKGameMovement::GetPlayerMaxs( void ) const
+Vector CSDKGameMovement::GetPlayerMaxs( void ) const
 {	
 	if ( !player )
 	{

@@ -4,21 +4,17 @@
 PlayerClass
 {
 	// Attributes.
-	"name"			"Spy"
-	"printname"		"Spy"
-	"playermodel"	"models/Combine_Soldier.mdl"
+	"name"			"TFC_Spy"
+	"printname"		"TFC_Spy"
+	"playermodel"	"models/player/spy.mdl"
 	"classimage"	"ClassImagePathHere"
 	"classimagebg"	"ClassImageBackgroundPathHere"
-	"model_hwm"		"models/player/hwm/scout.mdl"
-	"model_hands"	"models/weapons/c_models/c_scout_arms.mdl"
-	"localize_name"	"TF_Class_Name_Scout"
+	"localize_name"	"TFC_Spy"
 	"selectsmd"		""
-//	"speed_max"		"450"
-	"RunSpeed"		"400"
-//	"health_max"		"75"
-	"armor"		"50"
-	"health_max"		"125"
-	"armor_max"		"0"
+//	"speed_max"		"350"
+	"RunSpeed"		"350"
+	"health_max"		"90"
+	"armor"		"100"
 
 	// Grenades.
 	"numgrens"			"0"

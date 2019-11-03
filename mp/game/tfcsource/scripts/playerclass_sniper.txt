@@ -4,21 +4,17 @@
 PlayerClass
 {
 	// Attributes.
-	"name"			"Sniper"
-	"printname"		"Sniper"
-	"playermodel"	"models/Combine_Soldier.mdl"
+	"name"			"TFC_Sniper"
+	"printname"		"TFC_Sniper"
+	"playermodel"	"models/player/sniper.mdl"
 	"classimage"	"ClassImagePathHere"
 	"classimagebg"	"ClassImageBackgroundPathHere"
-	"model_hwm"		"models/player/hwm/scout.mdl"
-	"model_hands"	"models/weapons/c_models/c_scout_arms.mdl"
-	"localize_name"	"TF_Class_Name_Scout"
+	"localize_name"	"TFC_Sniper"
 	"selectsmd"		""
 //	"speed_max"		"450"
-	"RunSpeed"		"400"
-//	"health_max"		"75"
+	"RunSpeed"		"300"
+	"health_max"		"90"
 	"armor"		"50"
-	"health_max"		"125"
-	"armor_max"		"0"
 
 	// Grenades.
 	"numgrens"			"0"

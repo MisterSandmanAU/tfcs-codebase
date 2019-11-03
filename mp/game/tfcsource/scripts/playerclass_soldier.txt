@@ -4,21 +4,17 @@
 PlayerClass
 {
 	// Attributes.
-	"name"			"soldier"
-	"printname"		"soldier"
-	"playermodel"	"models/Combine_Soldier.mdl"
+	"name"			"TFC_Soldier"
+	"printname"		"TFC_Soldier"
+	"playermodel"	"models/player/soldier.mdl"
 	"classimage"	"ClassImagePathHere"
 	"classimagebg"	"ClassImageBackgroundPathHere"
-	"model_hwm"		"models/player/hwm/scout.mdl"
-	"model_hands"	"models/weapons/c_models/c_scout_arms.mdl"
-	"localize_name"	"TF_Class_Name_Scout"
+	"localize_name"	"TFC_Soldier"
 	"selectsmd"		""
-//	"speed_max"		"450"
-	"RunSpeed"		"400"
-//	"health_max"		"75"
-	"armor"		"50"
-	"health_max"		"125"
-	"armor_max"		"0"
+//	"speed_max"		"200"
+	"RunSpeed"		"250"
+	"health_max"		"100"
+	"armor"		"200"
 
 	// Grenades.
 	"numgrens"			"0"

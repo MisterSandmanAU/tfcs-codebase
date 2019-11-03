@@ -4,21 +4,17 @@
 PlayerClass
 {
 	// Attributes.
-	"name"			"Demolition Man"
-	"printname"		"Demolition Man"
-	"playermodel"	"models/Combine_Soldier.mdl"
+	"name"			"TFC_Demoman"
+	"printname"		"TFC_Demoman"
+	"playermodel"	"models/player/demo.mdl"
 	"classimage"	"ClassImagePathHere"
 	"classimagebg"	"ClassImageBackgroundPathHere"
-	"model_hwm"		"models/player/hwm/scout.mdl"
-	"model_hands"	"models/weapons/c_models/c_scout_arms.mdl"
-	"localize_name"	"TF_Class_Name_Scout"
+	"localize_name"	"TFC_Demoman"
 	"selectsmd"		""
 //	"speed_max"		"450"
-	"RunSpeed"		"400"
-//	"health_max"		"75"
-	"armor"		"50"
-	"health_max"		"125"
-	"armor_max"		"0"
+	"RunSpeed"		"275"
+	"health_max"		"90"
+	"armor"		"120"
 
 	// Grenades.
 	"numgrens"			"0"
@@ -50,8 +46,8 @@ PlayerClass
 	"cameraoffset_up"	"0"
 
 	// Death Sounds
-	"sound_death"				"Scout.Death"
-	"sound_crit_death"				"Scout.CritDeath"
-	"sound_melee_death"			"Scout.MeleeDeath"
-	"sound_explosion_death"			"Scout.ExplosionDeath"	
+	"sound_death"				"TFC.Death"
+	"sound_crit_death"				"TFC.Death"
+	"sound_melee_death"			"TFC.Death"
+	"sound_explosion_death"			"TFC.Death"	
 }

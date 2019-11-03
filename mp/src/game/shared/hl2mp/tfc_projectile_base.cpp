@@ -43,7 +43,7 @@ void CTFCProjectileBase::Spawn()
 	SetModel(GetProjectileModelName());
 
 	SetSolid(SOLID_BBOX);
-	SetMoveType(MOVETYPE_FLYGRAVITY, MOVECOLLIDE_FLY_CUSTOM);
+	SetMoveType(MOVETYPE_FLY, MOVECOLLIDE_FLY_CUSTOM);
 	AddEFlags(EFL_NO_WATER_VELOCITY_CHANGE);
 
 	SetGravity(GetGravity());

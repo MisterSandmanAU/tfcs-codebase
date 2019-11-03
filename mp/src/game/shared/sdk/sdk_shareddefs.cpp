@@ -66,6 +66,16 @@ const char *pszPossiblePlayerModels[] =
 	SDK_PLAYER_MODEL,
 	"models/player/blue_player.mdl",
 	"models/player/red_player.mdl",
+	"models/player/scout.mdl",
+	"models/player/soldier.mdl",
+	"models/player/pyro.mdl",
+	"models/player/hwguy.mdl",
+	"models/player/demo.mdl",
+	"models/player/engineer.mdl",
+	"models/player/medic.mdl",
+	"models/player/sniper.mdl",
+	"models/player/spy.mdl",
+	"models/player/civilian.mdl",
 	NULL
 };
 

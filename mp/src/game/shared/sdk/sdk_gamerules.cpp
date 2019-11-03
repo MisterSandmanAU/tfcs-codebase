@@ -655,6 +655,86 @@ void CSDKGameRules::PlayerSpawn( CBasePlayer *p )
 				pPlayer->GiveNamedItem( buf );
 			}
 
+			// First weapon
+			CBaseEntity *pWeapon1 = NULL;
+			if (pClassInfo.m_iWeapon1 != WEAPON_NONE)
+			{
+				Q_snprintf(buf, bufsize, "weapon_%s", WeaponIDToAlias(pClassInfo.m_iWeapon1));
+				pWeapon1 = pPlayer->GiveNamedItem(buf);
+			}
+
+			// Second weapon
+			CBaseEntity *pWeapon2 = NULL;
+			if (pClassInfo.m_iWeapon1 != WEAPON_NONE)
+			{
+				Q_snprintf(buf, bufsize, "weapon_%s", WeaponIDToAlias(pClassInfo.m_iWeapon2));
+				pWeapon2 = pPlayer->GiveNamedItem(buf);
+			}
+
+			// Third weapon
+			CBaseEntity *pWeapon3 = NULL;
+			if (pClassInfo.m_iWeapon3 != WEAPON_NONE)
+			{
+				Q_snprintf(buf, bufsize, "weapon_%s", WeaponIDToAlias(pClassInfo.m_iWeapon3));
+				pWeapon3 = pPlayer->GiveNamedItem(buf);
+			}
+
+			// Fourth weapon
+			CBaseEntity *pWeapon4 = NULL;
+			if (pClassInfo.m_iWeapon4 != WEAPON_NONE)
+			{
+				Q_snprintf(buf, bufsize, "weapon_%s", WeaponIDToAlias(pClassInfo.m_iWeapon4));
+				pWeapon4 = pPlayer->GiveNamedItem(buf);
+			}
+
+			// Fith weapon
+			CBaseEntity *pWeapon5 = NULL;
+			if (pClassInfo.m_iWeapon5 != WEAPON_NONE)
+			{
+				Q_snprintf(buf, bufsize, "weapon_%s", WeaponIDToAlias(pClassInfo.m_iWeapon5));
+				pWeapon5 = pPlayer->GiveNamedItem(buf);
+			}
+
+			// Sixth weapon
+			CBaseEntity *pWeapon6 = NULL;
+			if (pClassInfo.m_iWeapon6 != WEAPON_NONE)
+			{
+				Q_snprintf(buf, bufsize, "weapon_%s", WeaponIDToAlias(pClassInfo.m_iWeapon6));
+				pWeapon6 = pPlayer->GiveNamedItem(buf);
+			}
+
+			// Seventh weapon
+			CBaseEntity *pWeapon7 = NULL;
+			if (pClassInfo.m_iWeapon7 != WEAPON_NONE)
+			{
+				Q_snprintf(buf, bufsize, "weapon_%s", WeaponIDToAlias(pClassInfo.m_iWeapon7));
+				pWeapon7 = pPlayer->GiveNamedItem(buf);
+			}
+
+			// Eighth weapon
+			CBaseEntity *pWeapon8 = NULL;
+			if (pClassInfo.m_iWeapon8 != WEAPON_NONE)
+			{
+				Q_snprintf(buf, bufsize, "weapon_%s", WeaponIDToAlias(pClassInfo.m_iWeapon8));
+				pWeapon8 = pPlayer->GiveNamedItem(buf);
+			}
+
+			// Ninth weapon
+			CBaseEntity *pWeapon9 = NULL;
+			if (pClassInfo.m_iWeapon9 != WEAPON_NONE)
+			{
+				Q_snprintf(buf, bufsize, "weapon_%s", WeaponIDToAlias(pClassInfo.m_iWeapon9));
+				pWeapon9 = pPlayer->GiveNamedItem(buf);
+			}
+
+			// Tenth weapon
+			CBaseEntity *pWeapon10 = NULL;
+			if (pClassInfo.m_iWeapon10 != WEAPON_NONE)
+			{
+				Q_snprintf(buf, bufsize, "weapon_%s", WeaponIDToAlias(pClassInfo.m_iWeapon10));
+				pWeapon10 = pPlayer->GiveNamedItem(buf);
+			}
+
 			CWeaponSDKBase *pWpn = NULL;
 
 			// Primary Ammo
@@ -678,7 +758,107 @@ void CSDKGameRules::PlayerSpawn( CBasePlayer *p )
 					int iClipSize = pWpn->GetSDKWpnData().iMaxClip1;
 					pPlayer->GiveAmmo( iNumClip * iClipSize, pWpn->GetSDKWpnData().szAmmo1 );
 				}
-			}				
+			}
+
+			// Weapon One Ammo
+			pWpn = dynamic_cast<CWeaponSDKBase *>(pWeapon1);
+
+			if (pWpn)
+			{
+				int iNumClip = pWpn->GetSDKWpnData().m_iDefaultAmmoClips - 1;	//account for one clip in the gun
+				int iClipSize = pWpn->GetSDKWpnData().iMaxClip1;
+				pPlayer->GiveAmmo(iNumClip * iClipSize, pWpn->GetSDKWpnData().szAmmo1);
+			}
+
+			// Weapon Two Ammo
+			pWpn = dynamic_cast<CWeaponSDKBase *>(pWeapon2);
+
+			if (pWpn)
+			{
+				int iNumClip = pWpn->GetSDKWpnData().m_iDefaultAmmoClips - 1;	//account for one clip in the gun
+				int iClipSize = pWpn->GetSDKWpnData().iMaxClip1;
+				pPlayer->GiveAmmo(iNumClip * iClipSize, pWpn->GetSDKWpnData().szAmmo1);
+			}
+
+			// Weapon Three Ammo
+			pWpn = dynamic_cast<CWeaponSDKBase *>(pWeapon3);
+
+			if (pWpn)
+			{
+				int iNumClip = pWpn->GetSDKWpnData().m_iDefaultAmmoClips - 1;	//account for one clip in the gun
+				int iClipSize = pWpn->GetSDKWpnData().iMaxClip1;
+				pPlayer->GiveAmmo(iNumClip * iClipSize, pWpn->GetSDKWpnData().szAmmo1);
+			}
+
+			// Weapon Four Ammo
+			pWpn = dynamic_cast<CWeaponSDKBase *>(pWeapon4);
+
+			if (pWpn)
+			{
+				int iNumClip = pWpn->GetSDKWpnData().m_iDefaultAmmoClips - 1;	//account for one clip in the gun
+				int iClipSize = pWpn->GetSDKWpnData().iMaxClip1;
+				pPlayer->GiveAmmo(iNumClip * iClipSize, pWpn->GetSDKWpnData().szAmmo1);
+			}
+
+			// Weapon Five Ammo
+			pWpn = dynamic_cast<CWeaponSDKBase *>(pWeapon5);
+
+			if (pWpn)
+			{
+				int iNumClip = pWpn->GetSDKWpnData().m_iDefaultAmmoClips - 1;	//account for one clip in the gun
+				int iClipSize = pWpn->GetSDKWpnData().iMaxClip1;
+				pPlayer->GiveAmmo(iNumClip * iClipSize, pWpn->GetSDKWpnData().szAmmo1);
+			}
+
+			// Weapon Six Ammo
+			pWpn = dynamic_cast<CWeaponSDKBase *>(pWeapon6);
+
+			if (pWpn)
+			{
+				int iNumClip = pWpn->GetSDKWpnData().m_iDefaultAmmoClips - 1;	//account for one clip in the gun
+				int iClipSize = pWpn->GetSDKWpnData().iMaxClip1;
+				pPlayer->GiveAmmo(iNumClip * iClipSize, pWpn->GetSDKWpnData().szAmmo1);
+			}
+
+			// Weapon Seven Ammo
+			pWpn = dynamic_cast<CWeaponSDKBase *>(pWeapon7);
+
+			if (pWpn)
+			{
+				int iNumClip = pWpn->GetSDKWpnData().m_iDefaultAmmoClips - 1;	//account for one clip in the gun
+				int iClipSize = pWpn->GetSDKWpnData().iMaxClip1;
+				pPlayer->GiveAmmo(iNumClip * iClipSize, pWpn->GetSDKWpnData().szAmmo1);
+			}
+
+			// Weapon Eight Ammo
+			pWpn = dynamic_cast<CWeaponSDKBase *>(pWeapon8);
+
+			if (pWpn)
+			{
+				int iNumClip = pWpn->GetSDKWpnData().m_iDefaultAmmoClips - 1;	//account for one clip in the gun
+				int iClipSize = pWpn->GetSDKWpnData().iMaxClip1;
+				pPlayer->GiveAmmo(iNumClip * iClipSize, pWpn->GetSDKWpnData().szAmmo1);
+			}
+
+			// Weapon Nine Ammo
+			pWpn = dynamic_cast<CWeaponSDKBase *>(pWeapon9);
+
+			if (pWpn)
+			{
+				int iNumClip = pWpn->GetSDKWpnData().m_iDefaultAmmoClips - 1;	//account for one clip in the gun
+				int iClipSize = pWpn->GetSDKWpnData().iMaxClip1;
+				pPlayer->GiveAmmo(iNumClip * iClipSize, pWpn->GetSDKWpnData().szAmmo1);
+			}
+
+			// Weapon Ten Ammo
+			pWpn = dynamic_cast<CWeaponSDKBase *>(pWeapon10);
+
+			if (pWpn)
+			{
+				int iNumClip = pWpn->GetSDKWpnData().m_iDefaultAmmoClips - 1;	//account for one clip in the gun
+				int iClipSize = pWpn->GetSDKWpnData().iMaxClip1;
+				pPlayer->GiveAmmo(iNumClip * iClipSize, pWpn->GetSDKWpnData().szAmmo1);
+			}
 
 			// Grenade Type 1
 			if ( pClassInfo.m_iGrenType1 != WEAPON_NONE )

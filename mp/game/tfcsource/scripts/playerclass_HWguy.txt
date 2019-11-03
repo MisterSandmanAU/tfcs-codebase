@@ -6,7 +6,7 @@ PlayerClass
 	// Attributes.
 	"name"			"TFC_HWGuy"
 	"printname"		"TFC_HWGuy"
-	"playermodel"	"models/Combine_Soldier.mdl"
+	"playermodel"	"models/player/hwguy.mdl"
 	"classimage"	"ClassImagePathHere"
 	"classimagebg"	"ClassImageBackgroundPathHere"
 	"localize_name"	"TFC_HWGuy"

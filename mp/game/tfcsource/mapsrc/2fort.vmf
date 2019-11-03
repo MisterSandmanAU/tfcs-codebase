@@ -2,7 +2,7 @@ versioninfo
 {
 	"editorversion" "400"
 	"editorbuild" "8357"
-	"mapversion" "12"
+	"mapversion" "14"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -11,7 +11,7 @@ visgroups
 }
 viewsettings
 {
-	"bSnapToGrid" "1"
+	"bSnapToGrid" "0"
 	"bShowGrid" "1"
 	"bShowLogicalGrid" "0"
 	"nGridSpacing" "64"
@@ -20,7 +20,7 @@ viewsettings
 world
 {
 	"id" "0"
-	"mapversion" "12"
+	"mapversion" "14"
 	"classname" "worldspawn"
 	"detailmaterial" "detail/detailsprites"
 	"detailvbsp" "detail.vbsp"
@@ -20569,7 +20569,7 @@ world
 		{
 			"id" "1893"
 			"plane" "(-512 -896 512) (-512 -896 384) (-512 -1152 384)"
-			"material" "DEV/REFLECTIVITY_80"
+			"material" "DEV/REFLECTIVITY_50"
 			"uaxis" "[0 1 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -20602,7 +20602,7 @@ world
 		{
 			"id" "1896"
 			"plane" "(-640 -896 384) (-640 -1152 384) (-512 -1152 384)"
-			"material" "DEV/REFLECTIVITY_40"
+			"material" "DEV/REFLECTIVITY_50"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 -1 0 0] 0.25"
 			"rotation" "0"
@@ -25661,7 +25661,7 @@ world
 		{
 			"id" "2742"
 			"plane" "(-1024 -896 512) (-1024 -896 0) (-1024 -832 0)"
-			"material" "DEV/REFLECTIVITY_80"
+			"material" "DEV/REFLECTIVITY_50"
 			"uaxis" "[0 1 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -25672,7 +25672,7 @@ world
 		{
 			"id" "2743"
 			"plane" "(-512 -832 512) (-512 -832 0) (-512 -896 0)"
-			"material" "DEV/REFLECTIVITY_80"
+			"material" "DEV/REFLECTIVITY_50"
 			"uaxis" "[0 1 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -25683,7 +25683,7 @@ world
 		{
 			"id" "2744"
 			"plane" "(-512 -896 512) (-512 -896 0) (-1024 -896 0)"
-			"material" "DEV/REFLECTIVITY_80"
+			"material" "DEV/REFLECTIVITY_50"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -25694,7 +25694,7 @@ world
 		{
 			"id" "2745"
 			"plane" "(-1024 -832 512) (-1024 -832 0) (-512 -832 0)"
-			"material" "DEV/REFLECTIVITY_80"
+			"material" "DEV/REFLECTIVITY_50"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -25705,7 +25705,7 @@ world
 		{
 			"id" "2746"
 			"plane" "(-1024 -832 0) (-1024 -896 0) (-512 -896 0)"
-			"material" "DEV/REFLECTIVITY_80"
+			"material" "DEV/REFLECTIVITY_50"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 -1 0 0] 0.25"
 			"rotation" "0"
@@ -25716,7 +25716,7 @@ world
 		{
 			"id" "2747"
 			"plane" "(-1024 -896 512) (-1024 -832 512) (-512 -832 512)"
-			"material" "DEV/REFLECTIVITY_80"
+			"material" "DEV/REFLECTIVITY_50"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 -1 0 0] 0.25"
 			"rotation" "0"
@@ -53037,7 +53037,7 @@ world
 		{
 			"id" "5738"
 			"plane" "(1024 832 512) (1024 832 0) (512 832 0)"
-			"material" "DEV/REFLECTIVITY_80"
+			"material" "DEV/REFLECTIVITY_50"
 			"uaxis" "[-1 0 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -53048,7 +53048,7 @@ world
 		{
 			"id" "5739"
 			"plane" "(512 896 512) (512 896 0) (1024 896 0)"
-			"material" "DEV/REFLECTIVITY_80"
+			"material" "DEV/REFLECTIVITY_50"
 			"uaxis" "[-1 0 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -53059,7 +53059,7 @@ world
 		{
 			"id" "5740"
 			"plane" "(512 896 0) (512 832 0) (1024 832 0)"
-			"material" "DEV/REFLECTIVITY_80"
+			"material" "DEV/REFLECTIVITY_50"
 			"uaxis" "[-1 0 0 0] 0.25"
 			"vaxis" "[0 1 0 -2] 0.25"
 			"rotation" "0"
@@ -53070,7 +53070,7 @@ world
 		{
 			"id" "5741"
 			"plane" "(512 832 512) (512 896 512) (1024 896 512)"
-			"material" "DEV/REFLECTIVITY_80"
+			"material" "DEV/REFLECTIVITY_50"
 			"uaxis" "[-1 0 0 0] 0.25"
 			"vaxis" "[0 1 0 -2] 0.25"
 			"rotation" "0"
@@ -53081,7 +53081,7 @@ world
 		{
 			"id" "5742"
 			"plane" "(512 832 512) (512 832 0) (512 896 0)"
-			"material" "DEV/REFLECTIVITY_80"
+			"material" "DEV/REFLECTIVITY_50"
 			"uaxis" "[0 -1 0 2] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -53092,7 +53092,7 @@ world
 		{
 			"id" "5743"
 			"plane" "(1024 896 512) (1024 896 0) (1024 832 0)"
-			"material" "DEV/REFLECTIVITY_80"
+			"material" "DEV/REFLECTIVITY_50"
 			"uaxis" "[0 -1 0 2] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -62232,7 +62232,7 @@ world
 		side
 		{
 			"id" "10886"
-			"plane" "(512 832 280.394) (576 832 280.394) (576 -832 280.394)"
+			"plane" "(512 -832 511.999) (512 832 511.999) (576 832 511.999)"
 			"material" "DEV/REFLECTIVITY_50"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 -1 0 0] 0.25"
@@ -62243,7 +62243,7 @@ world
 		side
 		{
 			"id" "10887"
-			"plane" "(512 -832 127.394) (576 -832 127.394) (576 832 127.394)"
+			"plane" "(512 832 127.394) (512 -832 127.394) (576 -832 127.394)"
 			"material" "DEV/REFLECTIVITY_50"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 -1 0 0] 0.25"
@@ -62254,7 +62254,7 @@ world
 		side
 		{
 			"id" "10888"
-			"plane" "(512 832 280.394) (512 -832 280.394) (512 -832 127.394)"
+			"plane" "(512 -832 127.395) (512 832 127.395) (512 832 512)"
 			"material" "DEV/REFLECTIVITY_50"
 			"uaxis" "[0 1 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
@@ -62265,7 +62265,7 @@ world
 		side
 		{
 			"id" "10889"
-			"plane" "(576 832 127.394) (576 -832 127.394) (576 -832 280.394)"
+			"plane" "(576 832 127.395) (576 -832 127.395) (576 -832 512)"
 			"material" "DEV/REFLECTIVITY_50"
 			"uaxis" "[0 1 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
@@ -62276,7 +62276,7 @@ world
 		side
 		{
 			"id" "10890"
-			"plane" "(576 832 280.394) (512 832 280.394) (512 832 127.394)"
+			"plane" "(512 832 127.395) (576 832 127.395) (576 832 512)"
 			"material" "DEV/REFLECTIVITY_50"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
@@ -62287,7 +62287,7 @@ world
 		side
 		{
 			"id" "10891"
-			"plane" "(576 -832 127.394) (512 -832 127.394) (512 -832 280.394)"
+			"plane" "(576 -832 127.395) (512 -832 127.395) (512 -832 512)"
 			"material" "DEV/REFLECTIVITY_50"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
@@ -62308,10 +62308,10 @@ world
 		side
 		{
 			"id" "10915"
-			"plane" "(-576 832 268) (-512 832 268) (-512 -832 268)"
+			"plane" "(-576 -831 512) (-576 833 512) (-512 833 512)"
 			"material" "DEV/REFLECTIVITY_50"
 			"uaxis" "[1 0 0 256] 0.25"
-			"vaxis" "[0 -1 0 0] 0.25"
+			"vaxis" "[0 -1 0 4] 0.25"
 			"rotation" "0"
 			"lightmapscale" "16"
 			"smoothing_groups" "0"
@@ -62319,10 +62319,10 @@ world
 		side
 		{
 			"id" "10914"
-			"plane" "(-576 -832 128) (-512 -832 128) (-512 832 128)"
+			"plane" "(-576 833 128.917) (-576 -831 128.917) (-512 -831 128.917)"
 			"material" "DEV/REFLECTIVITY_50"
 			"uaxis" "[1 0 0 256] 0.25"
-			"vaxis" "[0 -1 0 0] 0.25"
+			"vaxis" "[0 -1 0 4] 0.25"
 			"rotation" "0"
 			"lightmapscale" "16"
 			"smoothing_groups" "0"
@@ -62330,9 +62330,9 @@ world
 		side
 		{
 			"id" "10913"
-			"plane" "(-576 832 268) (-576 -832 268) (-576 -832 128)"
+			"plane" "(-576 -831 128.917) (-576 833 128.917) (-576 833 512)"
 			"material" "DEV/REFLECTIVITY_50"
-			"uaxis" "[0 1 0 0] 0.25"
+			"uaxis" "[0 1 0 -4] 0.25"
 			"vaxis" "[0 0 -1 -100] 0.25"
 			"rotation" "0"
 			"lightmapscale" "16"
@@ -62341,9 +62341,9 @@ world
 		side
 		{
 			"id" "10912"
-			"plane" "(-512 832 128) (-512 -832 128) (-512 -832 268)"
+			"plane" "(-512 833 128.917) (-512 -831 128.917) (-512 -831 512)"
 			"material" "DEV/REFLECTIVITY_50"
-			"uaxis" "[0 1 0 0] 0.25"
+			"uaxis" "[0 1 0 -4] 0.25"
 			"vaxis" "[0 0 -1 -100] 0.25"
 			"rotation" "0"
 			"lightmapscale" "16"
@@ -62352,7 +62352,7 @@ world
 		side
 		{
 			"id" "10911"
-			"plane" "(-512 832 268) (-576 832 268) (-576 832 128)"
+			"plane" "(-576 833 128.917) (-512 833 128.917) (-512 833 512)"
 			"material" "DEV/REFLECTIVITY_50"
 			"uaxis" "[1 0 0 256] 0.25"
 			"vaxis" "[0 0 -1 -100] 0.25"
@@ -62363,7 +62363,7 @@ world
 		side
 		{
 			"id" "10910"
-			"plane" "(-512 -832 128) (-576 -832 128) (-576 -832 268)"
+			"plane" "(-512 -831 128.917) (-576 -831 128.917) (-576 -831 512)"
 			"material" "DEV/REFLECTIVITY_50"
 			"uaxis" "[1 0 0 256] 0.25"
 			"vaxis" "[0 0 -1 -100] 0.25"
@@ -108608,8 +108608,8 @@ cameras
 	"activecamera" "0"
 	camera
 	{
-		"position" "[313.405 787.489 661.505]"
-		"look" "[532.295 875.902 538.09]"
+		"position" "[225.605 347.053 -68.6201]"
+		"look" "[133.552 441.07 -300.241]"
 	}
 	camera
 	{

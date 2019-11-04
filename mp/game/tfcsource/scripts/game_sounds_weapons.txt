@@ -256,6 +256,47 @@
 
 	"wave"			"weapons/m3/m3_pump.wav"
 }
+
+// --------------------------
+// 12Gauge Shotgun 
+// --------------------------
+
+"Weapon_12Gauge.Single"
+{
+	"channel"		"CHAN_WEAPON"
+	"volume"		"1.0"
+	"CompatibilityAttenuation"	"0.48"
+	"pitch"		"PITCH_NORM"
+
+	"wave"			")weapons/12gauge/shotgun_shoot.wav"
+}
+
+"Weapon_12Gauge.Insertshell"
+{
+	"channel"		"CHAN_ITEM"
+	"volume"		"1.0"
+	"CompatibilityAttenuation"	"1.0"
+	"pitch"		"PITCH_NORM"
+
+	"rndwave"
+	{
+	"wave"			"weapons/12gauge/shotgun_reload1.wav"
+	"wave"			"weapons/12gauge/shotgun_reload2.wav"
+	"wave"			"weapons/12gauge/shotgun_reload3.wav"
+	}
+}
+
+"Weapon_12Gauge.Pump"
+{
+	"channel"		"CHAN_ITEM"
+	"volume"		"1.0"
+	"CompatibilityAttenuation"	"1.0"
+	"pitch"		"PITCH_NORM"
+
+	"wave"			"weapons/12gauge/shotgun_cock.wav"
+}
+
+
 // *******
 // BULLETS
 

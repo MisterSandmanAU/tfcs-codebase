@@ -36,26 +36,10 @@
 	}
 	"7"
 	{
-		"label" "#GameUI_GameMenu_ActivateVR"
-		"command" "engine vr_activate"
-		"InGameOrder" "40"
-		"OnlyWhenVREnabled" "1"
-		"OnlyWhenVRInactive" "1"
-	}
-	"8"
-	{
-		"label" "#GameUI_GameMenu_DeactivateVR"
-		"command" "engine vr_deactivate"
-		"InGameOrder" "40"
-		"OnlyWhenVREnabled" "1"
-		"OnlyWhenVRActive" "1"
-	}
-	"10"
-	{
 		"label" "#GameUI_GameMenu_Options"
 		"command" "OpenOptionsDialog"
 	}
-	"11"
+	"8"
 	{
 		"label" "#GameUI_GameMenu_Quit"
 		"command" "Quit"

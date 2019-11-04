@@ -2,6 +2,7 @@
 // TFC Player Lines
 
 "TFCPlayer.Pain"
+{
 	"channel"		"CHAN_VOICE"
 	"volume"		"VOL_NORM"
 	"pitch"		"PITCH_NORM"
@@ -20,6 +21,7 @@
 }
 
 "TFCPlayer.Death"
+{
 	"channel"		"CHAN_VOICE"
 	"volume"		"VOL_NORM"
 	"pitch"		"PITCH_NORM"
@@ -37,6 +39,7 @@
 }
 
 "TFCPlayer.Medic"
+{
 	"channel"		"CHAN_VOICE"
 	"volume"		"VOL_NORM"
 	"pitch"		"PITCH_NORM"
@@ -51,6 +54,7 @@
 }
 
 "TFCPlayer.Jump"
+{
 	"channel"		"CHAN_VOICE"
 	"volume"		"VOL_NORM"
 	"pitch"		"PITCH_NORM"

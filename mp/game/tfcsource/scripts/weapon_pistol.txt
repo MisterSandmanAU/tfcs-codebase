@@ -1,35 +1,37 @@
-// Pistol
-
 WeaponData
 {
+	// Weapon characteristics:
+	"Damage"			"54"		// damage per bullet
+	"Bullets"			"1"		// bullets per shoot
+	"CycleTime"			"0.225"		// time between shoots
+
+	"BuiltRightHanded"		"0"
+	
 	// Weapon data is loaded by both the Game and Client DLLs.
-	"printname"	"#HL2_Pistol"
-	"viewmodel"			"models/weapons/v_pistol.mdl"
-	"playermodel"		"models/weapons/w_pistol.mdl"
-	"anim_prefix"		"pistol"
+	"printname"			"#SDK_Weapon_Pistol"
+	"viewmodel"			"models/weapons/v_pist_deagle.mdl"
+	"playermodel"			"models/weapons/w_pist_deagle.mdl"
+	"PlayerAnimationExtension"	"mp5"
+	
 	"bucket"			"1"
-	"bucket_position"	"0"
+	"bucket_position"		"0"
 
-	"clip_size"			"18"
-	"primary_ammo"		"Pistol"
-	"secondary_ammo"	"None"
+	"clip_size"			"8"
+	"NumClips"			"3"
 
-	"weight"			"2"
+	
+	"primary_ammo"			"pistol"
+	"secondary_ammo"		"None"
+
+	"weight"			"25"
 	"item_flags"			"0"
-	"damage"			"8"
 
 	// Sounds for the weapon. There is a max of 16 sounds per category (i.e. max 16 "single_shot" sounds)
 	SoundData
 	{
-
-		"reload"		"Weapon_Pistol.Reload"
-		"reload_npc"	"Weapon_Pistol.NPC_Reload"
-		"empty"			"Weapon_Pistol.Empty"
-		"single_shot"	"Weapon_Pistol.Single"
-		"single_shot_npc"	"Weapon_Pistol.NPC_Single"
-		"special1"		"Weapon_Pistol.Special1"
-		"special2"		"Weapon_Pistol.Special2"
-		"burst"			"Weapon_Pistol.Burst"
+		//"reload"			"Default.Reload"
+		//"empty"			"Default.ClipEmpty_Rifle"
+		"single_shot"			"Weapon_DEagle.Single"
 	}
 
 	// Weapon Sprite data is loaded by the Client DLL.
@@ -38,22 +40,25 @@ WeaponData
 		"weapon"
 		{
 				"font"		"WeaponIcons"
-				"character"	"d"
+				"character"	"a"
 		}
 		"weapon_s"
 		{	
 				"font"		"WeaponIconsSelected"
-				"character"	"d"
+				"character"	"a"
 		}
 		"ammo"
 		{
 				"font"		"WeaponIcons"
-				"character"	"p"
+				"character"	"r"
 		}
 		"crosshair"
 		{
-				"font"		"Crosshairs"
-				"character"	"Q"
+				"file"		"sprites/crosshairs"
+				"x"		"0"
+				"y"		"48"
+				"width"		"24"
+				"height"	"24"
 		}
 		"autoaim"
 		{
@@ -62,6 +67,19 @@ WeaponData
 				"y"			"48"
 				"width"		"24"
 				"height"	"24"
+		}
+	}
+	ModelBounds
+	{
+		Viewmodel
+		{
+			Mins	"-10 -4 -13"
+			Maxs	"21 9 -1"
+		}
+		World
+		{
+			Mins	"-10 -7 -6"
+			Maxs	"22 8 9"
 		}
 	}
 }

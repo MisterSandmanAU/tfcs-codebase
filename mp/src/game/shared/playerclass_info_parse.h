@@ -33,7 +33,7 @@ public:
 	FilePlayerClassInfo_t();
 	
 	// Each game can override this to get whatever values it wants from the script.
-	void Parse( KeyValues *pKeyValuesData, const char *szClassName );
+	virtual void Parse( KeyValues *pKeyValuesData, const char *szClassName );
 
 	
 public:	

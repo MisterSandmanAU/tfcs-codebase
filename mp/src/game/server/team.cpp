@@ -9,11 +9,8 @@
 #include "player.h"
 #include "team_spawnpoint.h"
 
-
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
-
-
 
 CUtlVector< CTeam * > g_Teams;
 
@@ -128,14 +125,6 @@ void CTeam::Init( const char *pName, int iNumber )
 {
 	InitializeSpawnpoints();
 	InitializePlayers();
-#if defined ( TFC_USE_PLAYERCLASSES )
-	int i = 0;
-	while (pszPlayerClasses[i] != NULL)
-	{
-		AddPlayerClass(pszPlayerClasses[i]);
-		i++;
-	}
-#endif
 
 	m_iScore = 0;
 
@@ -166,64 +155,7 @@ const char *CTeam::GetName( void )
 void CTeam::UpdateClientData( CBasePlayer *pPlayer )
 {
 }
-#if defined ( TFC_USE_PLAYERCLASSES )
-void CTeam::AddPlayerClass(const char *szClassName)
-{
-	PLAYERCLASS_FILE_INFO_HANDLE hPlayerClassInfo;
 
-	if (ReadPlayerClassDataFromFileForSlot(filesystem, szClassName, &hPlayerClassInfo, GetEncryptionKey()))
-	{
-		m_hPlayerClassInfoHandles.AddToTail(hPlayerClassInfo);
-	}
-	else
-	{
-		Assert(!"missing playerclass script file");
-		Msg("Missing playerclass script file for class: %s\n", szClassName);
-	}
-}
-
-const CSDKPlayerClassInfo &CTeam::GetPlayerClassInfo(int iPlayerClass) const
-{
-	Assert(iPlayerClass >= 0 && iPlayerClass < m_hPlayerClassInfoHandles.Count());
-
-	const FilePlayerClassInfo_t *pPlayerClassInfo = GetFilePlayerClassInfoFromHandle(m_hPlayerClassInfoHandles[iPlayerClass]);
-	const CSDKPlayerClassInfo *pSDKInfo;
-
-#ifdef _DEBUG
-	pSDKInfo = dynamic_cast< const CSDKPlayerClassInfo* >(pPlayerClassInfo);
-	Assert(pSDKInfo);
-#else
-	pSDKInfo = static_cast< const CSDKPlayerClassInfo* >(pPlayerClassInfo);
-#endif
-
-	return *pSDKInfo;
-}
-
-bool CTeam::IsClassOnTeam(const char *pszClassName, int &iClassNum) const
-{
-	iClassNum = PLAYERCLASS_UNDEFINED;
-
-	// Random is always on every team
-	if (FStrEq(pszClassName, "cls_random"))
-	{
-		iClassNum = PLAYERCLASS_RANDOM;
-		return true;
-	}
-
-	for (int i = 0; i<m_hPlayerClassInfoHandles.Count(); i++)
-	{
-		FilePlayerClassInfo_t *pPlayerClassInfo = GetFilePlayerClassInfoFromHandle(m_hPlayerClassInfoHandles[i]);
-
-		if (stricmp(pszClassName, pPlayerClassInfo->m_szSelectCmd) == 0)
-		{
-			iClassNum = i;
-			return true;
-		}
-	}
-
-	return false;
-}
-#endif // SDK_USE_PLAYERCLASSES
 //------------------------------------------------------------------------------------------------------------------
 // SPAWNPOINTS
 //-----------------------------------------------------------------------------

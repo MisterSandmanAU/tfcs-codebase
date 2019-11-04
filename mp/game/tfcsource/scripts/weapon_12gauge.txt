@@ -1,0 +1,87 @@
+WeaponData
+{
+	// Weapon characteristics:
+	"Damage"			"9"
+	"Bullets"			"9"
+	"CycleTime"			"0.85"
+
+	"BuiltRightHanded"		"0"
+	
+	// Weapon data is loaded by both the Game and Client DLLs.
+	"printname"			"#SDK_Weapon_Shotgun"
+	"viewmodel"			"models/weapons/v_models/v_12gauge.mdl"
+	"playermodel"			"models/weapons/w_models/w_12gauge.mdl"
+	"PlayerAnimationExtension"	"m3s90"
+	
+	"bucket"			"2"
+	"bucket_position"		"4"
+
+	"clip_size"			"8"
+	"default_clip"			"50"
+	"NumClips"			"50"
+
+	
+	"primary_ammo"			"shotgun"
+	"secondary_ammo"		"None"
+
+	"weight"			"20"
+	"item_flags"			"0"
+
+	// Sounds for the weapon. There is a max of 16 sounds per category (i.e. max 16 "single_shot" sounds)
+	SoundData
+	{
+		"empty"				"Weapon_Shotgun.Empty"
+		"reload"			"Weapon_Shotgun.Reload"
+		"special1"			"Weapon_Shotgun.Pump"
+		"single_shot"		"Weapon_12Gauge.Single"
+	}
+
+	// Weapon Sprite data is loaded by the Client DLL.
+	TextureData
+	{
+		"weapon"
+		{
+				"font"		"WeaponIcons"
+				"character"	"b"
+		}
+		"weapon_s"
+		{	
+				"font"		"WeaponIconsSelected"
+				"character"	"b"
+		}
+		"ammo"
+		{
+				"font"		"WeaponIcons"
+				"character"	"s"
+		}
+		"crosshair"
+		{
+				"file"		"sprites/crosshairs"
+				"x"			"0"
+				"y"			"48"
+				"width"		"24"
+				"height"	"24"
+		}
+		"autoaim"
+		{
+				"file"		"sprites/crosshairs"
+				"x"			"0"
+				"y"			"48"
+				"width"		"24"
+				"height"	"24"
+		}
+	}
+	ModelBounds
+	{
+		Viewmodel
+		{
+			Mins	"-13 -3 -13"
+			Maxs	"26 10 -3"
+		}
+		World
+		{
+			Mins	"-9 -8 -5"
+			Maxs	"28 9 9"
+		}
+	}
+}

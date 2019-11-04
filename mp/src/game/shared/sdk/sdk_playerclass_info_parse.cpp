@@ -6,7 +6,7 @@
 
 #include "cbase.h"
 #include "sdk_playerclass_info_parse.h"
-
+#include "weapon_sdkbase.h"
 #include <KeyValues.h>
 
 // memdbgon must be the last include file in a .cpp file!!!
@@ -16,14 +16,14 @@
 
 FilePlayerClassInfo_t* CreatePlayerClassInfo()
 {
-#if defined ( TFC_USE_PLAYERCLASSES )
+#if defined ( SDK_USE_PLAYERCLASSES )
 	return new CSDKPlayerClassInfo;
 #else
 	return new FilePlayerClassInfo_t;
 #endif
 }
 
-#if defined ( TFC_USE_PLAYERCLASSES )
+#if defined ( SDK_USE_PLAYERCLASSES )
 
 CSDKPlayerClassInfo::CSDKPlayerClassInfo()
 {
@@ -102,6 +102,106 @@ void CSDKPlayerClassInfo::Parse( KeyValues *pKeyValuesData, const char *szWeapon
 	}
 	else
 		m_iMeleeWeapon = WEAPON_NONE;
+
+	const char *pszWeapon1 = pKeyValuesData->GetString("weapon1", NULL);
+
+	if (pszWeapon1)
+	{
+		m_iWeapon1 = AliasToWeaponID(pszWeapon1);
+		//		Assert( m_iSecondaryWeapon != WEAPON_NONE );
+	}
+	else
+		m_iWeapon1 = WEAPON_NONE;
+
+	const char *pszWeapon2 = pKeyValuesData->GetString("weapon2", NULL);
+
+	if (pszWeapon2)
+	{
+		m_iWeapon2 = AliasToWeaponID(pszWeapon2);
+		//		Assert( m_iSecondaryWeapon != WEAPON_NONE );
+	}
+	else
+		m_iWeapon2 = WEAPON_NONE;
+
+	const char *pszWeapon3 = pKeyValuesData->GetString("weapon3", NULL);
+
+	if (pszWeapon3)
+	{
+		m_iWeapon3 = AliasToWeaponID(pszWeapon3);
+		//		Assert( m_iSecondaryWeapon != WEAPON_NONE );
+	}
+	else
+		m_iWeapon3 = WEAPON_NONE;
+
+	const char *pszWeapon4 = pKeyValuesData->GetString("weapon4", NULL);
+
+	if (pszWeapon4)
+	{
+		m_iWeapon4 = AliasToWeaponID(pszWeapon4);
+		//		Assert( m_iSecondaryWeapon != WEAPON_NONE );
+	}
+	else
+		m_iWeapon4 = WEAPON_NONE;
+
+	const char *pszWeapon5 = pKeyValuesData->GetString("weapon5", NULL);
+
+	if (pszWeapon5)
+	{
+		m_iWeapon5 = AliasToWeaponID(pszWeapon5);
+		//		Assert( m_iSecondaryWeapon != WEAPON_NONE );
+	}
+	else
+		m_iWeapon5 = WEAPON_NONE;
+
+	const char *pszWeapon6 = pKeyValuesData->GetString("weapon6", NULL);
+
+	if (pszWeapon6)
+	{
+		m_iWeapon6 = AliasToWeaponID(pszWeapon6);
+		//		Assert( m_iSecondaryWeapon != WEAPON_NONE );
+	}
+	else
+		m_iWeapon6 = WEAPON_NONE;
+
+	const char *pszWeapon7 = pKeyValuesData->GetString("weapon7", NULL);
+
+	if (pszWeapon7)
+	{
+		m_iWeapon7 = AliasToWeaponID(pszWeapon7);
+		//		Assert( m_iSecondaryWeapon != WEAPON_NONE );
+	}
+	else
+		m_iWeapon7 = WEAPON_NONE;
+
+	const char *pszWeapon8 = pKeyValuesData->GetString("weapon8", NULL);
+
+	if (pszWeapon8)
+	{
+		m_iWeapon8 = AliasToWeaponID(pszWeapon8);
+		//		Assert( m_iSecondaryWeapon != WEAPON_NONE );
+	}
+	else
+		m_iWeapon8 = WEAPON_NONE;
+
+	const char *pszWeapon9 = pKeyValuesData->GetString("weapon9", NULL);
+
+	if (pszWeapon9)
+	{
+		m_iWeapon9 = AliasToWeaponID(pszWeapon9);
+		//		Assert( m_iSecondaryWeapon != WEAPON_NONE );
+	}
+	else
+		m_iWeapon9 = WEAPON_NONE;
+
+	const char *pszWeapon10 = pKeyValuesData->GetString("weapon10", NULL);
+
+	if (pszWeapon10)
+	{
+		m_iWeapon10 = AliasToWeaponID(pszWeapon10);
+		//		Assert( m_iSecondaryWeapon != WEAPON_NONE );
+	}
+	else
+		m_iWeapon10 = WEAPON_NONE;
 
 	m_iNumGrensType1 = pKeyValuesData->GetInt( "numgrens", 0 );
 	if ( m_iNumGrensType1 > 0 )

@@ -10,7 +10,7 @@
 #include "ammodef.h"
 #include "KeyValues.h"
 #include "weapon_sdkbase.h"
-
+#include "filesystem.h"
 
 #ifdef CLIENT_DLL
 
@@ -33,6 +33,7 @@
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
+#define NULL 0
 
 #ifndef CLIENT_DLL
 
@@ -81,6 +82,7 @@ END_NETWORK_TABLE()
 
 #if defined ( SDK_USE_PLAYERCLASSES )
 	ConVar mp_allowrandomclass( "mp_allowrandomclass", "1", FCVAR_REPLICATED, "Allow players to select random class" );
+	ConVar mp_allowspecialclass("mp_allowspecialclass", "0", FCVAR_REPLICATED, "Allow players to select civilian class");
 #endif
 
 
@@ -156,6 +158,48 @@ const CViewVectors* CSDKGameRules::GetViewVectors() const
 const CSDKViewVectors *CSDKGameRules::GetSDKViewVectors() const
 {
 	return &g_SDKViewVectors;
+}
+
+// --------------------------------------------------------------------------------------------------- //
+// CSDKGameRules implementation.
+// --------------------------------------------------------------------------------------------------- //
+CSDKGameRules::CSDKGameRules()
+{
+#ifndef CLIENT_DLL
+	InitTeams();
+
+	InitDefaultAIRelationships();
+
+	m_bLevelInitialized = false;
+
+#if defined ( SDK_USE_TEAMS )
+	m_iSpawnPointCount_Blue = 0;
+	m_iSpawnPointCount_Red = 0;
+#endif // SDK_USE_TEAMS
+
+	m_flGameStartTime = 0;
+
+	if ( filesystem->FileExists( UTIL_VarArgs( "maps/cfg/%s.cfg", STRING(gpGlobals->mapname) ) ) )
+	{
+		// Execute a map specific cfg file - as in Day of Defeat
+		engine->ServerCommand( UTIL_VarArgs( "exec %s.cfg */maps\n", STRING(gpGlobals->mapname) ) );
+		engine->ServerExecute();
+	}
+#else
+
+#endif
+}
+
+//-----------------------------------------------------------------------------
+// Purpose: 
+//-----------------------------------------------------------------------------
+CSDKGameRules::~CSDKGameRules()
+{
+#ifndef CLIENT_DLL
+	// Note, don't delete each team since they are in the gEntList and will 
+	// automatically be deleted from there, instead.
+	g_Teams.Purge();
+#endif
 }
 
 #ifdef CLIENT_DLL
@@ -241,25 +285,6 @@ void InitBodyQue()
 {
 }
 
-
-// --------------------------------------------------------------------------------------------------- //
-// CSDKGameRules implementation.
-// --------------------------------------------------------------------------------------------------- //
-
-CSDKGameRules::CSDKGameRules()
-{
-	InitTeams();
-
-	m_bLevelInitialized = false;
-
-#if defined ( SDK_USE_TEAMS )
-	m_iSpawnPointCount_Blue = 0;
-	m_iSpawnPointCount_Red = 0;
-#endif // SDK_USE_TEAMS
-
-	m_flGameStartTime = 0;
-
-}
 void CSDKGameRules::ServerActivate()
 {
 	//Tony; initialize the level
@@ -299,11 +324,24 @@ void CSDKGameRules::CheckLevelInitialized()
 			}
 		}
 
-		while ( ( ent = gEntList.FindEntityByClassname( ent, "info_player_red" ) ) != NULL )
+		while ((ent = gEntList.FindEntityByClassname(ent, "info_player_red")) != NULL)
 		{
 			if ( IsSpawnPointValid( ent, NULL ) ) 
 			{
 				m_iSpawnPointCount_Red++;
+			}
+			else
+			{
+				Warning("Invalid red spawnpoint at (%.1f,%.1f,%.1f)\n",
+					ent->GetAbsOrigin()[0],ent->GetAbsOrigin()[2],ent->GetAbsOrigin()[2] );
+			}
+		}
+		while ((ent = gEntList.FindEntityByClassname(ent, "info_player_deathmatch")) != NULL)
+		{
+			if ( IsSpawnPointValid( ent, NULL ) ) 
+			{
+				m_iSpawnPointCount_Red++;
+				m_iSpawnPointCount_Blue++;
 			}
 			else
 			{
@@ -317,16 +355,6 @@ void CSDKGameRules::CheckLevelInitialized()
 }
 
 //-----------------------------------------------------------------------------
-// Purpose: 
-//-----------------------------------------------------------------------------
-CSDKGameRules::~CSDKGameRules()
-{
-	// Note, don't delete each team since they are in the gEntList and will 
-	// automatically be deleted from there, instead.
-	g_Teams.Purge();
-}
-
-//-----------------------------------------------------------------------------
 // Purpose: TF2 Specific Client Commands
 // Input  :
 // Output :
@@ -334,19 +362,7 @@ CSDKGameRules::~CSDKGameRules()
 bool CSDKGameRules::ClientCommand( CBaseEntity *pEdict, const CCommand &args )
 {
 	CSDKPlayer *pPlayer = ToSDKPlayer( pEdict );
-#if 0
-	const char *pcmd = args[0];
-	if ( FStrEq( pcmd, "somecommand" ) )
-	{
-		if ( args.ArgC() < 2 )
-			return true;
 
-		// Do something here!
-
-		return true;
-	}
-	else 
-#endif
 	// Handle some player commands here as they relate more directly to gamerules state
 	if ( pPlayer->ClientCommand( args ) )
 	{
@@ -611,9 +627,12 @@ void CSDKGameRules::PlayerSpawn( CBasePlayer *p )
 			CSDKTeam *pTeam = GetGlobalSDKTeam( team );
 			const CSDKPlayerClassInfo &pClassInfo = pTeam->GetPlayerClassInfo( playerclass );
 
-			Assert( pClassInfo.m_iTeam == team );
+			//Anthony: We don't care about if the classinfo is a team!
+			//Assert( pClassInfo.m_iTeam == team );
 
 			pPlayer->SetModel( pClassInfo.m_szPlayerModel );
+			//model_t *Model = pPlayer->GetModel();
+			
 			pPlayer->SetHitboxSet( 0 );
 
 			char buf[64];
@@ -641,6 +660,86 @@ void CSDKGameRules::PlayerSpawn( CBasePlayer *p )
 				pPlayer->GiveNamedItem( buf );
 			}
 
+			// First weapon
+			CBaseEntity *pWeapon1 = NULL;
+			if (pClassInfo.m_iWeapon1 != WEAPON_NONE)
+			{
+				Q_snprintf(buf, bufsize, "weapon_%s", WeaponIDToAlias(pClassInfo.m_iWeapon1));
+				pWeapon1 = pPlayer->GiveNamedItem(buf);
+			}
+
+			// Second weapon
+			CBaseEntity *pWeapon2 = NULL;
+			if (pClassInfo.m_iWeapon1 != WEAPON_NONE)
+			{
+				Q_snprintf(buf, bufsize, "weapon_%s", WeaponIDToAlias(pClassInfo.m_iWeapon2));
+				pWeapon2 = pPlayer->GiveNamedItem(buf);
+			}
+
+			// Third weapon
+			CBaseEntity *pWeapon3 = NULL;
+			if (pClassInfo.m_iWeapon3 != WEAPON_NONE)
+			{
+				Q_snprintf(buf, bufsize, "weapon_%s", WeaponIDToAlias(pClassInfo.m_iWeapon3));
+				pWeapon3 = pPlayer->GiveNamedItem(buf);
+			}
+
+			// Fourth weapon
+			CBaseEntity *pWeapon4 = NULL;
+			if (pClassInfo.m_iWeapon4 != WEAPON_NONE)
+			{
+				Q_snprintf(buf, bufsize, "weapon_%s", WeaponIDToAlias(pClassInfo.m_iWeapon4));
+				pWeapon4 = pPlayer->GiveNamedItem(buf);
+			}
+
+			// Fith weapon
+			CBaseEntity *pWeapon5 = NULL;
+			if (pClassInfo.m_iWeapon5 != WEAPON_NONE)
+			{
+				Q_snprintf(buf, bufsize, "weapon_%s", WeaponIDToAlias(pClassInfo.m_iWeapon5));
+				pWeapon5 = pPlayer->GiveNamedItem(buf);
+			}
+
+			// Sixth weapon
+			CBaseEntity *pWeapon6 = NULL;
+			if (pClassInfo.m_iWeapon6 != WEAPON_NONE)
+			{
+				Q_snprintf(buf, bufsize, "weapon_%s", WeaponIDToAlias(pClassInfo.m_iWeapon6));
+				pWeapon6 = pPlayer->GiveNamedItem(buf);
+			}
+
+			// Seventh weapon
+			CBaseEntity *pWeapon7 = NULL;
+			if (pClassInfo.m_iWeapon7 != WEAPON_NONE)
+			{
+				Q_snprintf(buf, bufsize, "weapon_%s", WeaponIDToAlias(pClassInfo.m_iWeapon7));
+				pWeapon7 = pPlayer->GiveNamedItem(buf);
+			}
+
+			// Eighth weapon
+			CBaseEntity *pWeapon8 = NULL;
+			if (pClassInfo.m_iWeapon8 != WEAPON_NONE)
+			{
+				Q_snprintf(buf, bufsize, "weapon_%s", WeaponIDToAlias(pClassInfo.m_iWeapon8));
+				pWeapon8 = pPlayer->GiveNamedItem(buf);
+			}
+
+			// Ninth weapon
+			CBaseEntity *pWeapon9 = NULL;
+			if (pClassInfo.m_iWeapon9 != WEAPON_NONE)
+			{
+				Q_snprintf(buf, bufsize, "weapon_%s", WeaponIDToAlias(pClassInfo.m_iWeapon9));
+				pWeapon9 = pPlayer->GiveNamedItem(buf);
+			}
+
+			// Tenth weapon
+			CBaseEntity *pWeapon10 = NULL;
+			if (pClassInfo.m_iWeapon10 != WEAPON_NONE)
+			{
+				Q_snprintf(buf, bufsize, "weapon_%s", WeaponIDToAlias(pClassInfo.m_iWeapon10));
+				pWeapon10 = pPlayer->GiveNamedItem(buf);
+			}
+
 			CWeaponSDKBase *pWpn = NULL;
 
 			// Primary Ammo
@@ -664,7 +763,107 @@ void CSDKGameRules::PlayerSpawn( CBasePlayer *p )
 					int iClipSize = pWpn->GetSDKWpnData().iMaxClip1;
 					pPlayer->GiveAmmo( iNumClip * iClipSize, pWpn->GetSDKWpnData().szAmmo1 );
 				}
-			}				
+			}
+
+			// Weapon One Ammo
+			pWpn = dynamic_cast<CWeaponSDKBase *>(pWeapon1);
+
+			if (pWpn)
+			{
+				int iNumClip = pWpn->GetSDKWpnData().m_iDefaultAmmoClips - 1;	//account for one clip in the gun
+				int iClipSize = pWpn->GetSDKWpnData().iMaxClip1;
+				pPlayer->GiveAmmo(iNumClip * iClipSize, pWpn->GetSDKWpnData().szAmmo1);
+			}
+
+			// Weapon Two Ammo
+			pWpn = dynamic_cast<CWeaponSDKBase *>(pWeapon2);
+
+			if (pWpn)
+			{
+				int iNumClip = pWpn->GetSDKWpnData().m_iDefaultAmmoClips - 1;	//account for one clip in the gun
+				int iClipSize = pWpn->GetSDKWpnData().iMaxClip1;
+				pPlayer->GiveAmmo(iNumClip * iClipSize, pWpn->GetSDKWpnData().szAmmo1);
+			}
+
+			// Weapon Three Ammo
+			pWpn = dynamic_cast<CWeaponSDKBase *>(pWeapon3);
+
+			if (pWpn)
+			{
+				int iNumClip = pWpn->GetSDKWpnData().m_iDefaultAmmoClips - 1;	//account for one clip in the gun
+				int iClipSize = pWpn->GetSDKWpnData().iMaxClip1;
+				pPlayer->GiveAmmo(iNumClip * iClipSize, pWpn->GetSDKWpnData().szAmmo1);
+			}
+
+			// Weapon Four Ammo
+			pWpn = dynamic_cast<CWeaponSDKBase *>(pWeapon4);
+
+			if (pWpn)
+			{
+				int iNumClip = pWpn->GetSDKWpnData().m_iDefaultAmmoClips - 1;	//account for one clip in the gun
+				int iClipSize = pWpn->GetSDKWpnData().iMaxClip1;
+				pPlayer->GiveAmmo(iNumClip * iClipSize, pWpn->GetSDKWpnData().szAmmo1);
+			}
+
+			// Weapon Five Ammo
+			pWpn = dynamic_cast<CWeaponSDKBase *>(pWeapon5);
+
+			if (pWpn)
+			{
+				int iNumClip = pWpn->GetSDKWpnData().m_iDefaultAmmoClips - 1;	//account for one clip in the gun
+				int iClipSize = pWpn->GetSDKWpnData().iMaxClip1;
+				pPlayer->GiveAmmo(iNumClip * iClipSize, pWpn->GetSDKWpnData().szAmmo1);
+			}
+
+			// Weapon Six Ammo
+			pWpn = dynamic_cast<CWeaponSDKBase *>(pWeapon6);
+
+			if (pWpn)
+			{
+				int iNumClip = pWpn->GetSDKWpnData().m_iDefaultAmmoClips - 1;	//account for one clip in the gun
+				int iClipSize = pWpn->GetSDKWpnData().iMaxClip1;
+				pPlayer->GiveAmmo(iNumClip * iClipSize, pWpn->GetSDKWpnData().szAmmo1);
+			}
+
+			// Weapon Seven Ammo
+			pWpn = dynamic_cast<CWeaponSDKBase *>(pWeapon7);
+
+			if (pWpn)
+			{
+				int iNumClip = pWpn->GetSDKWpnData().m_iDefaultAmmoClips - 1;	//account for one clip in the gun
+				int iClipSize = pWpn->GetSDKWpnData().iMaxClip1;
+				pPlayer->GiveAmmo(iNumClip * iClipSize, pWpn->GetSDKWpnData().szAmmo1);
+			}
+
+			// Weapon Eight Ammo
+			pWpn = dynamic_cast<CWeaponSDKBase *>(pWeapon8);
+
+			if (pWpn)
+			{
+				int iNumClip = pWpn->GetSDKWpnData().m_iDefaultAmmoClips - 1;	//account for one clip in the gun
+				int iClipSize = pWpn->GetSDKWpnData().iMaxClip1;
+				pPlayer->GiveAmmo(iNumClip * iClipSize, pWpn->GetSDKWpnData().szAmmo1);
+			}
+
+			// Weapon Nine Ammo
+			pWpn = dynamic_cast<CWeaponSDKBase *>(pWeapon9);
+
+			if (pWpn)
+			{
+				int iNumClip = pWpn->GetSDKWpnData().m_iDefaultAmmoClips - 1;	//account for one clip in the gun
+				int iClipSize = pWpn->GetSDKWpnData().iMaxClip1;
+				pPlayer->GiveAmmo(iNumClip * iClipSize, pWpn->GetSDKWpnData().szAmmo1);
+			}
+
+			// Weapon Ten Ammo
+			pWpn = dynamic_cast<CWeaponSDKBase *>(pWeapon10);
+
+			if (pWpn)
+			{
+				int iNumClip = pWpn->GetSDKWpnData().m_iDefaultAmmoClips - 1;	//account for one clip in the gun
+				int iClipSize = pWpn->GetSDKWpnData().iMaxClip1;
+				pPlayer->GiveAmmo(iNumClip * iClipSize, pWpn->GetSDKWpnData().szAmmo1);
+			}
 
 			// Grenade Type 1
 			if ( pClassInfo.m_iGrenType1 != WEAPON_NONE )
@@ -746,15 +945,37 @@ void CSDKGameRules::ChooseRandomClass( CSDKPlayer *pPlayer )
 	{
 		Msg( "Random class found that all classes were full - ignoring class limits for this spawn\n" );
 
-		pPlayer->m_Shared.SetPlayerClass( random->RandomFloat( firstclass, lastclass ) );
+		if (mp_allowspecialclass.GetBool())
+		{
+			pPlayer->m_Shared.SetPlayerClass(random->RandomFloat(firstclass, lastclass));
+		}
+		else
+		{
+			lastclass -= 1;
+			pPlayer->m_Shared.SetPlayerClass(random->RandomFloat(firstclass, lastclass));
+		}
+
+		
 	}
 	else
 	{
-		// Choose a slot randomly
-		i = random->RandomInt( 0, numChoices-1 );
+		if (mp_allowspecialclass.GetBool())
+		{
+			// Choose a slot randomly
+			i = random->RandomInt(0, numChoices - 1);
 
-		// We are now the class that was in that slot
-		pPlayer->m_Shared.SetPlayerClass( choices[i] );
+			// We are now the class that was in that slot
+			pPlayer->m_Shared.SetPlayerClass(choices[i]);
+		}
+		else
+		{
+			// Choose a slot randomly
+			i = random->RandomInt(0, numChoices - 2);
+
+			// We are now the class that was in that slot
+			pPlayer->m_Shared.SetPlayerClass(choices[i]);
+		}
+		
 	}
 }
 bool CSDKGameRules::CanPlayerJoinClass( CSDKPlayer *pPlayer, int cls )
@@ -1099,6 +1320,44 @@ const char *CSDKGameRules::GetKillingWeaponName( const CTakeDamageInfo &info, CS
 	return killer_weapon_name;
 }
 
+CSDKPlayer *CSDKGameRules::GetRecentDamager(CSDKPlayer *pVictim, int iDamager, float flMaxElapsed)
+{
+	Assert(iDamager < MAX_DAMAGER_HISTORY);
+
+	DamagerHistory_t &damagerHistory = pVictim->GetDamagerHistory(iDamager);
+	if ((NULL != damagerHistory.hDamager) && (gpGlobals->curtime - damagerHistory.flTimeDamage <= flMaxElapsed))
+	{
+		CSDKPlayer *pRecentDamager = ToSDKPlayer(damagerHistory.hDamager);
+		if (pRecentDamager)
+			return pRecentDamager;
+	}
+	return NULL;
+}
+
+//Get whom assisted
+CBasePlayer *CSDKGameRules::GetAssister(CBasePlayer *pVictim, CBasePlayer *pScorer, CBaseEntity *pInflictor)
+{
+	CSDKPlayer *pSDKScorer = ToSDKPlayer(pScorer);
+	CSDKPlayer *pSDKVictim = ToSDKPlayer(pVictim);
+
+	if (pSDKScorer && pSDKVictim)
+	{
+		if (pSDKScorer == pSDKVictim)
+			return NULL;
+
+		//See whom damaged the player 2nd most, Most recent being the killer.
+		CSDKPlayer *pRecentDamager = GetRecentDamager(pSDKVictim, 1, ASSIT_KILL_TIME);
+		if (pRecentDamager && (pRecentDamager != pScorer))
+		{
+			return pRecentDamager;
+		}
+	}
+	return NULL;
+
+	
+
+}
+
 //-----------------------------------------------------------------------------
 // Purpose: 
 // Input  : *pVictim - 
@@ -1114,7 +1373,7 @@ void CSDKGameRules::DeathNotice( CBasePlayer *pVictim, const CTakeDamageInfo &in
 	CBaseEntity *pInflictor = info.GetInflictor();
 	CBaseEntity *pKiller = info.GetAttacker();
 	CBasePlayer *pScorer = GetDeathScorer( pKiller, pInflictor, pVictim );
-//	CSDKPlayer *pAssister = ToSDKPlayer( GetAssister( pVictim, pScorer, pInflictor ) );
+	CSDKPlayer *pAssister = ToSDKPlayer( GetAssister( pVictim, pScorer, pInflictor ) );
 
 	// Work out what killed the player, and send a message to all clients about it
 	int iWeaponID;
@@ -1131,7 +1390,7 @@ void CSDKGameRules::DeathNotice( CBasePlayer *pVictim, const CTakeDamageInfo &in
 	{
 		event->SetInt( "userid", pVictim->GetUserID() );
 		event->SetInt( "attacker", killer_ID );
-//		event->SetInt( "assister", pAssister ? pAssister->GetUserID() : -1 );
+		event->SetInt( "assister", pAssister ? pAssister->GetUserID() : -1 );
 		event->SetString( "weapon", killer_weapon_name );
 		event->SetInt( "weaponid", iWeaponID );
 		event->SetInt( "damagebits", info.GetDamageType() );
@@ -1147,16 +1406,28 @@ bool CSDKGameRules::ShouldCollide( int collisionGroup0, int collisionGroup1 )
 {
 	if ( collisionGroup0 > collisionGroup1 )
 	{
-		// swap so that lowest is always first
-		swap(collisionGroup0,collisionGroup1);
+		// V_swap so that lowest is always first
+		V_swap(collisionGroup0,collisionGroup1);
 	}
 
 	//Don't stand on COLLISION_GROUP_WEAPON
-	if( collisionGroup0 == COLLISION_GROUP_PLAYER_MOVEMENT &&
-		collisionGroup1 == COLLISION_GROUP_WEAPON )
-	{
+	if( collisionGroup0 == COLLISION_GROUP_PLAYER_MOVEMENT && collisionGroup1 == COLLISION_GROUP_WEAPON )
 		return false;
-	}
+
+	//If collisionGroup0 is not a player then NPC_ACTOR behaves just like an NPC.
+	if ( collisionGroup1 == COLLISION_GROUP_NPC_ACTOR && collisionGroup0 != COLLISION_GROUP_PLAYER )
+		collisionGroup1 = COLLISION_GROUP_NPC;
+
+	//players don't collide against NPC Actors.
+	//I could've done this up where I check if collisionGroup0 is NOT a player but I decided to just
+	//do what the other checks are doing in this function for consistency sake.
+	if ( collisionGroup1 == COLLISION_GROUP_NPC_ACTOR && collisionGroup0 == COLLISION_GROUP_PLAYER )
+		return false;
+		
+	// In cases where NPCs are playing a script which causes them to interpenetrate while riding on another entity,
+	// such as a train or elevator, you need to disable collisions between the actors so the mover can move them.
+	if ( collisionGroup0 == COLLISION_GROUP_NPC_SCRIPTED && collisionGroup1 == COLLISION_GROUP_NPC_SCRIPTED )
+		return false;
 
 	return BaseClass::ShouldCollide( collisionGroup0, collisionGroup1 ); 
 }
@@ -1212,12 +1483,16 @@ CAmmoDef* GetAmmoDef()
 		for (int i=WEAPON_NONE+1;i<WEAPON_MAX;i++)
 		{
 			//Tony; ignore grenades, shotgun and the crowbar, grenades and shotgun are handled seperately because of their damage type not being DMG_BULLET.
-			if (i == SDK_WEAPON_GRENADE || i == SDK_WEAPON_CROWBAR || i == SDK_WEAPON_SHOTGUN)
+			if (i == SDK_WEAPON_GRENADE || i == SDK_WEAPON_CROWBAR || i == SDK_WEAPON_UMBRELLA  || i == SDK_WEAPON_SHOTGUN || i == SDK_WEAPON_12GAUGE || i == SDK_WEAPON_NAILGUN
+				|| i == SDK_WEAPON_SUPERNAILGUN || i == SDK_WEAPON_WRENCH || i == SDK_WEAPON_KNIFE || i == SDK_WEAPON_AC)
 				continue;
 
 			def.AddAmmoType( WeaponIDToAlias(i), DMG_BULLET, TRACER_LINE_AND_WHIZ, 0, 0, 200/*max carry*/, 1, 0 );
 		}
-
+		def.AddAmmoType("nail", DMG_BULLET, TRACER_LINE_AND_WHIZ, 0, 0, 200/*max carry*/, 1, 0);
+		def.AddAmmoType("shell", DMG_BUCKSHOT, TRACER_NONE, 0, 0, 200/*max carry*/, 1, 0);
+		def.AddAmmoType("cell", DMG_BULLET, TRACER_NONE, 0, 0, 200/*max carry*/, 1, 0);
+		def.AddAmmoType("explosive", DMG_BLAST, TRACER_NONE, 0, 0, 200/*max carry*/, 1, 0);
 		// def.AddAmmoType( BULLET_PLAYER_50AE,		DMG_BULLET, TRACER_LINE, 0, 0, "ammo_50AE_max",		2400, 0, 10, 14 );
 		def.AddAmmoType( "shotgun", DMG_BUCKSHOT, TRACER_NONE, 0, 0,	200/*max carry*/, 1, 0 );
 		def.AddAmmoType( "grenades", DMG_BLAST, TRACER_NONE, 0, 0,	4/*max carry*/, 1, 0 );
@@ -1260,7 +1535,7 @@ const char *CSDKGameRules::GetChatFormat( bool bTeamOnly, CBasePlayer *pPlayer )
 	else
 	{
 		if ( pPlayer->GetTeamNumber() == TEAM_SPECTATOR)
-			pszFormat = "SDK_Chat_AllSpec";
+			pszFormat = "SDK_Chat_All_Spec";
 		else
 		{
 			if (pPlayer->m_lifeState != LIFE_ALIVE )
@@ -1271,6 +1546,42 @@ const char *CSDKGameRules::GetChatFormat( bool bTeamOnly, CBasePlayer *pPlayer )
 	}
 
 	return pszFormat;
+}
+
+void CSDKGameRules::InitDefaultAIRelationships( void )
+{
+	int i, j;
+
+	//  Allocate memory for default relationships
+	CBaseCombatCharacter::AllocateDefaultRelationships();
+
+	// --------------------------------------------------------------
+	// First initialize table so we can report missing relationships
+	// --------------------------------------------------------------
+	for (i=0; i<NUM_AI_CLASSES; i++ )
+	{
+		for ( j=0; j<NUM_AI_CLASSES; j++ )
+		{
+			// By default all relationships are neutral of priority zero
+			CBaseCombatCharacter::SetDefaultRelationship( (Class_T)i, (Class_T)j, D_NU, 0 );
+		}
+	}
+
+	// ------------------------------------------------------------
+	//	> CLASS_PLAYER
+	// ------------------------------------------------------------
+	CBaseCombatCharacter::SetDefaultRelationship( CLASS_PLAYER,			CLASS_NONE,				D_NU, 0 );			
+	CBaseCombatCharacter::SetDefaultRelationship( CLASS_PLAYER,			CLASS_PLAYER,			D_NU, 0 );			
+}
+
+const char* CSDKGameRules::AIClassText(int classType)
+{
+	switch ( classType )
+	{
+		case CLASS_NONE:			return "CLASS_NONE";
+		case CLASS_PLAYER:			return "CLASS_PLAYER";
+		default:					return "MISSING CLASS in ClassifyText()";
+	}
 }
 #endif
 

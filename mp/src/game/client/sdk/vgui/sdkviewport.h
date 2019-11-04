@@ -1,4 +1,4 @@
-//========= Copyright Valve Corporation, All rights reserved. ============//
+//========= Copyright © 1996-2005, Valve Corporation, All rights reserved. ============//
 //
 // Purpose: 
 //
@@ -9,7 +9,6 @@
 #define SDKVIEWPORT_H
 
 
-#include "sdk_shareddefs.h"
 #include "baseviewport.h"
 
 

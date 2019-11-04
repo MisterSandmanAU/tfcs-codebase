@@ -1,0 +1,43 @@
+PlayerClassDatafile
+{
+	// FilePLayerClassInfo_t members
+	"printname"			"#class_sniper"	
+	"playermodel"			"models/player/sniper.mdl"
+	"selectcmd"			"cls_sniper"
+
+	// CSDKPlayerClassInfo members
+
+	// What team has this class, for verification
+	//"team"			  "BLUE"
+        //"team"                          "RED"
+
+	// Weapon Info
+	"primaryweapon"		"sniperrifle"
+	"secondaryweapon"	"automaticrifle"
+	"meleeweapon"		"crowbar"
+	"weapon1"			"nailgun"
+	"weapon2"			""
+	"weapon3"			""
+	"weapon4"			""
+	"weapon5"			""
+	"weapon6"			""
+	"weapon7"			""
+	"weapon8"			""
+	"weapon9"			""
+	"weapon10"			""
+
+	"grenadetype"		"grenade"
+	"numgrens"		"0"
+
+	"limitcvar"		"mp_limit_blue_class8"
+
+	"classimage"		"cls_blue_class8_active"
+	"classimagebg"		"cls_blue_class8_active_bg"
+
+	"armor"			"50"
+
+	// Movement
+	"RunSpeed"		"218"
+	"SprintSpeed"		"330"
+	"ProneSpeed"		"60"
+}

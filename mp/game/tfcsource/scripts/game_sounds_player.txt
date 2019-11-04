@@ -1,22 +1,4 @@
-"HL2Player.SprintNoPower"
-{
-	"channel"	"CHAN_VOICE"
-	"volume"	"0.8"
-	"soundlevel"  "SNDLVL_60dB"
-
-	"wave"	"player/suit_denydevice.wav"
-}
-
-"HL2Player.SprintStart"
-{
-	"channel"	"CHAN_VOICE"
-	"volume"	"0.9"
-	"soundlevel"  "SNDLVL_60dB"
-
-	"wave"	"player/suit_sprint.wav"
-}
-
-"HL2Player.FlashLightOn"
+"Player.FlashLightOn"
 {
 	"channel"	"CHAN_WEAPON"
 	"volume"	"0.8"
@@ -26,7 +8,7 @@
 	"wave" "items/flashlight1.wav"
 }
 
-"HL2Player.FlashLightOff"
+"Player.FlashLightOff"
 {
 	"channel"	"CHAN_WEAPON"
 	"volume"	"0.8"
@@ -36,16 +18,7 @@
 	"wave" "items/flashlight1.wav"
 }
 
-"HL2Player.PickupWeapon"
-{
-	"channel"	"CHAN_ITEM"
-	"volume"	"0.8"
-	"soundlevel"  "SNDLVL_75dB"
-
-	"wave"	"items/ammo_pickup.wav"
-}
-
-"HL2Player.TrainUse"
+"Player.TrainUse"
 {
 	"channel"	"CHAN_ITEM"
 	"volume"	"0.8"
@@ -54,34 +27,7 @@
 	"wave"	"plats/train_use1.wav"
 }
 
-"HL2Player.Use"
-{
-	"channel"	"CHAN_ITEM"
-	"volume"	"0.4"
-	"soundlevel"  "SNDLVL_75dB"
-
-	"wave"	"common/wpn_select.wav"
-}
-
-"HL2Player.UseNPC"
-{
-	"channel"	"CHAN_ITEM"
-	"volume"	"0.4"
-	"soundlevel"  "SNDLVL_75dB"
-
-	"wave"	"common/wpn_select.wav"
-}
-
-"HL2Player.UseDeny"
-{
-	"channel"	"CHAN_ITEM"
-	"volume"	"0.4"
-	"soundlevel"  "SNDLVL_75dB"
-
-	"wave"	"common/wpn_denyselect.wav"
-}
-
-"HL2Player.BurnPain"
+"Player.BurnPain"
 {
 	"channel"	"CHAN_VOICE"
 	"volume"	"0.5"
@@ -89,14 +35,11 @@
 
 	"rndwave"
 	{
-			"wave"	"player/pl_burnpain1.wav"
-			"wave"	"player/pl_burnpain2.wav"
-			"wave"	"player/pl_burnpain3.wav"
+			"wave"	"player/burnpain1.wav"
+			"wave"	"player/burnpain2.wav"
+			"wave"	"player/burnpain3.wav"
 	}
 }
-
-
-// SHARED player sounds
 
 "Player.Death"
 {
@@ -106,9 +49,12 @@
 
 	"rndwave"
 	{
-		"wave"	"player/pl_pain5.wav"
-		"wave"	"player/pl_pain6.wav"
-		"wave"	"player/pl_pain7.wav"
+		"wave"	"player/death1.wav"
+		"wave"	"player/death2.wav"
+		"wave"	"player/death3.wav"
+		"wave"	"player/death4.wav"
+		"wave"	"player/death5.wav"
+		"wave"	"player/death6.wav"
 	}
 }
 
@@ -170,8 +116,49 @@
 
 	"rndwave"
 	{
-		"wave"		"player/pl_fallpain1.wav"
-		"wave"		"player/pl_fallpain3.wav"
+		"wave"		"player/damage1.wav"
+		"wave"		"player/damage2.wav"
+		"wave"		"player/damage3.wav"
+	}
+}
+
+"Player.Sprint"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1"
+	"soundlevel"	"SNDLVL_65dB"
+	"pitch"		"PITCH_NORM"
+	"wave"		"player/sprint.wav"
+}
+
+
+"Player.Jump"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"VOL_NORM"
+	"soundlevel"		"SNDLVL_65dB"
+	"pitch"			"PITCH_NORM"
+
+	"rndwave"
+	{
+		"wave"		"player/jumplanding2.wav"
+		"wave"		"player/jumplanding3.wav"
+		"wave"		"player/jumplanding4.wav"
+	}
+}
+
+"Player.JumpLanding"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"VOL_NORM"
+	"soundlevel"		"SNDLVL_65dB"
+	"pitch"			"PITCH_NORM"
+
+	"rndwave"
+	{
+		"wave"		"player/land2.wav"
+		"wave"		"player/land3.wav"
+		"wave"		"player/land4.wav"
 	}
 }
 
@@ -236,24 +223,64 @@
 	"wave"	"plats/train_use1.wav"
 }
 
-"Player.UseDeny"
-{
-	"channel"	"CHAN_ITEM"
-	"volume"	"0.4"
-	"soundlevel"  "SNDLVL_75dB"
-
-	"wave"	"common/wpn_select.wav"
-}
-
 "Player.PickupWeapon"
 {
 	"channel"	"CHAN_ITEM"
 	"volume"	"0.8"
 	"soundlevel"  "SNDLVL_75dB"
 	"pitch"	"95,105"
-	"wave"	"items/ammo_pickup.wav"
+	"wave"	"items/itempickup.wav"
 }
 
+"Player.DenyWeaponSelection"
+{
+	"channel"	"CHAN_ITEM"
+	"volume"	"0.32"
+	"soundlevel"  "SNDLVL_NONE"
+	"pitch"	"PITCH_NORM"
+
+	"wave"	"common/wpn_denyselect.wav"
+}
+
+"Player.WeaponSelected"
+{
+	"channel"	"CHAN_ITEM"
+	"volume"	"0.32"
+	"soundlevel"  "SNDLVL_NONE"
+	"pitch"	"PITCH_NORM"
+
+	"wave"	"common/wpn_select.wav"
+}
+
+"Player.WeaponSelectionMoveSlot"
+{
+	"channel"	"CHAN_ITEM"
+	"volume"	"0.32"
+	"soundlevel"  "SNDLVL_NONE"
+	"pitch"	"PITCH_NORM"
+
+	"wave"	"common/wpn_moveselect.wav"
+}
+
+"Player.WeaponSelectionOpen"
+{
+	"channel"	"CHAN_ITEM"
+	"volume"	"0.32"
+	"soundlevel"  "SNDLVL_NONE"
+	"pitch"	"PITCH_NORM"
+
+	"wave"	"common/wpn_hudon.wav"
+}
+
+"Player.WeaponSelectionClose"
+{
+	"channel"	"CHAN_ITEM"
+	"volume"	"0.32"
+	"soundlevel"  "SNDLVL_NONE"
+	"pitch"	"PITCH_NORM"
+
+	"wave"	"common/wpn_hudoff.wav"
+}
 
 "Geiger.BeepLow"
 {
@@ -278,55 +305,5 @@
 	{
 		"wave"	"player/geiger2.wav"
 		"wave"	"player/geiger3.wav"
-	}
-}
-
-//HL2MP
-
-"NPC_MetroPolice.Die"
-{
-	"channel"		"CHAN_VOICE"
-	"volume"		"0.500"
-	"pitch"			"PITCH_NORM"
-
-	"soundlevel"	"SNDLVL_80dB"
-
-	"rndwave"
-	{
-		"wave"	"npc/metropolice/die1.wav"
-		"wave"	"npc/metropolice/die2.wav"
-		"wave"	"npc/metropolice/die3.wav"
-		"wave"	"npc/metropolice/die4.wav"
-	}
-}
-
-"NPC_CombineS.Die"
-{
-	"channel"		"CHAN_VOICE"
-	"volume"		"0.500"
-	"pitch"			"PITCH_NORM"
-
-	"soundlevel"	"SNDLVL_80dB"
-
-	"rndwave"
-	{
-		"wave"	"npc/combine_soldier/die1.wav"
-		"wave"	"npc/combine_soldier/die2.wav"
-		"wave"	"npc/combine_soldier/die3.wav"
-	}
-}
-"NPC_Citizen.die"
-{
-	"channel"		"CHAN_VOICE"
-	"volume"		"VOL_NORM"
-	"pitch"			"PITCH_NORM"
-
-	"soundlevel"	"SNDLVL_NORM"
-
-	"rndwave"
-	{
-		"wave"	"*vo/npc/$gender01/pain07.wav"
-		"wave"	"*vo/npc/$gender01/pain08.wav"
-		"wave"	"*vo/npc/$gender01/pain09.wav"
 	}
 }

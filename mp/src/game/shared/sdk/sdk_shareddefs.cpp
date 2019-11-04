@@ -6,7 +6,6 @@
 
 #include "cbase.h"
 #include "weapon_sdkbase.h"
-#include "sdk_shareddefs.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -16,17 +15,31 @@
 #if defined ( SDK_USE_PLAYERCLASSES ) && defined ( SDK_USE_TEAMS )
 const char *pszTeamBlueClasses[] = 
 {
-	"blue_class1",
-	"blue_class2",
-	"blue_class3",
+	"scout",
+	"soldier",
+	"pyro",
+	"hwguy",
+	"demoman",
+	"engineer",
+	"medic",
+	"sniper",
+	"spy",
+	"civilian",
 	NULL
 };
 
 const char *pszTeamRedClasses[] = 
 {
-	"red_class1",
-	"red_class2",
-	"red_class3",
+	"scout",
+	"soldier",
+	"pyro",
+	"hwguy",
+	"demoman",
+	"engineer",
+	"medic",
+	"sniper",
+	"spy",
+	"civilian",
 	NULL
 };
 ConVar	mp_limit_blue_class1(		"mp_limit_blue_class1", "-1", FCVAR_REPLICATED, "Class limit for Blue class 1" );
@@ -67,6 +80,16 @@ const char *pszPossiblePlayerModels[] =
 	SDK_PLAYER_MODEL,
 	"models/player/blue_player.mdl",
 	"models/player/red_player.mdl",
+	"models/player/scout.mdl",
+	"models/player/soldier.mdl",
+	"models/player/pyro.mdl",
+	"models/player/hwguy.mdl",
+	"models/player/demo.mdl",
+	"models/player/engineer.mdl",
+	"models/player/medic.mdl",
+	"models/player/sniper.mdl",
+	"models/player/spy.mdl",
+	"models/player/civilian.mdl",
 	NULL
 };
 
@@ -80,9 +103,16 @@ static const char * s_WeaponAliasInfo[] =
 	"none",		// WEAPON_NONE
 	"mp5",		// SDK_WEAPON_MP5
 	"shotgun",	// SDK_WEAPON_SHOTGUN
+	"12gauge",	// SDK_WEAPON_SHOTGUN12GAUGE
+	"nailgun",	// SDK_WEAPON_NAILGUN
 	"grenade",	// SDK_WEAPON_GRENADE
 	"pistol",	// SDK_WEAPON_PISTOL
 	"crowbar",	// SDK_WEAPON_CROWBAR
+	"umbrella",	// SDK_WEAPON_UMBRELLA
+	"supernailgun",	// SDK_WEAPON_SUPERNAILGUN
+	"knife",	// SDK_WEAPON_KNIFE
+	"wrench",	// SDK_WEAPON_WRENCH
+	"ac",	// SDK_WEAPON_AC
 	NULL,		// WEAPON_NONE
 };
 

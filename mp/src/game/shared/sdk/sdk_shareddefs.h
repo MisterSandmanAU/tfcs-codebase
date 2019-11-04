@@ -17,12 +17,17 @@
 //
 // Will your mod be team based?
 // define SDK_USE_TEAMS
-//#define SDK_USE_TEAMS
+#define SDK_USE_TEAMS
 
 //
 // Do you use player classes?
 // define SDK_USE_PLAYERCLASSES
 #define SDK_USE_PLAYERCLASSES
+
+//
+// Are we using hl1 type of Player Models?
+// define SDK_HL1_PLAYER
+#define SDK_HL1_PLAYER
 
 //================================
 // PLAYER MOVEMENT RELATED OPTIONS
@@ -49,6 +54,11 @@
 // define SDK_USE_PRONE
 #define SDK_USE_PRONE
 
+//
+// Can your players use viewbob?
+// define SDK_USE_VIEWBOB
+//#define SDK_USE_VIEWBOB
+
 //=====================
 // EXTRA WEAPON OPTIONS
 //=====================
@@ -56,7 +66,7 @@
 //
 // If you're allowing sprinting, do you want to be able to shoot while sprinting?
 // define SDK_SHOOT_WHILE_SPRINTING
-//#define SDK_SHOOT_WHILE_SPRINTING
+#define SDK_SHOOT_WHILE_SPRINTING
 
 //
 // Do you want your players to be able to shoot while climing ladders?
@@ -70,7 +80,7 @@
 
 
 
-#define SDK_GAME_DESCRIPTION	"SDK Template mod v1"
+#define SDK_GAME_DESCRIPTION	"SDK Template 2013 mod v2"
 
 //================================================================================
 // Most elements below here are specific to the options above.
@@ -82,6 +92,8 @@ enum sdkteams_e
 	{
 		SDK_TEAM_BLUE = LAST_SHARED_TEAM+1,
 		SDK_TEAM_RED,
+		SDK_TEAM_YELLOW,
+		SDK_TEAM_GREEN,
 	};
 
 #endif // SDK_USE_TEAMS
@@ -103,7 +115,7 @@ enum sdkteams_e
 #endif // SDK_USE_SPRINTING
 
 #if defined ( SDK_USE_PLAYERCLASSES )
-	#define SDK_NUM_PLAYERCLASSES 3		//Tony; our template sample has 3 player classes.
+	#define SDK_NUM_PLAYERCLASSES 10		//Tony; our template sample has 3 player classes.
 	#define SDK_PLAYERCLASS_IMAGE_LENGTH 64
 
 	#define PLAYERCLASS_RANDOM		-2
@@ -135,6 +147,8 @@ extern const char *pszTeamNames[];
 #define SDK_DEFAULT_PLAYER_SPRINTSPEED		330
 #define SDK_DEFAULT_PLAYER_PRONESPEED		50
 
+#define SDK_PLAYER_INDEX_NONE			( MAX_PLAYERS + 1 )
+
 //--------------------------------------------------------------------------------------------------------
 //
 // Weapon IDs for all SDK Game weapons
@@ -146,9 +160,16 @@ typedef enum
 	SDK_WEAPON_NONE = WEAPON_NONE,
 	SDK_WEAPON_MP5,
 	SDK_WEAPON_SHOTGUN,
+	SDK_WEAPON_12GAUGE,
+	SDK_WEAPON_NAILGUN,
 	SDK_WEAPON_GRENADE,
 	SDK_WEAPON_PISTOL,
 	SDK_WEAPON_CROWBAR,
+	SDK_WEAPON_UMBRELLA,
+	SDK_WEAPON_SUPERNAILGUN,
+	SDK_WEAPON_KNIFE,
+	SDK_WEAPON_WRENCH,
+	SDK_WEAPON_AC,
 
 	
 	WEAPON_MAX,		// number of weapons weapon index
@@ -202,6 +223,13 @@ enum
 	SDK_DMG_CUSTOM_NONE = 0,
 	SDK_DMG_CUSTOM_SUICIDE,
 };
+
+
+// Assit Time
+#define ASSIT_KILL_TIME 3.0f
+
+//Max amount of Damagers
+#define DAMAGERS_HISTORY_MAX 2
 
 // Player avoidance
 #define PUSHAWAY_THINK_INTERVAL		(1.0f / 20.0f)

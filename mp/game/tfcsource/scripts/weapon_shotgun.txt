@@ -1,35 +1,39 @@
-// Shotgun
-
 WeaponData
 {
-	// Weapon data is loaded by both the Game and Client DLLs.
-	"printname"	"#HL2_Shotgun"
-	"viewmodel"				"models/weapons/v_shotgun.mdl"
-	"playermodel"			"models/weapons/w_shotgun.mdl"
-	"anim_prefix"			"shotgun"
-	"bucket"				"3"
-	"bucket_position"		"0"
+	// Weapon characteristics:
+	"Damage"			"22"
+	"Bullets"			"9"
+	"CycleTime"			"0.85"
 
-	"clip_size"				"6"
-	"primary_ammo"			"Buckshot"
+	"BuiltRightHanded"		"0"
+	
+	// Weapon data is loaded by both the Game and Client DLLs.
+	"printname"			"#SDK_Weapon_Shotgun"
+	"viewmodel"			"models/weapons/v_models/v_12gauge.mdl"
+	"playermodel"			"models/weapons/w_models/w_12gauge.mdl"
+	"PlayerAnimationExtension"	"m3s90"
+	
+	"bucket"			"0"
+	"bucket_position"		"1"
+
+	"clip_size"			"16"
+	"default_clip"			"200"
+	"NumClips"			"200"
+
+	
+	"primary_ammo"			"shell"
 	"secondary_ammo"		"None"
 
-	"weight"				"4"
+	"weight"			"20"
 	"item_flags"			"0"
-	"damage"			"9"
 
 	// Sounds for the weapon. There is a max of 16 sounds per category (i.e. max 16 "single_shot" sounds)
 	SoundData
 	{
-
-		"empty"				"Weapon_Shotgun.Empty"
+		"empty"			"Weapon_Shotgun.Empty"
 		"reload"			"Weapon_Shotgun.Reload"
-		"special1"			"Weapon_Shotgun.Special1"
+		"special1"			"Weapon_Shotgun.Pump"
 		"single_shot"		"Weapon_Shotgun.Single"
-		"double_shot"		"Weapon_Shotgun.Double"
-		// NPC WEAPON SOUNDS
-		"reload_npc"		"Weapon_Shotgun.NPC_Reload"
-		"single_shot_npc"	"Weapon_Shotgun.NPC_Single"
 	}
 
 	// Weapon Sprite data is loaded by the Client DLL.
@@ -52,8 +56,11 @@ WeaponData
 		}
 		"crosshair"
 		{
-				"font"		"Crosshairs"
-				"character"	"Q"
+				"file"		"sprites/crosshairs"
+				"x"			"0"
+				"y"			"48"
+				"width"		"24"
+				"height"	"24"
 		}
 		"autoaim"
 		{
@@ -62,6 +69,19 @@ WeaponData
 				"y"			"48"
 				"width"		"24"
 				"height"	"24"
+		}
+	}
+	ModelBounds
+	{
+		Viewmodel
+		{
+			Mins	"-13 -3 -13"
+			Maxs	"26 10 -3"
+		}
+		World
+		{
+			Mins	"-9 -8 -5"
+			Maxs	"28 9 9"
 		}
 	}
 }

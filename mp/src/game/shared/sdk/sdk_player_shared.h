@@ -45,6 +45,7 @@ public:
 
 	void	Init( OuterClass *pOuter );
 
+	Vector		GetAttackSpread(CBaseCombatWeapon *pWeapon, CBaseEntity *pTarget = NULL);
 	bool	IsSniperZoomed( void ) const;
 	bool	IsDucking( void ) const; 
 

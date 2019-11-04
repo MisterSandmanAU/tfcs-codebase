@@ -39,9 +39,6 @@ using namespace vgui;
 void UpdateCursorState();
 // void DuckMessage(const char *str);
 
-ConVar sr_4team("sr_4team", "0", FCVAR_GAMEDLL | FCVAR_NOTIFY);
-int TeamMenureload = 0;
-
 // helper function
 const char *GetStringTeamColor( int i )
 {
@@ -95,11 +92,7 @@ CTeamMenu::CTeamMenu(IViewPort *pViewPort) : Frame(NULL, PANEL_TEAM )
 	m_pMapInfoHTML = new HTML( this, "MapInfoHTML");
 #endif
 
-	
 	LoadControlSettings("Resource/UI/TeamMenu.res");
-	
-	
-	
 	InvalidateLayout();
 
 	m_szMapName[0] = 0;
@@ -118,8 +111,6 @@ CTeamMenu::~CTeamMenu()
 void CTeamMenu::ApplySchemeSettings(IScheme *pScheme)
 {
 	BaseClass::ApplySchemeSettings(pScheme);
-
-	
 	m_pMapInfo->SetFgColor( pScheme->GetColor("MapDescriptionText", Color(255, 255, 255, 0)) );
 
 	if ( *m_szMapName )
@@ -143,7 +134,6 @@ void CTeamMenu::AutoAssign()
 //-----------------------------------------------------------------------------
 void CTeamMenu::ShowPanel(bool bShow)
 {
-
 	if ( BaseClass::IsVisible() == bShow )
 		return;
 
@@ -180,7 +170,6 @@ void CTeamMenu::ShowPanel(bool bShow)
 //-----------------------------------------------------------------------------
 void CTeamMenu::Update()
 {
-	
 	char mapname[MAX_MAP_NAME];
 
 	Q_FileBase( engine->GetLevelName(), mapname, sizeof(mapname) );
@@ -188,19 +177,6 @@ void CTeamMenu::Update()
 	SetLabelText( "mapname", mapname );
 
 	LoadMapPage( mapname );
-	
-	if (sr_4team.GetInt() == 1 && TeamMenureload != 1)
-	{
-		TeamMenureload = 1;
-		LoadControlSettings("Resource/UI/FourTeamMenu.res");
-		//SetScheme("Resource/UI/FourTeamMenu.res");
-	}
-	else if (sr_4team.GetInt() == 0 && TeamMenureload == 1)
-	{
-		TeamMenureload = 0;
-		SetScheme("Resource/UI/TeamMenu.res");
-	}
-	
 }
 
 //-----------------------------------------------------------------------------
@@ -338,8 +314,8 @@ void CTeamMenu::LoadMapPage( const char *mapName )
 	Repaint();
 }
 
-
-/*//-----------------------------------------------------------------------------
+/*
+//-----------------------------------------------------------------------------
 // Purpose: sets the text on and displays the team buttons
 //-----------------------------------------------------------------------------
 void CTeamMenu::MakeTeamButtons(void)
@@ -403,18 +379,7 @@ void CTeamMenu::OnTeamButton( int team )
 	engine->ClientCmd(cmd);
 	SetVisible( false );
 	OnClose();
-}*/
-
-void CTeamMenu::OnCommand( const char *command )
-{
-	if( Q_stricmp( command, "vguicancel" ) )
-	{
-		engine->ClientCmd( const_cast<char *>(command) );
-	}
-	Close();
-	gViewPortInterface->ShowBackGround( false );
-	BaseClass::OnCommand( command );
-}
+} */
 
 //-----------------------------------------------------------------------------
 // Purpose: Sets the text of a control by name

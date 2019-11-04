@@ -1,228 +1,148 @@
 "sprites/640_hud"
 {
+	TextureFileRefs
+	{
+		"dfile"
+		{
+			"prefix"		"d_"
+		}
+		"dnegfile"
+		{
+			"prefix"		"dneg_"
+		}
+	}
+
 	TextureData
 	{
-		"d_crowbar"
+		//Tony; death icons; using TF's icons so they won't all match - didn't feel like re-writing hud_basedeathnotice to support fonts again ;)
+		"skull"
 		{
-				"file"		"sprites/640hud1"
-				"x"			"192"
-				"y"			"0"
-				"width"		"48"
-				"height"	"16"
+			"dfile"		"HUD/d_images"
+			"dnegfile"	"HUD/dneg_images"
+			"x"			"116"
+			"y"			"288"
+			"width"		"52"
+			"height"	"32"
 		}
-		"d_9mmhandgun"
+		
+		"vehicle"
 		{
-				"file"		"sprites/640hud1"
-				"x"			"192"
-				"y"			"16"
-				"width"		"32"
-				"height"	"16"
+			"dfile"		"HUD/d_images"
+			"dnegfile"	"HUD/dneg_images"
+			"x"			"96"
+			"y"			"256"
+			"width"		"96"
+			"height"	"32"
 		}
-		"d_357"
+
+		"mp5"
 		{
-				"file"		"sprites/640hud1"
-				"x"			"192"
-				"y"			"32"
-				"width"		"32"
-				"height"	"16"
+			"dfile"		"HUD/d_images"
+			"dnegfile"	"HUD/dneg_images"
+			"x"			"0"
+			"y"			"128"
+			"width"		"96"
+			"height"	"32"
 		}
-		"d_9mmAR"
+
+		"shotgun"
 		{
-				"file"		"sprites/640hud1"
-				"x"			"192"
-				"y"			"48"
-				"width"		"48"
-				"height"	"16"
+			"dfile"		"HUD/d_images"
+			"dnegfile"	"HUD/dneg_images"
+			"x"			"0"
+			"y"			"256"
+			"width"		"96"
+			"height"	"32"
 		}
-		"d_shotgun"
+
+		"grenade"
 		{
-				"file"		"sprites/640hud1"
-				"x"			"192"
-				"y"			"64"
-				"width"		"48"
-				"height"	"16"
+			"dfile"		"HUD/d_images"
+			"dnegfile"	"HUD/dneg_images"		
+			"x"			"0"
+			"y"			"288"
+			"width"		"96"
+			"height"	"32"
 		}
-		"d_bolt"
+
+		"pistol"
 		{
-				"file"		"sprites/640hud1"
-				"x"			"192"
-				"y"			"80"
-				"width"		"48"
-				"height"	"16"
+			"dfile"		"HUD/d_images"
+			"dnegfile"	"HUD/dneg_images"
+			"x"			"0"
+			"y"			"32"
+			"width"		"96"
+			"height"	"32"
 		}
-		"d_crossbow"
+
+		"crowbar"
 		{
-				"file"		"sprites/640hud1"
-				"x"			"192"
-				"y"			"80"
-				"width"		"48"
-				"height"	"16"
+			"dfile"		"HUD/d_images"
+			"dnegfile"	"HUD/dneg_images"	
+			"x"			"0"
+			"y"			"192"
+			"width"		"96"
+			"height"	"32"
 		}
-		"d_rpg_rocket"
-		{
-				"file"		"sprites/640hud1"
-				"x"			"192"
-				"y"			"96"
-				"width"		"48"
-				"height"	"16"
-		}
-		"d_gauss"
-		{
-				"file"		"sprites/640hud1"
-				"x"			"192"
-				"y"			"112"
-				"width"		"32"
-				"height"	"16"
-		}
-		"d_egon"
-		{
-				"file"		"sprites/640hud1"
-				"x"			"192"
-				"y"			"128"
-				"width"		"32"
-				"height"	"16"
-		}
-		"d_hornet"
-		{
-				"file"		"sprites/640hud1"
-				"x"			"192"
-				"y"			"144"
-				"width"		"48"
-				"height"	"16"
-		}
-		"d_grenade"
-		{
-				"file"		"sprites/640hud1"
-				"x"			"192"
-				"y"			"160"
-				"width"		"32"
-				"height"	"16"
-		}
-		"d_satchel"
-		{
-				"file"		"sprites/640hud1"
-				"x"			"192"
-				"y"			"176"
-				"width"		"32"
-				"height"	"16"
-		}
-		"d_tripmine"
-		{
-				"file"		"sprites/640hud1"
-				"x"			"192"
-				"y"			"192"
-				"width"		"32"
-				"height"	"16"
-		}
-		"d_snark"
-		{
-				"file"		"sprites/640hud1"
-				"x"			"192"
-				"y"			"208"
-				"width"		"32"
-				"height"	"16"
-		}
-		"d_skull"
-		{
-				"file"		"sprites/640hud1"
-				"x"			"192"
-				"y"			"224"
-				"width"		"32"
-				"height"	"16"
-		}
-		"d_tracktrain"
-		{
-				"file"		"sprites/640hud1"
-				"x"			"192"
-				"y"			"240"
-				"width"		"32"
-				"height"	"16"
-		}	
-		"death_357"
-		{
-				"font"		"HL2MPTypeDeath"
-				"character"	"."
-		}
-		"death_ar2"
-		{
-				"font"		"HL2MPTypeDeath"
-				"character"	"2"
-		}
-		"death_crossbow_bolt"
-		{
-				"font"		"HL2MPTypeDeath"
-				"character"	"1"
-		}
-		"death_smg1"
-		{
-				"font"		"HL2MPTypeDeath"
-				"character"	"/"
-		}
-		"death_shotgun"
-		{
-				"font"		"HL2MPTypeDeath"
-				"character"	"0"
-		}
-		"death_rpg_missile"
-		{
-				"font"		"HL2MPTypeDeath"
-				"character"	"3"
-		}
-		"death_grenade_frag"
-		{
-				"font"		"HL2MPTypeDeath"
-				"character"	"4"
-		}
-		"death_pistol"
-		{
-				"font"		"HL2MPTypeDeath"
-				"character"	"-"
-		}
-		"death_physics"
-		{
-				"font"		"HL2MPTypeDeath"
-				"character"	"9"
-		}
-		"death_combine_ball"
-		{
-				"font"		"HL2MPTypeDeath"
-				"character"	"8"
-		}
-		"death_smg1_grenade"
-		{
-				"font"		"HL2MPTypeDeath"
-				"character"	"7"
-		}
-		"death_stunstick"
-		{
-				"font"		"HL2MPTypeDeath"
-				"character"	"!"
-		}
-		"death_slam"
-		{
-				"font"		"HL2MPTypeDeath"
-				"character"	"*"
-		}
-		"death_crowbar"
-		{
-				"font"		"HL2MPTypeDeath"
-				"character"	"6"
-		}
+	
 		"voice_player"
 		{
-				"file"		"voice/icntlk_sv"
-				"x"		"0"
-				"y"		"0"
-				"width"		"32"
-				"height"	"32"
+			"file"		"voice/icntlk_sv"
+			"x"		"0"
+			"y"		"0"
+			"width"		"32"
+			"height"	"32"
 		}
+
 		"voice_self"
 		{
-				"file"		"voice/icntlk_local"
-				"x"		"0"
-				"y"		"0"
-				"width"		"32"
-				"height"	"32"
+			"file"		"voice/icntlk_local"
+			"x"		"0"
+			"y"		"0"
+			"width"		"32"
+			"height"	"32"
+		}
+		
+		"capture_icon"
+		{
+			"font"		"ClientTitleFontSmall"
+			"character"	"."
+		}
+
+		"pain_up"
+		{
+			"file"		"sprites/640_pain_up"
+			"x"			"0"
+			"y"			"0"
+			"width"		"128"
+			"height"	"48"
+		}
+
+		"pain_down"
+		{
+			"file"		"sprites/640_pain_down"
+			"x"			"0"
+			"y"			"0"
+			"width"		"128"
+			"height"	"48"
+		}
+
+		"pain_left"
+		{
+			"file"		"sprites/640_pain_left"
+			"x"			"0"
+			"y"			"0"
+			"width"		"48"
+			"height"	"128"
+		}
+
+		"pain_right"
+		{
+			"file"		"sprites/640_pain_right"
+			"x"			"0"
+			"y"			"0"
+			"width"		"48"
+			"height"	"128"
 		}
 	}	
 }

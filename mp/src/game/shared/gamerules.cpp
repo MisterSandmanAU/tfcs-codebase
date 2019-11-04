@@ -10,10 +10,7 @@
 #include "tier0/vprof.h"
 #include "KeyValues.h"
 #include "iachievementmgr.h"
-#include "mp_shareddefs.h"
 
-
-#define TFC_USE_PLAYERCLASSES
 #ifdef CLIENT_DLL
 
 	#include "usermessages.h"
@@ -809,10 +806,6 @@ const char *CGameRules::GetPlayerClassName(int cls)
 		Assert(false);
 		return NULL;
 	}*/
-
-	//const CSDKPlayerClassInfo &pClassInfo = pTeam->GetPlayerClassInfo(cls);
-
-	//return pClassInfo.m_szPrintName;
 }
 #endif
 

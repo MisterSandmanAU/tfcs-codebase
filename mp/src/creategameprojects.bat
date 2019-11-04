@@ -1,1 +1,4 @@
-devtools\bin\vpc.exe /hl2mp +game /mksln tfcsource.sln
+@echo off
+cls
+	devtools\bin\vpc.exe /sdk +game /mksln tfcsource.sln
+@pause

@@ -1,0 +1,43 @@
+PlayerClassDatafile
+{
+	// FilePLayerClassInfo_t members
+	"printname"			"#class_blue_class3"	
+	"playermodel"			"models/player/pyro.mdl"
+	"selectcmd"			"cls_blue_class3"
+
+	// CSDKPlayerClassInfo members
+
+	// What team has this class, for verification
+	"team"				"BLUE"
+        "team"                          "RED"
+
+	// Weapon Info
+	"primaryweapon"		"flamethrower"
+	"secondaryweapon"	"rpg"
+	"meleeweapon"		"crowbar"
+	"weapon1"			"12gauge"
+	"weapon2"			""
+	"weapon3"			""
+	"weapon4"			""
+	"weapon5"			""
+	"weapon6"			""
+	"weapon7"			""
+	"weapon8"			""
+	"weapon9"			""
+	"weapon10"			""
+
+	"grenadetype"		"grenade"
+	"numgrens"		"4"
+
+	"limitcvar"		"mp_limit_blue_class3"
+
+	"classimage"		"cls_blue_class3_active"
+	"classimagebg"		"cls_blue_class3_active_bg"
+
+	"armor"			"300"
+
+	// Movement
+	"RunSpeed"		"150"
+	"SprintSpeed"		"280"
+	"ProneSpeed"		"50"
+}

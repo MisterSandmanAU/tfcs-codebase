@@ -1,0 +1,87 @@
+"Vox.RedCap"
+{
+	"channel"		"CHAN_VOICE"
+	"volume"		"VOL_NORM"
+	"pitch"		"PITCH_NORM"
+
+	"soundlevel"	"SNDLVL_NORM"
+	"wave" 		"vox/red_scores.wav"
+
+}
+
+"Vox.BlueCap"
+{
+	"channel"		"CHAN_VOICE"
+	"volume"		"VOL_NORM"
+	"pitch"		"PITCH_NORM"
+
+	"soundlevel"	"SNDLVL_NORM"
+	"wave" 		"vox/blue_scores.wav"
+
+}
+
+"Vox.GreenCap"
+{
+	"channel"		"CHAN_VOICE"
+	"volume"		"VOL_NORM"
+	"pitch"		"PITCH_NORM"
+
+	"soundlevel"	"SNDLVL_NORM"
+	"wave" 		"vox/plyrjmp8.wav"
+
+}
+
+"Vox.YellowCap"
+{
+	"channel"		"CHAN_VOICE"
+	"volume"		"VOL_NORM"
+	"pitch"		"PITCH_NORM"
+
+	"soundlevel"	"SNDLVL_NORM"
+	"wave" 		"vox/plyrjmp8.wav"
+
+}
+
+"Vox.EnemyFlag"
+{
+	"channel"		"CHAN_VOICE"
+	"volume"		"VOL_NORM"
+	"pitch"		"PITCH_NORM"
+
+	"soundlevel"	"SNDLVL_NORM"
+	"wave" 		"vox/enemy_has_flag.wav"
+
+}
+
+"Vox.EnemyCapture"
+{
+	"channel"		"CHAN_VOICE"
+	"volume"		"VOL_NORM"
+	"pitch"		"PITCH_NORM"
+
+	"soundlevel"	"SNDLVL_NORM"
+	"wave" 		"vox/enemy_capture.wav"
+
+}
+
+"Vox.TeamFlag"
+{
+	"channel"		"CHAN_VOICE"
+	"volume"		"VOL_NORM"
+	"pitch"		"PITCH_NORM"
+
+	"soundlevel"	"SNDLVL_NORM"
+	"wave" 		"vox/team_has_flag.wav"
+
+}
+
+"Vox.TeamCapture"
+{
+	"channel"		"CHAN_VOICE"
+	"volume"		"VOL_NORM"
+	"pitch"		"PITCH_NORM"
+
+	"soundlevel"	"SNDLVL_NORM"
+	"wave" 		"vox/friendly_capture.wav"
+
+}

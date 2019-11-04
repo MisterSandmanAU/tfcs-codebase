@@ -1,0 +1,43 @@
+PlayerClassDatafile
+{
+	// FilePLayerClassInfo_t members
+	"printname"			"#class_civilian"	
+	"playermodel"			"models/player/civilian.mdl"
+	"selectcmd"			"cls_civilian"
+
+	// CSDKPlayerClassInfo members
+
+	// What team has this class, for verification
+	//"team"			  "BLUE"
+        //"team"                          "RED"
+
+	// Weapon Info
+	"primaryweapon"		""
+	"secondaryweapon"	""
+	"meleeweapon"		"umbrella"
+	"weapon1"			""
+	"weapon2"			""
+	"weapon3"			""
+	"weapon4"			""
+	"weapon5"			""
+	"weapon6"			""
+	"weapon7"			""
+	"weapon8"			""
+	"weapon9"			""
+	"weapon10"			""
+
+	"grenadetype"		"grenade"
+	"numgrens"		"0"
+
+	"limitcvar"		"mp_limit_blue_class2"
+
+	"classimage"		"cls_class10_active"
+	"classimagebg"		"cls_blue_class2_active_bg"
+
+	"armor"			"200"
+
+	// Movement
+	"RunSpeed"		"220"
+	"SprintSpeed"		"330"
+	"ProneSpeed"		"60"
+}

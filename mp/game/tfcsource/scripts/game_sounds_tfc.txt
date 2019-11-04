@@ -1,0 +1,238 @@
+
+// TFC Player Lines
+
+"TFCPlayer.Pain"
+{
+	"channel"		"CHAN_VOICE"
+	"volume"		"VOL_NORM"
+	"pitch"		"PITCH_NORM"
+
+	"soundlevel"	"SNDLVL_NORM"
+
+	"rndwave"
+	{
+		"wave"	"player/pain1.wav"
+		"wave"	"player/pain2.wav"
+		"wave"	"player/pain3.wav"
+		"wave"	"player/pain4.wav"
+		"wave"	"player/pain5.wav"
+		"wave"	"player/pain6.wav"
+	}
+}
+
+"TFCPlayer.Death"
+{
+	"channel"		"CHAN_VOICE"
+	"volume"		"VOL_NORM"
+	"pitch"		"PITCH_NORM"
+
+	"soundlevel"	"SNDLVL_NORM"
+
+	"rndwave"
+	{
+		"wave"	"player/death1.wav"
+		"wave"	"player/death2.wav"
+		"wave"	"player/death3.wav"
+		"wave"	"player/death4.wav"
+		"wave"	"player/death5.wav"
+	}
+}
+
+"TFCPlayer.Medic"
+{
+	"channel"		"CHAN_VOICE"
+	"volume"		"VOL_NORM"
+	"pitch"		"PITCH_NORM"
+
+	"soundlevel"	"SNDLVL_NORM"
+
+	"rndwave"
+	{
+		"wave"	"player/saveme1.wav"
+		"wave"	"player/saveme2.wav"
+	}
+}
+
+"TFCPlayer.Jump"
+{
+	"channel"		"CHAN_VOICE"
+	"volume"		"VOL_NORM"
+	"pitch"		"PITCH_NORM"
+
+	"soundlevel"	"SNDLVL_NORM"
+	"wave" 		"player/plyrjmp8.wav"
+
+}
+
+// TFC Weapon Lines
+
+//SHOTGUN / 12 GAUGE
+
+"Weapon_Shotgun.Empty"
+{
+	"channel"		"CHAN_WEAPON"
+	"volume"		"0.7"
+	"soundlevel"	"SNDLVL_NORM"
+	"pitch"			"95,100"
+
+	"wave"			"weapons/shotgun/shotgun_empty.wav"
+}
+
+"Weapon_Shotgun.Reload"
+{
+	"channel"		"CHAN_ITEM"
+	"volume"		"0.7"
+	"soundlevel"	"SNDLVL_NORM"
+
+	"rndwave"
+	{
+		"wave"			"weapons/shotgun_reload1.wav"
+		"wave"			"weapons/shotgun_reload2.wav"
+		"wave"			"weapons/shotgun_reload3.wav"
+	}
+}
+
+"Weapon_Shotgun.Pump"
+{
+	"channel"		"CHAN_ITEM"
+	"volume"		"0.7"
+	"soundlevel"	"SNDLVL_NORM"
+
+	"wave"		"weapons/shotgun_cock.wav"
+}
+
+"Weapon_Shotgun.Single"
+{
+	"channel"		"CHAN_WEAPON"
+	"volume"		"0.86"
+	"soundlevel"	"SNDLVL_GUNFIRE"
+	"pitch"			"98,101"
+		"wave"			"weapons/shotgun_shoot.wav"
+}
+
+"Weapon_12Gauge.Single"
+{
+	"channel"		"CHAN_WEAPON"
+	"volume"		"0.86"
+	"soundlevel"	"SNDLVL_GUNFIRE"
+	"pitch"			"98,101"
+		"wave"			"weapons/12gauge_shoot.wav"
+}
+
+// NAILGUN / SUPER NAILGUN
+
+"Weapon_Nailgun.Single"
+{
+	"channel"		"CHAN_WEAPON"
+	"volume"		"0.6"
+	"soundlevel"		"SNDLVL_90db"
+	"soundlevel"	"SNDLVL_GUNFIRE"
+	"pitch"			"95,105"
+
+	"wave"			"weapons/nailgun_shoot.wav"
+}
+
+"Weapon_SNailgun.Single"
+{
+	"channel"		"CHAN_WEAPON"
+	"volume"		"0.6"
+	"soundlevel"		"SNDLVL_90db"
+	"soundlevel"	"SNDLVL_GUNFIRE"
+	"pitch"			"95,105"
+
+	"wave"			"weapons/snailgun_shoot.wav"
+}
+
+// CROWBAR
+
+"Weapon_Crowbar.Single"
+{
+	"channel"		"CHAN_WEAPON"
+	"volume"		"0.55"
+	"soundlevel"	"SNDLVL_105dB"
+	"pitch"			"95,100"
+
+	"wave"			"weapons/iceaxe/iceaxe_swing1.wav"
+}
+
+"Weapon_Crowbar.Melee_Hit"
+{
+	"channel"		"CHAN_WEAPON"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_105dB"
+	"pitch"			"98,102"
+
+	"rndwave"
+	{
+		"wave"		"physics/flesh/flesh_impact_bullet3.wav"
+		"wave"		"physics/flesh/flesh_impact_bullet4.wav"
+		"wave"		"physics/flesh/flesh_impact_bullet5.wav"
+	}
+}
+
+"Weapon_Crowbar.Melee_HitWorld"
+{
+	"channel"		"CHAN_WEAPON"
+	"volume"		"0.7"
+	"soundlevel"	"SNDLVL_90dB"
+	"pitch"			"90,120"
+
+	"rndwave"
+	{
+		"wave"		"weapons/crowbar_world1.wav"
+		"wave"		"weapons/crowbar_world2.wav"
+	}
+}
+
+// RPG / IC
+
+"Weapon_RPG.Single"
+{
+	"channel"		"CHAN_WEAPON"
+	"volume"		"0.55"
+	"soundlevel"	"SNDLVL_GUNFIRE"
+
+	"wave"		")weapons/rocket_shoot.wav"
+}
+
+"Weapon_RPG.Fly"
+{
+	"channel"		"CHAN_WEAPON"
+	"volume"		"0.55"
+	"soundlevel"	"SNDLVL_GUNFIRE"
+
+	"wave"		")weapons/rocket_fly.wav"
+}
+
+"Weapon_IC.Single"
+{
+	"channel"		"CHAN_WEAPON"
+	"volume"		"0.55"
+	"soundlevel"	"SNDLVL_GUNFIRE"
+
+	"wave"		")weapons/ic_shoot.wav"
+}
+
+// FLAME THROWER
+
+"Weapon_Flamethrower.Single"
+{
+	"channel"		"CHAN_WEAPON"
+	"volume"		"0.55"
+	"soundlevel"	"SNDLVL_GUNFIRE"
+	"pitch"			"98,102"
+
+	"wave"		")weapons/fthrow_shoot.wav"
+}
+
+// GRENADE LAUNCHER
+
+"Weapon_GrenadeLauncher.Single"
+{
+	"channel"		"CHAN_WEAPON"
+	"volume"		"0.55"
+	"soundlevel"	"SNDLVL_GUNFIRE"
+
+	"wave"		")weapons/grenade_shoot.wav"
+}
+

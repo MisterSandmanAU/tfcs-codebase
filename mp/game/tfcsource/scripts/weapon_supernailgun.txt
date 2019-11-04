@@ -30,9 +30,7 @@ WeaponData
 	// Sounds for the weapon. There is a max of 16 sounds per category (i.e. max 16 "single_shot" sounds)
 	SoundData
 	{
-		//"reload"			"Default.Reload"
-		//"empty"			"Default.ClipEmpty_Rifle"
-		"single_shot"			"Weapon_MP5Navy.Single"
+		"single_shot"		"Weapon_SNailgun.Single"
 	}
 
 	// Weapon Sprite data is loaded by the Client DLL.

@@ -773,53 +773,35 @@ bool CGameRules::ShouldCollide( int collisionGroup0, int collisionGroup1 )
 	return true;
 }
 //Tony; keep this in shared space.
-#if defined ( TFC_USE_PLAYERCLASSES )
+#ifdef TFC_USE_PLAYERCLASSES
 const char *CGameRules::GetPlayerClassName(int cls)
 {
-
-	if (cls == PLAYERCLASS_RANDOM)
+	switch (cls)
 	{
+	default:
 		return "#class_random";
-	}
-	else if (cls == PLAYERCLASS_SCOUT)
-	{
+	case PLAYERCLASS_RANDOM:
+		return "#class_random";
+	case PLAYERCLASS_SCOUT:
 		return "#class_scout";
-	}
-	else if (cls == PLAYERCLASS_SOLDIER)
-	{
+	case PLAYERCLASS_SOLDIER:
 		return "#class_soldier";
-	}
-	else if (cls == PLAYERCLASS_PYRO)
-	{
-		return "#class_puro";
-	}
-	else if (cls == PLAYERCLASS_HEAVY)
-	{
+	case PLAYERCLASS_PYRO:
+		return "#class_pyro";
+	case PLAYERCLASS_HEAVY:
 		return "#class_HWguy";
-	}
-	else if (cls == PLAYERCLASS_DEMOMAN)
-	{
-		return "#class_Demo";
-	}
-	else if (cls == PLAYERCLASS_ENGINEER)
-	{
+	case PLAYERCLASS_DEMOMAN:
+		return "#class_demo";
+	case PLAYERCLASS_ENGINEER:
 		return "#class_engineer";
-	}
-	else if (cls == PLAYERCLASS_MEDIC)
-	{
+	case PLAYERCLASS_MEDIC:
 		return "#class_medic";
-	}
-	else if (cls == PLAYERCLASS_SNIPER)
-	{
+	case PLAYERCLASS_SNIPER:
 		return "#class_sniper";
-	}
-	else if (cls == PLAYERCLASS_SPY)
-	{
+	case PLAYERCLASS_SPY:
 		return "#class_spy";
-	}
-	else if (cls == PLAYERCLASS_CIV)
-	{
-		return "#class_civillan";
+	case PLAYERCLASS_CIV:
+		return "#class_civilian";
 	}
 
 	/*if (cls < 0 || cls >= pTeam->GetNumPlayerClasses())

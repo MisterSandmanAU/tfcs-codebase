@@ -87,11 +87,15 @@ void CTFCProjectileBase::ProjectileTouch(CBaseEntity* pOther)
 	else
 	{
 		#ifdef GAME_DLL
+		Vector vecDir;
+		AngleVectors(GetAbsAngles(), &vecDir);
 		CTakeDamageInfo info;
 		info.SetAttacker(GetOwnerEntity());
 		info.SetDamage(flDamage);
 		info.SetDamagePosition(GetAbsOrigin());
 		pOther->TakeDamage(info);
+		int m_iBloodColor = pOther->BloodColor();
+		SpawnBlood(GetAbsOrigin(), vecDir, m_iBloodColor, 5);
 		UTIL_Remove(this);
 		#endif
 	}

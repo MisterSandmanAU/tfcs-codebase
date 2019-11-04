@@ -5,7 +5,7 @@ WeaponData
 	"Bullets"			"9"
 	"CycleTime"			"0.85"
 
-	"BuiltRightHanded"		"1"
+	"BuiltRightHanded"		"0"
 	
 	// Weapon data is loaded by both the Game and Client DLLs.
 	"printname"			"#SDK_Weapon_Shotgun"
@@ -16,12 +16,12 @@ WeaponData
 	"bucket"			"2"
 	"bucket_position"		"4"
 
-	"clip_size"			"16"
-	"default_clip"			"16"
-	"NumClips"			"200"
+	"clip_size"			"8"
+	"default_clip"			"50"
+	"NumClips"			"50"
 
 	
-	"primary_ammo"			"shell"
+	"primary_ammo"			"shotgun"
 	"secondary_ammo"		"None"
 
 	"weight"			"20"

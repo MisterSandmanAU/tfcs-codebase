@@ -625,7 +625,8 @@ void CSDKGameRules::PlayerSpawn( CBasePlayer *p )
 			CSDKTeam *pTeam = GetGlobalSDKTeam( team );
 			const CSDKPlayerClassInfo &pClassInfo = pTeam->GetPlayerClassInfo( playerclass );
 
-			Assert( pClassInfo.m_iTeam == team );
+			//Anthony: We don't care about if the classinfo is a team!
+			//Assert( pClassInfo.m_iTeam == team );
 
 			pPlayer->SetModel( pClassInfo.m_szPlayerModel );
 			pPlayer->SetHitboxSet( 0 );

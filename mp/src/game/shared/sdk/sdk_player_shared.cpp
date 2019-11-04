@@ -601,7 +601,7 @@ void CSDKPlayer::InitSpeeds()
 			CSDKTeam *pTeam = GetGlobalSDKTeam( GetTeamNumber() );
 			const CSDKPlayerClassInfo &pClassInfo = pTeam->GetPlayerClassInfo( playerclass );
 
-			Assert( pClassInfo.m_iTeam == GetTeamNumber() );
+			//Assert( pClassInfo.m_iTeam == GetTeamNumber() );
 
 			m_Shared.m_flRunSpeed = pClassInfo.m_flRunSpeed;
 			m_Shared.m_flSprintSpeed = pClassInfo.m_flSprintSpeed;

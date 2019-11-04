@@ -87,8 +87,8 @@ enum sdkteams_e
 	{
 		SDK_TEAM_BLUE = LAST_SHARED_TEAM+1,
 		SDK_TEAM_RED,
-		TFC_TEAM_YELLOW,
-		TFC_TEAM_GREEN,
+		SDK_TEAM_YELLOW,
+		SDK_TEAM_GREEN,
 	};
 
 #endif // SDK_USE_TEAMS
@@ -110,7 +110,7 @@ enum sdkteams_e
 #endif // SDK_USE_SPRINTING
 
 #if defined ( SDK_USE_PLAYERCLASSES )
-	#define SDK_NUM_PLAYERCLASSES 3		//Tony; our template sample has 3 player classes.
+	#define SDK_NUM_PLAYERCLASSES 10		//Tony; our template sample has 3 player classes.
 	#define SDK_PLAYERCLASS_IMAGE_LENGTH 64
 
 	#define PLAYERCLASS_RANDOM		-2

@@ -1,18 +1,19 @@
 PlayerClassDatafile
 {
 	// FilePLayerClassInfo_t members
-	"printname"			"#class_red_class2"	
-	"playermodel"			"models/player/soldier.mdl"
-	"selectcmd"			"cls_red_class5"
+	"printname"			"#class_sniper"	
+	"playermodel"			"models/player/sniper.mdl"
+	"selectcmd"			"cls_sniper"
 
 	// CSDKPlayerClassInfo members
 
 	// What team has this class, for verification
-	"team"				"RED"
+	//"team"			  "BLUE"
+        //"team"                          "RED"
 
 	// Weapon Info
-	"primaryweapon"		"shotgun"
-	"secondaryweapon"	"12gauge"
+	"primaryweapon"		"sniperrifle"
+	"secondaryweapon"	"automaticrifle"
 	"meleeweapon"		"crowbar"
 	"weapon1"			"nailgun"
 	"weapon2"			""
@@ -26,17 +27,17 @@ PlayerClassDatafile
 	"weapon10"			""
 
 	"grenadetype"		"grenade"
-	"numgrens"		"4"
+	"numgrens"		"0"
 
-	"limitcvar"		"mp_limit_blue_class2"
+	"limitcvar"		"mp_limit_blue_class8"
 
-	"classimage"		"cls_blue_class2_active"
-	"classimagebg"		"cls_blue_class2_active_bg"
+	"classimage"		"cls_blue_class8_active"
+	"classimagebg"		"cls_blue_class8_active_bg"
 
-	"armor"			"200"
+	"armor"			"50"
 
 	// Movement
-	"RunSpeed"		"220"
+	"RunSpeed"		"218"
 	"SprintSpeed"		"330"
 	"ProneSpeed"		"60"
 }

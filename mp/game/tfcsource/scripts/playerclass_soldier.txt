@@ -1,20 +1,21 @@
 PlayerClassDatafile
 {
 	// FilePLayerClassInfo_t members
-	"printname"			"#class_red_class2"	
+	"printname"			"#class_soldier"	
 	"playermodel"			"models/player/soldier.mdl"
-	"selectcmd"			"cls_red_class6"
+	"selectcmd"			"cls_soldier"
 
 	// CSDKPlayerClassInfo members
 
 	// What team has this class, for verification
-	"team"				"RED"
+	//"team"			  "BLUE"
+        //"team"                          "RED"
 
 	// Weapon Info
-	"primaryweapon"		"shotgun"
+	"primaryweapon"		"rpg"
 	"secondaryweapon"	"12gauge"
 	"meleeweapon"		"crowbar"
-	"weapon1"			"nailgun"
+	"weapon1"			"shotgun"
 	"weapon2"			""
 	"weapon3"			""
 	"weapon4"			""
@@ -26,7 +27,7 @@ PlayerClassDatafile
 	"weapon10"			""
 
 	"grenadetype"		"grenade"
-	"numgrens"		"4"
+	"numgrens"		"0"
 
 	"limitcvar"		"mp_limit_blue_class2"
 
@@ -36,7 +37,7 @@ PlayerClassDatafile
 	"armor"			"200"
 
 	// Movement
-	"RunSpeed"		"220"
+	"RunSpeed"		"180"
 	"SprintSpeed"		"330"
 	"ProneSpeed"		"60"
 }

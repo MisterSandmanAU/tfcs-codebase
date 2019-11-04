@@ -2,19 +2,20 @@ PlayerClassDatafile
 {
 	// FilePLayerClassInfo_t members
 	"printname"			"#class_blue_class3"	
-	"playermodel"			"models/player/hwguy.mdl"
-	"selectcmd"			"cls_blue_class7"
+	"playermodel"			"models/player/pyro.mdl"
+	"selectcmd"			"cls_blue_class3"
 
 	// CSDKPlayerClassInfo members
 
 	// What team has this class, for verification
 	"team"				"BLUE"
+        "team"                          "RED"
 
 	// Weapon Info
-	"primaryweapon"		"mp5"
-	"secondaryweapon"	"shotgun"
+	"primaryweapon"		"flamethrower"
+	"secondaryweapon"	"rpg"
 	"meleeweapon"		"crowbar"
-	"weapon1"			"nailgun"
+	"weapon1"			"12gauge"
 	"weapon2"			""
 	"weapon3"			""
 	"weapon4"			""

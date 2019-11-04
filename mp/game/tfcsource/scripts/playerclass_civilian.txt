@@ -1,20 +1,21 @@
 PlayerClassDatafile
 {
 	// FilePLayerClassInfo_t members
-	"printname"			"#class_red_class2"	
-	"playermodel"			"models/player/soldier.mdl"
-	"selectcmd"			"cls_red_class9"
+	"printname"			"#class_civilian"	
+	"playermodel"			"models/player/civilian.mdl"
+	"selectcmd"			"cls_civilian"
 
 	// CSDKPlayerClassInfo members
 
 	// What team has this class, for verification
-	"team"				"RED"
+	//"team"			  "BLUE"
+        //"team"                          "RED"
 
 	// Weapon Info
-	"primaryweapon"		"shotgun"
-	"secondaryweapon"	"12gauge"
-	"meleeweapon"		"crowbar"
-	"weapon1"			"nailgun"
+	"primaryweapon"		""
+	"secondaryweapon"	""
+	"meleeweapon"		"umbrella"
+	"weapon1"			""
 	"weapon2"			""
 	"weapon3"			""
 	"weapon4"			""
@@ -26,11 +27,11 @@ PlayerClassDatafile
 	"weapon10"			""
 
 	"grenadetype"		"grenade"
-	"numgrens"		"4"
+	"numgrens"		"0"
 
 	"limitcvar"		"mp_limit_blue_class2"
 
-	"classimage"		"cls_blue_class2_active"
+	"classimage"		"cls_class10_active"
 	"classimagebg"		"cls_blue_class2_active_bg"
 
 	"armor"			"200"

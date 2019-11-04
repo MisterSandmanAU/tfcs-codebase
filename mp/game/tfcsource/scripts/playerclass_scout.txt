@@ -1,14 +1,15 @@
 PlayerClassDatafile
 {
 	// FilePLayerClassInfo_t members
-	"printname"			"#class_red_class1"	
+	"printname"			"#class_scout"
 	"playermodel"			"models/player/scout.mdl"
-	"selectcmd"			"cls_red_class1"
+	"selectcmd"			"cls_scout"
 
 	// CSDKPlayerClassInfo members
 
 	// What team has this class, for verification
-	"team"				"RED"
+	//"team"			  "BLUE"
+        //"team"                          "RED"
 
 	// Weapon Info
 	"primaryweapon"		"nailgun"

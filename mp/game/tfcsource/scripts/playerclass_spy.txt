@@ -1,0 +1,43 @@
+PlayerClassDatafile
+{
+	// FilePLayerClassInfo_t members
+	"printname"			"#class_spy"	
+	"playermodel"			"models/player/spy.mdl"
+	"selectcmd"			"cls_spy"
+
+	// CSDKPlayerClassInfo members
+
+	// What team has this class, for verification
+	//"team"			  "BLUE"
+        //"team"                          "RED"
+
+	// Weapon Info
+	"primaryweapon"		"tranquilizergun"
+	"secondaryweapon"	"shotgun"
+	"meleeweapon"		"knife"
+	"weapon1"			"nailgun"
+	"weapon2"			""
+	"weapon3"			""
+	"weapon4"			""
+	"weapon5"			""
+	"weapon6"			""
+	"weapon7"			""
+	"weapon8"			""
+	"weapon9"			""
+	"weapon10"			""
+
+	"grenadetype"		"grenade"
+	"numgrens"		"0"
+
+	"limitcvar"		"mp_limit_blue_class9"
+
+	"classimage"		"cls_blue_class9_active"
+	"classimagebg"		"cls_blue_class9_active_bg"
+
+	"armor"			"100"
+
+	// Movement
+	"RunSpeed"		"218"
+	"SprintSpeed"		"330"
+	"ProneSpeed"		"60"
+}

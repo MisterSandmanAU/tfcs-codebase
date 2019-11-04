@@ -26,6 +26,21 @@ public:
 	void (CSDKPlayer::*pfnPreThink)();	// Do a PreThink() in this state.
 };
 
+struct DamagerHistory_t
+{
+	DamagerHistory_t()
+	{
+		Reset();
+	}
+	void Reset()
+	{
+		hDamager = NULL;
+		flTimeDamage = 0;
+	}
+	EHANDLE hDamager;
+	float	flTimeDamage;
+};
+
 //=============================================================================
 // >> SDK Game player
 //=============================================================================
@@ -57,6 +72,7 @@ public:
 
 	virtual void GiveDefaultItems();
 
+
 	// Animstate handles this.
 	void SetAnimation( PLAYER_ANIM playerAnim ) { return; }
 
@@ -66,7 +82,11 @@ public:
 	virtual void Event_Killed( const CTakeDamageInfo &info );
 	virtual void TraceAttack( const CTakeDamageInfo &info, const Vector &vecDir, trace_t *ptr, CDmgAccumulator *pAccumulator );
 	virtual void LeaveVehicle( const Vector &vecExitPoint, const QAngle &vecExitAngles );
-	
+
+	void				AddDamagerToHistory(EHANDLE hDamager);
+	void				ClearDamagerHistory();
+	DamagerHistory_t	&GetDamagerHistory(int i) { return m_DamagerHistory[i]; }
+
 	CWeaponSDKBase* GetActiveSDKWeapon() const;
 	virtual void	CreateViewModel( int viewmodelindex = 0 );
 
@@ -222,6 +242,7 @@ private:
 	// When the player joins, it cycles their view between trigger_camera entities.
 	// This is the current camera, and the time that we'll switch to the next one.
 	EHANDLE m_pIntroCamera;
+	DamagerHistory_t m_DamagerHistory[DAMAGERS_HISTORY_MAX];
 	float m_fIntroCamTime;
 
 	void CreateRagdollEntity();

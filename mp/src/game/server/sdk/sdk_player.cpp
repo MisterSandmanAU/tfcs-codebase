@@ -390,6 +390,8 @@ void CSDKPlayer::Spawn()
 
 	InitSpeeds(); //Tony; initialize player speeds.
 
+	ClearDamagerHistory();// clear damager History
+
 	SetArmorValue(SpawnArmorValue());
 
 	SetContextThink( &CSDKPlayer::SDKPushawayThink, gpGlobals->curtime + PUSHAWAY_THINK_INTERVAL, SDK_PUSHAWAY_THINK_CONTEXT );
@@ -588,6 +590,7 @@ int CSDKPlayer::OnTakeDamage( const CTakeDamageInfo &inputInfo )
 	CTakeDamageInfo info = inputInfo;
 
 	CBaseEntity *pInflictor = info.GetInflictor();
+	CBaseEntity *pAttacker = info.GetAttacker();
 
 	if ( !pInflictor )
 		return 0;
@@ -616,7 +619,7 @@ int CSDKPlayer::OnTakeDamage( const CTakeDamageInfo &inputInfo )
 				flDamage *= 0.35; // bullets hurt teammates less
 			}
 		}
-
+		AddDamagerToHistory(pAttacker);
 		// keep track of amount of damage last sustained
 		m_lastDamageAmount = flDamage;
 		// Deal with Armour
@@ -785,6 +788,32 @@ void CSDKPlayer::Event_Killed( const CTakeDamageInfo &info )
 
 	BaseClass::Event_Killed( info );
 
+}
+void CSDKPlayer::ClearDamagerHistory()
+{
+	for (int i = 0; i < ARRAYSIZE(m_DamagerHistory); i++)
+	{
+		m_DamagerHistory[i].Reset();
+	}
+}
+
+void CSDKPlayer::AddDamagerToHistory(EHANDLE hDamager)
+{
+	//Check if same team
+	CSDKPlayer *pDamager = ToSDKPlayer(hDamager);
+
+	if (!pDamager || pDamager == this || InSameTeam(pDamager))
+		return;
+	//If most recent damager is different from most recent then shift our list down.
+	if (m_DamagerHistory[0].hDamager != hDamager)
+	{
+		for (int i = 1; i < ARRAYSIZE(m_DamagerHistory); i++)
+		{
+			m_DamagerHistory[i] = m_DamagerHistory[i - 1];
+		}
+	}
+	m_DamagerHistory[0].hDamager = hDamager;
+	m_DamagerHistory[0].flTimeDamage = gpGlobals->curtime;
 }
 void CSDKPlayer::ThrowActiveWeapon( void )
 {

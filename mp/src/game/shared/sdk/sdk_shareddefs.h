@@ -24,6 +24,11 @@
 // define SDK_USE_PLAYERCLASSES
 #define SDK_USE_PLAYERCLASSES
 
+//
+// Are we using hl1 type of Player Models?
+// define SDK_HL1_PLAYER
+#define SDK_HL1_PLAYER
+
 //================================
 // PLAYER MOVEMENT RELATED OPTIONS
 //================================
@@ -164,6 +169,7 @@ typedef enum
 	SDK_WEAPON_SUPERNAILGUN,
 	SDK_WEAPON_KNIFE,
 	SDK_WEAPON_WRENCH,
+	SDK_WEAPON_AC,
 
 	
 	WEAPON_MAX,		// number of weapons weapon index
@@ -217,6 +223,13 @@ enum
 	SDK_DMG_CUSTOM_NONE = 0,
 	SDK_DMG_CUSTOM_SUICIDE,
 };
+
+
+// Assit Time
+#define ASSIT_KILL_TIME 3.0f
+
+//Max amount of Damagers
+#define DAMAGERS_HISTORY_MAX 2
 
 // Player avoidance
 #define PUSHAWAY_THINK_INTERVAL		(1.0f / 20.0f)

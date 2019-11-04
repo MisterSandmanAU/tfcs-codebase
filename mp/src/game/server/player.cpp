@@ -454,7 +454,7 @@ BEGIN_DATADESC( CBasePlayer )
 
 
 
-	// DEFINE_FIELD( m_nBodyPitchPoseParam, FIELD_INTEGER ),
+	 DEFINE_FIELD( m_nBodyPitchPoseParam, FIELD_INTEGER ),
 	// DEFINE_ARRAY( m_StepSoundCache, StepSoundCache_t,  2  ),
 
 	// DEFINE_UTLVECTOR( m_vecPlayerCmdInfo ),
@@ -4976,7 +4976,9 @@ void CBasePlayer::Spawn( void )
 	SetSimulatedEveryTick( true );
 	SetAnimatedEveryTick( true );
 
-	m_ArmorValue		= SpawnArmorValue();
+	int ArmorMax = SpawnArmorValue();
+
+	m_ArmorValue = ArmorMax;
 	SetBlocksLOS( false );
 	m_iMaxHealth		= m_iHealth;
 
@@ -5308,8 +5310,12 @@ void CBasePlayer::OnRestore( void )
 
 	// Calculate this immediately
 	m_nVehicleViewSavedFrame = 0;
-
-	m_nBodyPitchPoseParam = LookupPoseParameter( "body_pitch" );
+#ifdef SDK_HL1_PLAYER
+	m_nBodyPitchPoseParam = LookupPoseParameter("XR");
+#else
+	m_nBodyPitchPoseParam = LookupPoseParameter("body_pitch");
+#endif
+	
 }
 
 /* void CBasePlayer::SetTeamName( const char *pTeamName )
@@ -9429,7 +9435,12 @@ void CBasePlayer::Event_KilledOther( CBaseEntity *pVictim, const CTakeDamageInfo
 void CBasePlayer::SetModel( const char *szModelName )
 {
 	BaseClass::SetModel( szModelName );
-	m_nBodyPitchPoseParam = LookupPoseParameter( "body_pitch" );
+#ifdef SDK_HL1_PLAYER
+	m_nBodyPitchPoseParam = LookupPoseParameter( "XR" );
+#else
+	m_nBodyPitchPoseParam = LookupPoseParameter("body_pitch");
+#endif
+	
 }
 
 void CBasePlayer::SetBodyPitch( float flPitch )

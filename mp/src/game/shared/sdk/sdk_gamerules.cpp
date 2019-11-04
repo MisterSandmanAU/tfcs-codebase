@@ -33,6 +33,7 @@
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
+#define NULL 0
 
 #ifndef CLIENT_DLL
 
@@ -81,6 +82,7 @@ END_NETWORK_TABLE()
 
 #if defined ( SDK_USE_PLAYERCLASSES )
 	ConVar mp_allowrandomclass( "mp_allowrandomclass", "1", FCVAR_REPLICATED, "Allow players to select random class" );
+	ConVar mp_allowspecialclass("mp_allowspecialclass", "0", FCVAR_REPLICATED, "Allow players to select civilian class");
 #endif
 
 
@@ -629,6 +631,8 @@ void CSDKGameRules::PlayerSpawn( CBasePlayer *p )
 			//Assert( pClassInfo.m_iTeam == team );
 
 			pPlayer->SetModel( pClassInfo.m_szPlayerModel );
+			//model_t *Model = pPlayer->GetModel();
+			
 			pPlayer->SetHitboxSet( 0 );
 
 			char buf[64];
@@ -941,15 +945,37 @@ void CSDKGameRules::ChooseRandomClass( CSDKPlayer *pPlayer )
 	{
 		Msg( "Random class found that all classes were full - ignoring class limits for this spawn\n" );
 
-		pPlayer->m_Shared.SetPlayerClass( random->RandomFloat( firstclass, lastclass ) );
+		if (mp_allowspecialclass.GetBool())
+		{
+			pPlayer->m_Shared.SetPlayerClass(random->RandomFloat(firstclass, lastclass));
+		}
+		else
+		{
+			lastclass -= 1;
+			pPlayer->m_Shared.SetPlayerClass(random->RandomFloat(firstclass, lastclass));
+		}
+
+		
 	}
 	else
 	{
-		// Choose a slot randomly
-		i = random->RandomInt( 0, numChoices-1 );
+		if (mp_allowspecialclass.GetBool())
+		{
+			// Choose a slot randomly
+			i = random->RandomInt(0, numChoices - 1);
 
-		// We are now the class that was in that slot
-		pPlayer->m_Shared.SetPlayerClass( choices[i] );
+			// We are now the class that was in that slot
+			pPlayer->m_Shared.SetPlayerClass(choices[i]);
+		}
+		else
+		{
+			// Choose a slot randomly
+			i = random->RandomInt(0, numChoices - 2);
+
+			// We are now the class that was in that slot
+			pPlayer->m_Shared.SetPlayerClass(choices[i]);
+		}
+		
 	}
 }
 bool CSDKGameRules::CanPlayerJoinClass( CSDKPlayer *pPlayer, int cls )
@@ -1294,6 +1320,44 @@ const char *CSDKGameRules::GetKillingWeaponName( const CTakeDamageInfo &info, CS
 	return killer_weapon_name;
 }
 
+CSDKPlayer *CSDKGameRules::GetRecentDamager(CSDKPlayer *pVictim, int iDamager, float flMaxElapsed)
+{
+	Assert(iDamager < MAX_DAMAGER_HISTORY);
+
+	DamagerHistory_t &damagerHistory = pVictim->GetDamagerHistory(iDamager);
+	if ((NULL != damagerHistory.hDamager) && (gpGlobals->curtime - damagerHistory.flTimeDamage <= flMaxElapsed))
+	{
+		CSDKPlayer *pRecentDamager = ToSDKPlayer(damagerHistory.hDamager);
+		if (pRecentDamager)
+			return pRecentDamager;
+	}
+	return NULL;
+}
+
+//Get whom assisted
+CBasePlayer *CSDKGameRules::GetAssister(CBasePlayer *pVictim, CBasePlayer *pScorer, CBaseEntity *pInflictor)
+{
+	CSDKPlayer *pSDKScorer = ToSDKPlayer(pScorer);
+	CSDKPlayer *pSDKVictim = ToSDKPlayer(pVictim);
+
+	if (pSDKScorer && pSDKVictim)
+	{
+		if (pSDKScorer == pSDKVictim)
+			return NULL;
+
+		//See whom damaged the player 2nd most, Most recent being the killer.
+		CSDKPlayer *pRecentDamager = GetRecentDamager(pSDKVictim, 1, ASSIT_KILL_TIME);
+		if (pRecentDamager && (pRecentDamager != pScorer))
+		{
+			return pRecentDamager;
+		}
+	}
+	return NULL;
+
+	
+
+}
+
 //-----------------------------------------------------------------------------
 // Purpose: 
 // Input  : *pVictim - 
@@ -1309,7 +1373,7 @@ void CSDKGameRules::DeathNotice( CBasePlayer *pVictim, const CTakeDamageInfo &in
 	CBaseEntity *pInflictor = info.GetInflictor();
 	CBaseEntity *pKiller = info.GetAttacker();
 	CBasePlayer *pScorer = GetDeathScorer( pKiller, pInflictor, pVictim );
-//	CSDKPlayer *pAssister = ToSDKPlayer( GetAssister( pVictim, pScorer, pInflictor ) );
+	CSDKPlayer *pAssister = ToSDKPlayer( GetAssister( pVictim, pScorer, pInflictor ) );
 
 	// Work out what killed the player, and send a message to all clients about it
 	int iWeaponID;
@@ -1326,7 +1390,7 @@ void CSDKGameRules::DeathNotice( CBasePlayer *pVictim, const CTakeDamageInfo &in
 	{
 		event->SetInt( "userid", pVictim->GetUserID() );
 		event->SetInt( "attacker", killer_ID );
-//		event->SetInt( "assister", pAssister ? pAssister->GetUserID() : -1 );
+		event->SetInt( "assister", pAssister ? pAssister->GetUserID() : -1 );
 		event->SetString( "weapon", killer_weapon_name );
 		event->SetInt( "weaponid", iWeaponID );
 		event->SetInt( "damagebits", info.GetDamageType() );
@@ -1420,7 +1484,7 @@ CAmmoDef* GetAmmoDef()
 		{
 			//Tony; ignore grenades, shotgun and the crowbar, grenades and shotgun are handled seperately because of their damage type not being DMG_BULLET.
 			if (i == SDK_WEAPON_GRENADE || i == SDK_WEAPON_CROWBAR || i == SDK_WEAPON_UMBRELLA  || i == SDK_WEAPON_SHOTGUN || i == SDK_WEAPON_12GAUGE || i == SDK_WEAPON_NAILGUN
-				|| i == SDK_WEAPON_SUPERNAILGUN || i == SDK_WEAPON_WRENCH || i == SDK_WEAPON_KNIFE)
+				|| i == SDK_WEAPON_SUPERNAILGUN || i == SDK_WEAPON_WRENCH || i == SDK_WEAPON_KNIFE || i == SDK_WEAPON_AC)
 				continue;
 
 			def.AddAmmoType( WeaponIDToAlias(i), DMG_BULLET, TRACER_LINE_AND_WHIZ, 0, 0, 200/*max carry*/, 1, 0 );

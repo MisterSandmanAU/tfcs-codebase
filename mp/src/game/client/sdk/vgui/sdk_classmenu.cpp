@@ -47,6 +47,7 @@ using namespace vgui;
 #if defined ( SDK_USE_PLAYERCLASSES )
 
 ConVar _cl_classmenuopen( "_cl_classmenuopen", "0", FCVAR_CLIENTCMD_CAN_EXECUTE, "internal cvar used to tell server when class menu is open" );
+extern ConVar mp_allowspecialclass;
 extern ConVar hud_classautokill;
 //-----------------------------------------------------------------------------
 // Purpose: 

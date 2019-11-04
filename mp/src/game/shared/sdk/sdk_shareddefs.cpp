@@ -112,6 +112,7 @@ static const char * s_WeaponAliasInfo[] =
 	"supernailgun",	// SDK_WEAPON_SUPERNAILGUN
 	"knife",	// SDK_WEAPON_KNIFE
 	"wrench",	// SDK_WEAPON_WRENCH
+	"ac",	// SDK_WEAPON_AC
 	NULL,		// WEAPON_NONE
 };
 

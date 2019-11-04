@@ -179,6 +179,8 @@ private:
 public:
 	virtual void DeathNotice( CBasePlayer *pVictim, const CTakeDamageInfo &info );
 	const char *GetKillingWeaponName( const CTakeDamageInfo &info, CSDKPlayer *pVictim, int *iWeaponID );
+	CBasePlayer* GetAssister(CBasePlayer *pVictim, CBasePlayer *pScorer, CBaseEntity *pInflictor);
+	CSDKPlayer*		GetRecentDamager(CSDKPlayer *pVictim, int iDamager, float flMaxElapsed);
 
 #endif
 

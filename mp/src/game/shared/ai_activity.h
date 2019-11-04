@@ -1398,6 +1398,13 @@ typedef enum
 
 	// Multiplayer - Primary
 	ACT_MP_STAND_PRIMARY,
+	//tfc anims
+	ref_aim_AC,
+	crouch_idle,
+	crouch_aim_AC,
+	run2,
+	walk2handed,
+	ref_shoot_AC,
 	ACT_MP_CROUCH_PRIMARY,
 	ACT_MP_RUN_PRIMARY,
 	ACT_MP_WALK_PRIMARY,

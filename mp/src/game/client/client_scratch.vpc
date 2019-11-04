@@ -150,6 +150,9 @@ $Project "Client (TFCSOURCE)"
 				$File	"$SRCDIR\game\shared\sdk\tfc_weapon_shotgun12gauge.cpp"
 				$File	"$SRCDIR\game\shared\sdk\weapon_supernailgun.cpp"
 				$File	"$SRCDIR\game\shared\sdk\weapon_umbrella.cpp"
+				$File	"$SRCDIR\game\shared\sdk\weapon_knife.cpp"
+				$File	"$SRCDIR\game\shared\sdk\weapon_wrench.cpp"
+				$File	"$SRCDIR\game\shared\sdk\weapon_assaultcannon.cpp"
 			}
 
 			$Folder	"Multiplayer"

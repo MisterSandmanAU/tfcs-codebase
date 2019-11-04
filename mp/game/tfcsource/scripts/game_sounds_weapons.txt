@@ -237,6 +237,17 @@
 	"wave"			")weapons/m3/m3-1.wav"
 }
 
+"Weapon_12Gauge.Single"
+{
+	"channel"		"CHAN_WEAPON"
+	"volume"		"1.0"
+	"CompatibilityAttenuation"	"0.48"
+	"pitch"		"PITCH_NORM"
+
+	"wave"			")weapons/12gauge_shoot.wav"
+}
+
+
 "Weapon_M3.Insertshell"
 {
 	"channel"		"CHAN_ITEM"

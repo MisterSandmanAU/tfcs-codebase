@@ -32,7 +32,7 @@ WeaponData
 	{
 		//"reload"			"Default.Reload"
 		//"empty"			"Default.ClipEmpty_Rifle"
-		"single_shot"			"Weapon_M3.Single"
+		"single_shot"			"Weapon_12Gauge.Single"
 		special3			Default.Zoom
 	}
 

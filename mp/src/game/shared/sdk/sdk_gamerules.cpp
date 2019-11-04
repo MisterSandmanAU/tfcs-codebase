@@ -1419,8 +1419,8 @@ CAmmoDef* GetAmmoDef()
 		for (int i=WEAPON_NONE+1;i<WEAPON_MAX;i++)
 		{
 			//Tony; ignore grenades, shotgun and the crowbar, grenades and shotgun are handled seperately because of their damage type not being DMG_BULLET.
-			if (i == SDK_WEAPON_GRENADE || i == SDK_WEAPON_CROWBAR || i == SDK_WEAPON_UMBRELLA || i == SDK_WEAPON_SHOTGUN || i == SDK_WEAPON_12GAUGE || i == SDK_WEAPON_NAILGUN
-				|| i == SDK_WEAPON_SUPERNAILGUN)
+			if (i == SDK_WEAPON_GRENADE || i == SDK_WEAPON_CROWBAR || i == SDK_WEAPON_UMBRELLA  || i == SDK_WEAPON_SHOTGUN || i == SDK_WEAPON_12GAUGE || i == SDK_WEAPON_NAILGUN
+				|| i == SDK_WEAPON_SUPERNAILGUN || i == SDK_WEAPON_WRENCH || i == SDK_WEAPON_KNIFE)
 				continue;
 
 			def.AddAmmoType( WeaponIDToAlias(i), DMG_BULLET, TRACER_LINE_AND_WHIZ, 0, 0, 200/*max carry*/, 1, 0 );

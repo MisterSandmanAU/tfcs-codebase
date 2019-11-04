@@ -110,6 +110,8 @@ static const char * s_WeaponAliasInfo[] =
 	"crowbar",	// SDK_WEAPON_CROWBAR
 	"umbrella",	// SDK_WEAPON_UMBRELLA
 	"supernailgun",	// SDK_WEAPON_SUPERNAILGUN
+	"knife",	// SDK_WEAPON_KNIFE
+	"wrench",	// SDK_WEAPON_WRENCH
 	NULL,		// WEAPON_NONE
 };
 

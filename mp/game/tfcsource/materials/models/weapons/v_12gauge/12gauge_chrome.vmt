@@ -1,8 +1,0 @@
-"VertexLitGeneric"
-{
-	"$envmap" "models/weapons/v_12gauge/12gauge_chrome"
-	"$envmapsphere"			"1"
-	"$envmapmode" "1"
-
-	"$multipass" "1"
-}

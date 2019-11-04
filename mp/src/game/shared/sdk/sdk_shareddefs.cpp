@@ -18,6 +18,13 @@ const char *pszTeamBlueClasses[] =
 	"blue_class1",
 	"blue_class2",
 	"blue_class3",
+	"blue_class4",
+	"blue_class5",
+	"blue_class6",
+	"blue_class7",
+	"blue_class8",
+	"blue_class9",
+	"blue_class10",
 	NULL
 };
 
@@ -26,6 +33,13 @@ const char *pszTeamRedClasses[] =
 	"red_class1",
 	"red_class2",
 	"red_class3",
+	"red_class4",
+	"red_class5",
+	"red_class6",
+	"red_class7",
+	"red_class8",
+	"red_class9",
+	"red_class10",
 	NULL
 };
 ConVar	mp_limit_blue_class1(		"mp_limit_blue_class1", "-1", FCVAR_REPLICATED, "Class limit for Blue class 1" );

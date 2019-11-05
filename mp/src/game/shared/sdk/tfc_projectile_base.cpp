@@ -64,6 +64,8 @@ void CTFCProjectileBase::ProjectileThink()
 void CTFCProjectileBase::ProjectileTouch(CBaseEntity* pOther)
 {
 	Assert(pOther);
+	if (!pOther->IsSolid() || pOther->IsSolidFlagSet(FSOLID_VOLUME_CONTENTS))
+		return;
 	if (!pOther->IsNPC() && !pOther->IsPlayer())
 	{
 		const trace_t* pTrace = &CBaseEntity::GetTouchTrace();

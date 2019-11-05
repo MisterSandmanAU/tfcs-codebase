@@ -170,6 +170,7 @@ typedef enum
 	SDK_WEAPON_KNIFE,
 	SDK_WEAPON_WRENCH,
 	SDK_WEAPON_AC,
+	SDK_WEAPON_MEDKIT,
 
 	
 	WEAPON_MAX,		// number of weapons weapon index

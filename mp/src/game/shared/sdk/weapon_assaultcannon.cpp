@@ -56,17 +56,17 @@ CWeaponAC::CWeaponAC()
 //Tony; todo; add ACT_MP_PRONE* activities, so we have them.
 acttable_t CWeaponAC::m_acttable[] =
 {
-	{ ref_aim_AC, ref_aim_AC, false },
-	{ crouch_idle, crouch_aim_AC, false },
+	{ ACT_MP_STAND_IDLE, ref_aim_AC, false },
+	{ ACT_MP_CROUCH_IDLE, crouch_aim_AC, false },
 	{ ACT_MP_PRONE_IDLE, ACT_DOD_PRONE_AIM_TOMMY, false },
 
-	{ run2, run2, false },
-	{ walk2handed, walk2handed, false },
-	{ walk2handed, ACT_DOD_CROUCHWALK_AIM_TOMMY, false },
+	{ ACT_MP_RUN, run2, false },
+	{ ACT_MP_WALK, walk2handed, false },
+	{ ACT_MP_CROUCHWALK, ACT_DOD_CROUCHWALK_AIM_TOMMY, false },
 	{ ACT_MP_PRONE_CRAWL, ACT_DOD_PRONEWALK_IDLE_TOMMY, false },
 	{ ACT_SPRINT, ACT_DOD_SPRINT_IDLE_TOMMY, false },
 
-	{ ref_shoot_AC, ref_shoot_AC, false },
+	{ ACT_MP_ATTACK_STAND_PRIMARYFIRE, ref_shoot_AC, false },
 	{ ACT_MP_ATTACK_CROUCH_PRIMARYFIRE, ACT_DOD_PRIMARYATTACK_TOMMY, false },
 	{ ACT_MP_ATTACK_PRONE_PRIMARYFIRE, ACT_DOD_PRIMARYATTACK_PRONE_TOMMY, false },
 	{ ACT_MP_ATTACK_STAND_SECONDARYFIRE, ACT_DOD_SECONDARYATTACK_TOMMY, false },

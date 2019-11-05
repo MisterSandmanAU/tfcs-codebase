@@ -145,6 +145,7 @@ $Project "Server (TFCSOURCE)"
 				$File	"$SRCDIR\game\shared\sdk\weapon_knife.cpp"
 				$File	"$SRCDIR\game\shared\sdk\weapon_wrench.cpp"
 				$File	"$SRCDIR\game\shared\sdk\weapon_assaultcannon.cpp"
+				$File	"$SRCDIR\game\shared\sdk\weapon_medkit.cpp"
 
 			}
 

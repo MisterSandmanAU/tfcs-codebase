@@ -130,7 +130,7 @@ extern CServerGameDLL g_ServerGameDLL;
 #define NERVEGAS_DURATION	2
 #define NERVEGAS_DAMAGE		5.0
 
-#define POISON_DURATION		5
+#define POISON_DURATION		25
 #define POISON_DAMAGE		2.0
 
 #define RADIATION_DURATION	2
@@ -3961,8 +3961,6 @@ void CBasePlayer::PreThink(void)
 //#define NERVEGAS_DURATION	16
 //#define NERVEGAS_DAMAGE		5.0
 
-#define POISON_DURATION		25
-#define POISON_DAMAGE		2.0
 
 //#define RADIATION_DURATION	50
 //#define RADIATION_DAMAGE	1.0

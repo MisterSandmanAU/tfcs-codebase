@@ -3961,8 +3961,8 @@ void CBasePlayer::PreThink(void)
 //#define NERVEGAS_DURATION	16
 //#define NERVEGAS_DAMAGE		5.0
 
-//#define POISON_DURATION		25
-//#define POISON_DAMAGE		2.0
+#define POISON_DURATION		25
+#define POISON_DAMAGE		2.0
 
 //#define RADIATION_DURATION	50
 //#define RADIATION_DAMAGE	1.0
@@ -4018,10 +4018,10 @@ void CBasePlayer::CheckTimeBasedDamage()
 //				OnTakeDamage(pev, pev, NERVEGAS_DAMAGE, DMG_GENERIC);	
 				bDuration = NERVEGAS_DURATION;
 				break;
-//			case itbd_Poison:
-//				OnTakeDamage( CTakeDamageInfo( this, this, POISON_DAMAGE, DMG_GENERIC ) );
-//				bDuration = POISON_DURATION;
-//				break;
+			case itbd_Poison:
+				OnTakeDamage( CTakeDamageInfo( this, this, POISON_DAMAGE, DMG_GENERIC ) );
+				bDuration = POISON_DURATION;
+				break;
 			case itbd_Radiation:
 //				OnTakeDamage(pev, pev, RADIATION_DAMAGE, DMG_GENERIC);
 				bDuration = RADIATION_DURATION;

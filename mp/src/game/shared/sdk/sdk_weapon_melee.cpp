@@ -126,7 +126,47 @@ void CWeaponSDKMelee::SecondaryAttack()
 	Swing( true );
 }
 
+bool CWeaponSDKMelee::DoSwingTrace(trace_t &traceHit)
+{
 
+	// Try a ray
+	CSDKPlayer *pOwner = ToSDKPlayer(GetOwner());
+	if (!pOwner)
+		return false;
+
+	Vector swingStart = pOwner->Weapon_ShootPosition();
+	Vector forward;
+
+	pOwner->EyeVectors(&forward, NULL, NULL);
+
+	Vector swingEnd = swingStart + forward * GetRange();
+	UTIL_TraceLine(swingStart, swingEnd, MASK_SHOT_HULL, pOwner, COLLISION_GROUP_NONE, &traceHit);
+
+	if (traceHit.fraction >= 1.0)
+	{
+		float meleeHullRadius = 1.732f * MELEE_HULL_DIM;  // hull is +/- 16, so use cuberoot of 2 to determine how big the hull is from center to the corner point
+
+		// Back off by hull "radius"
+		swingEnd -= forward * meleeHullRadius;
+
+		UTIL_TraceHull(swingStart, swingEnd, g_meleeMins, g_meleeMaxs, MASK_SHOT_HULL, pOwner, COLLISION_GROUP_NONE, &traceHit);
+		if (traceHit.fraction < 1.0 )
+		{
+			CBaseEntity *pHit = traceHit.m_pEnt;
+			if (!pHit || pHit->IsBSPModel() )
+			{
+				ChooseIntersectionPoint(traceHit, VEC_DUCK_HULL_MIN, VEC_DUCK_HULL_MAX, pOwner);
+			}
+
+			swingEnd = traceHit.endpos;
+
+
+		}
+	}
+
+	return(traceHit.fraction < 1.0f);
+
+}
 //------------------------------------------------------------------------------
 // Purpose: Implement impact function
 //------------------------------------------------------------------------------
@@ -217,6 +257,48 @@ Activity CWeaponSDKMelee::ChooseIntersectionPointAndActivity( trace_t &hitTrace,
 
 
 	return ACT_VM_HITCENTER;
+}
+
+void CWeaponSDKMelee::ChooseIntersectionPoint(trace_t &hitTrace, const Vector &mins, const Vector &maxs, CSDKPlayer *pOwner)
+{
+	int			i, j, k;
+	float		distance;
+	const float	*minmaxs[2] = { mins.Base(), maxs.Base() };
+	trace_t		tmpTrace;
+	Vector		vecHullEnd = hitTrace.endpos;
+	Vector		vecEnd;
+
+	distance = 1e6f;
+	Vector vecSrc = hitTrace.startpos;
+
+	vecHullEnd = vecSrc + ((vecHullEnd - vecSrc) * 2);
+	UTIL_TraceLine(vecSrc, vecHullEnd, MASK_SHOT_HULL, pOwner, COLLISION_GROUP_NONE, &tmpTrace);
+	if (tmpTrace.fraction == 1.0)
+	{
+		for (i = 0; i < 2; i++)
+		{
+			for (j = 0; j < 2; j++)
+			{
+				for (k = 0; k < 2; k++)
+				{
+					vecEnd.x = vecHullEnd.x + minmaxs[i][0];
+					vecEnd.y = vecHullEnd.y + minmaxs[j][1];
+					vecEnd.z = vecHullEnd.z + minmaxs[k][2];
+
+					UTIL_TraceLine(vecSrc, vecEnd, MASK_SHOT_HULL, pOwner, COLLISION_GROUP_NONE, &tmpTrace);
+					if (tmpTrace.fraction < 1.0)
+					{
+						float thisDistance = (tmpTrace.endpos - vecSrc).Length();
+						if (thisDistance < distance)
+						{
+							hitTrace = tmpTrace;
+							distance = thisDistance;
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
 //-----------------------------------------------------------------------------

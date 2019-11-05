@@ -37,6 +37,10 @@ public:
 	
 	virtual void	ItemPostFrame( void );
 
+	bool DoSwingTrace(trace_t &traceHit);
+
+
+
 	//Functions to select animation sequences 
 	virtual Activity	GetPrimaryAttackActivity( void )	{	return	ACT_VM_HITCENTER;	}
 	virtual Activity	GetSecondaryAttackActivity( void )	{	return	ACT_VM_HITCENTER2;	}
@@ -54,6 +58,7 @@ private:
 	void			Swing( int bIsSecondary );
 	void			Hit( trace_t &traceHit, Activity nHitActivity );
 	Activity		ChooseIntersectionPointAndActivity( trace_t &hitTrace, const Vector &mins, const Vector &maxs, CSDKPlayer *pOwner );
+	void ChooseIntersectionPoint(trace_t &hitTrace, const Vector &mins, const Vector &maxs, CSDKPlayer *pOwner);
 };
 
 

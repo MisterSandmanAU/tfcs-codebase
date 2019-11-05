@@ -113,6 +113,7 @@ enum
 	itbd_Acid,
 	itbd_SlowBurn,
 	itbd_SlowFreeze,
+	itbd_Poison,
 
 	// Must be last!
 	CDMG_TIMEBASED

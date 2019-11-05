@@ -83,6 +83,7 @@ END_NETWORK_TABLE()
 #if defined ( SDK_USE_PLAYERCLASSES )
 	ConVar mp_allowrandomclass( "mp_allowrandomclass", "1", FCVAR_REPLICATED, "Allow players to select random class" );
 	ConVar mp_allowspecialclass("mp_allowspecialclass", "0", FCVAR_REPLICATED, "Allow players to select civilian class");
+	ConVar mp_ignorefriendlyjustheal("mp_ignorefriendlyjustheal", "0", FCVAR_REPLICATED, "Allow players to ignore if they heal a friendly");
 #endif
 
 

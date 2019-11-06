@@ -74,6 +74,13 @@ CON_COMMAND_F( changeclass, "Choose a new class", FCVAR_SERVER_CAN_EXECUTE|FCVAR
 		case SDK_TEAM_RED:
 			gViewPortInterface->ShowPanel( PANEL_CLASS_RED, true );
 			break;
+
+		case SDK_TEAM_YELLOW:
+			gViewPortInterface->ShowPanel( PANEL_CLASS_YELLOW, true );
+			break;
+		case SDK_TEAM_GREEN:
+			gViewPortInterface->ShowPanel(PANEL_CLASS_GREEN, true);
+			break;
 #else
 		case TEAM_UNASSIGNED:
 			gViewPortInterface->ShowPanel( PANEL_CLASS, true );
@@ -174,6 +181,14 @@ IViewPortPanel* SDKViewport::CreatePanelByName(const char *szPanelName)
 		{
 			newpanel = new CSDKClassMenu_Red( this );
 		}
+		else if (Q_strcmp(PANEL_CLASS_YELLOW, szPanelName) == 0)
+		{
+			newpanel = new CSDKClassMenu_Yellow(this);
+		}
+		else if (Q_strcmp(PANEL_CLASS_GREEN, szPanelName) == 0)
+		{
+			newpanel = new CSDKClassMenu_Green(this);
+		}
 	#endif
 #endif
 #if defined ( SDK_USE_TEAMS )
@@ -199,6 +214,8 @@ void SDKViewport::CreateDefaultPanels( void )
 	#else
 		AddNewPanel( CreatePanelByName( PANEL_CLASS_BLUE ), "PANEL_CLASS_BLUE" );
 		AddNewPanel( CreatePanelByName( PANEL_CLASS_RED ), "PANEL_CLASS_RED" );
+		AddNewPanel(CreatePanelByName(PANEL_CLASS_YELLOW), "PANEL_CLASS_YELLOW");
+		AddNewPanel(CreatePanelByName(PANEL_CLASS_GREEN), "PANEL_CLASS_GREEN");
 	#endif
 #endif
 #if defined ( SDK_USE_TEAMS )

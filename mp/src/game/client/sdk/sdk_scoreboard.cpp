@@ -30,6 +30,14 @@
 
 using namespace vgui;
 
+extern ConVar mp_showteamscorered;
+extern ConVar mp_showteamscoreblue;
+extern ConVar mp_showteamscoreyellow;
+extern ConVar mp_showteamscoregreen;
+extern ConVar mp_4team;
+extern ConVar mp_deathmatch;
+
+// Four Team ScoreBoard crashes game, BOO!
 //-----------------------------------------------------------------------------
 // Purpose: Constructor
 //-----------------------------------------------------------------------------
@@ -51,6 +59,16 @@ CSDKScoreboard::CSDKScoreboard( IViewPort *pViewPort ) : CClientScoreBoardDialog
 	m_pScoreLabel_Blue = new Label( this, "Blue_Score", "" );
 	m_pPingLabel_Blue = new Label( this, "Blue_Latency", "" );
 
+	/*m_pPlayerListYellow = new SectionedListPanel(this, "PlayerListYellow");
+	m_pPlayerCountLabel_Yellow = new Label(this, "Yellow_PlayerCount", "");
+	m_pScoreLabel_Yellow = new Label(this, "Yellow_Score", "");
+	m_pPingLabel_Yellow = new Label(this, "Yellow_Latency", "");
+
+	m_pPlayerListGreen = new SectionedListPanel(this, "PlayerListGreen");
+	m_pPlayerCountLabel_Green = new Label(this, "Green_PlayerCount", "");
+	m_pScoreLabel_Green = new Label(this, "Green_Score", "");
+	m_pPingLabel_Green = new Label(this, "Green_Latency", "");
+	*/
 	m_pVertLine = new ImagePanel( this, "VerticalLine" );
 
 	ListenForGameEvent( "server_spawn" );
@@ -138,6 +156,22 @@ void CSDKScoreboard::ApplySchemeSettings( vgui::IScheme *pScheme )
 		m_pPlayerListBlue->SetVisible( false );
 	}
 
+	/*if (m_pPlayerListYellow)
+	{
+		m_pPlayerListYellow->SetImageList(m_pImageList, false);
+		m_pPlayerListYellow->SetBgColor(Color(0, 0, 0, 0));
+		m_pPlayerListYellow->SetBorder(NULL);
+		m_pPlayerListYellow->SetVisible(false);
+	}
+
+	if (m_pPlayerListGreen)
+	{
+		m_pPlayerListGreen->SetImageList(m_pImageList, false);
+		m_pPlayerListGreen->SetBgColor(Color(0, 0, 0, 0));
+		m_pPlayerListGreen->SetBorder(NULL);
+		m_pPlayerListGreen->SetVisible(false);
+	}*/
+
 	// turn off the default player list since we have our own
 	if ( m_pPlayerList )
 		m_pPlayerList->SetVisible( false );
@@ -182,6 +216,34 @@ void CSDKScoreboard::ApplySchemeSettings( vgui::IScheme *pScheme )
 		m_pPingLabel_Blue->SetFgColor( COLOR_BLUE );
 	}
 
+	/*m_pScoreHeader_Yellow = (Label*)FindChildByName("Yellow_ScoreHeader");
+	m_pDeathsHeader_Yellow = (Label*)FindChildByName("Yellow_DeathsHeader");
+	m_pPingHeader_Yellow = (Label*)FindChildByName("Yellow_PingHeader");
+
+	if (m_pPlayerCountLabel_Yellow && m_pScoreHeader_Yellow && m_pScoreLabel_Yellow && m_pDeathsHeader_Yellow && m_pPingHeader_Yellow && m_pPingLabel_Yellow)
+	{
+		m_pPlayerCountLabel_Yellow->SetFgColor(COLOR_YELLOW);
+		m_pScoreHeader_Yellow->SetFgColor(COLOR_YELLOW);
+		m_pScoreLabel_Yellow->SetFgColor(COLOR_YELLOW);
+		m_pDeathsHeader_Yellow->SetFgColor(COLOR_YELLOW);
+		m_pPingHeader_Yellow->SetFgColor(COLOR_YELLOW);
+		m_pPingLabel_Yellow->SetFgColor(COLOR_YELLOW);
+	}
+
+	m_pScoreHeader_Green = (Label*)FindChildByName("Green_ScoreHeader");
+	m_pDeathsHeader_Green = (Label*)FindChildByName("Green_DeathsHeader");
+	m_pPingHeader_Green = (Label*)FindChildByName("Green_PingHeader");
+
+	if (m_pPlayerCountLabel_Green && m_pScoreHeader_Green && m_pScoreLabel_Green && m_pDeathsHeader_Green && m_pPingHeader_Green && m_pPingLabel_Green)
+	{
+		m_pPlayerCountLabel_Green->SetFgColor(COLOR_YELLOW);
+		m_pScoreHeader_Green->SetFgColor(COLOR_YELLOW);
+		m_pScoreLabel_Green->SetFgColor(COLOR_YELLOW);
+		m_pDeathsHeader_Green->SetFgColor(COLOR_YELLOW);
+		m_pPingHeader_Green->SetFgColor(COLOR_YELLOW);
+		m_pPingLabel_Green->SetFgColor(COLOR_YELLOW);
+	}*/
+
 	// Store the scoreboard width, for Update();
 	m_iStoredScoreboardWidth = GetWide();
 
@@ -197,6 +259,8 @@ void CSDKScoreboard::Reset()
 	InitPlayerList( m_pPlayerListDM, TEAM_UNASSIGNED );
 	InitPlayerList( m_pPlayerListRed, SDK_TEAM_RED );
 	InitPlayerList( m_pPlayerListBlue, SDK_TEAM_BLUE );
+	/*InitPlayerList(m_pPlayerListYellow, SDK_TEAM_YELLOW);
+	InitPlayerList(m_pPlayerListGreen, SDK_TEAM_GREEN);*/
 }
 
 //-----------------------------------------------------------------------------
@@ -314,6 +378,18 @@ void CSDKScoreboard::UpdateTeamInfo()
 					pDialogVarTeamPlayerCount = "blue_teamplayercount";
 					pDialogVarTeamPing = "blue_teamping";
 					break;
+				/*case SDK_TEAM_YELLOW:
+					teamName = g_pVGuiLocalize->Find( "#SDK_ScoreBoard_Yellow" );
+					pDialogVarTeamScore = "yellow_teamscore";
+					pDialogVarTeamPlayerCount = "yellow_teamplayercount";
+					pDialogVarTeamPing = "yellow_teamping";
+					break;
+				case SDK_TEAM_GREEN:
+					teamName = g_pVGuiLocalize->Find( "#SDK_ScoreBoard_Green" );
+					pDialogVarTeamScore = "green_teamscore";
+					pDialogVarTeamPlayerCount = "green_teamplayercount";
+					pDialogVarTeamPing = "green_teamping";
+					break;*/
 				case TEAM_UNASSIGNED:
 					teamName = g_pVGuiLocalize->Find( "#SDK_ScoreBoard_DM" );
 					pDialogVarTeamPlayerCount = "dm_playercount";
@@ -384,6 +460,8 @@ void CSDKScoreboard::UpdatePlayerList()
 	m_pPlayerListDM->RemoveAll();
 	m_pPlayerListRed->RemoveAll();
 	m_pPlayerListBlue->RemoveAll();
+	/*m_pPlayerListYellow->RemoveAll();
+	m_pPlayerListGreen->RemoveAll();*/
 
 	C_SDKPlayer *pLocalPlayer = C_SDKPlayer::GetLocalSDKPlayer();
 	if ( !pLocalPlayer )
@@ -408,6 +486,12 @@ void CSDKScoreboard::UpdatePlayerList()
 				case SDK_TEAM_BLUE:
 					pPlayerList = m_pPlayerListBlue;
 					break;
+				/*case SDK_TEAM_YELLOW:
+					pPlayerList = m_pPlayerListYellow;
+					break;
+				case SDK_TEAM_GREEN:
+					pPlayerList = m_pPlayerListGreen;
+					break;*/
 				}
 			}
 
@@ -605,25 +689,99 @@ bool CSDKScoreboard::GetPlayerScoreInfo( int playerIndex, KeyValues *kv )
 void CSDKScoreboard::UpdateItemVisibiity()
 {
 	// Need to do this in Update, ensure the correct player lists/headers are visible.
-	if ( SDKGameRules()->IsTeamplay() )
+	if (SDKGameRules()->IsTeamplay() && !mp_deathmatch.GetBool())
 	{
-		// Red Labels _ON_
-		m_pPlayerListRed->SetVisible( true );
-		m_pPlayerCountLabel_Red->SetVisible( true );
-		m_pScoreHeader_Red->SetVisible( true );
-		m_pScoreLabel_Red->SetVisible( true );
-		m_pDeathsHeader_Red->SetVisible( true );
-		m_pPingHeader_Red->SetVisible( true );
-		m_pPingLabel_Red->SetVisible( true );
+		if (mp_showteamscorered.GetBool())
+		{
+			// Red Labels _ON_
+			m_pPlayerListRed->SetVisible(true);
+			m_pPlayerCountLabel_Red->SetVisible(true);
+			m_pScoreHeader_Red->SetVisible(true);
+			m_pScoreLabel_Red->SetVisible(true);
+			m_pDeathsHeader_Red->SetVisible(true);
+			m_pPingHeader_Red->SetVisible(true);
+			m_pPingLabel_Red->SetVisible(true);
+		}
+		else
+		{
+			// Red Labels _OFF_
+			m_pPlayerListRed->SetVisible(false);
+			m_pPlayerCountLabel_Red->SetVisible(false);
+			m_pScoreHeader_Red->SetVisible(false);
+			m_pScoreLabel_Red->SetVisible(false);
+			m_pDeathsHeader_Red->SetVisible(false);
+			m_pPingHeader_Red->SetVisible(false);
+			m_pPingLabel_Red->SetVisible(false);
+		}
+		if (mp_showteamscoreblue.GetBool())
+		{
+			// Blue Labels _ON_
+			m_pPlayerListBlue->SetVisible(true);
+			m_pPlayerCountLabel_Blue->SetVisible(true);
+			m_pScoreHeader_Blue->SetVisible(true);
+			m_pScoreLabel_Blue->SetVisible(true);
+			m_pDeathsHeader_Blue->SetVisible(true);
+			m_pPingHeader_Blue->SetVisible(true);
+			m_pPingLabel_Blue->SetVisible(true);
+		}
+		else
+		{
+			// Blue Labels _OFF_
+			m_pPlayerListBlue->SetVisible(false);
+			m_pPlayerCountLabel_Blue->SetVisible(false);
+			m_pScoreHeader_Blue->SetVisible(false);
+			m_pScoreLabel_Blue->SetVisible(false);
+			m_pDeathsHeader_Blue->SetVisible(false);
+			m_pPingHeader_Blue->SetVisible(false);
+			m_pPingLabel_Blue->SetVisible(false);
+		}
+		/*if (mp_showteamscoreyellow.GetBool() || mp_4team.GetBool())
+		{
+			// Yellow Labels _ON_
+			m_pPlayerListYellow->SetVisible(true);
+			m_pPlayerCountLabel_Yellow->SetVisible(true);
+			m_pScoreHeader_Yellow->SetVisible(true);
+			m_pScoreLabel_Yellow->SetVisible(true);
+			m_pDeathsHeader_Yellow->SetVisible(true);
+			m_pPingHeader_Yellow->SetVisible(true);
+			m_pPingLabel_Yellow->SetVisible(true);
+		}
+		else
+		{
+			// Yellow Labels _OFF_
+			m_pPlayerListYellow->SetVisible(false);
+			m_pPlayerCountLabel_Yellow->SetVisible(false);
+			m_pScoreHeader_Yellow->SetVisible(false);
+			m_pScoreLabel_Yellow->SetVisible(false);
+			m_pDeathsHeader_Yellow->SetVisible(false);
+			m_pPingHeader_Yellow->SetVisible(false);
+			m_pPingLabel_Yellow->SetVisible(false);
+		}
+		if (mp_showteamscoregreen.GetBool() || mp_4team.GetBool())
+		{
+			// Green Labels _ON_
+			m_pPlayerListGreen->SetVisible(true);
+			m_pPlayerCountLabel_Green->SetVisible(true);
+			m_pScoreHeader_Green->SetVisible(true);
+			m_pScoreLabel_Green->SetVisible(true);
+			m_pDeathsHeader_Green->SetVisible(true);
+			m_pPingHeader_Green->SetVisible(true);
+			m_pPingLabel_Green->SetVisible(true);
+		}
+		else
+		{
+			// Green Labels _OFF_
+			m_pPlayerListGreen->SetVisible(false);
+			m_pPlayerCountLabel_Green->SetVisible(false);
+			m_pScoreHeader_Green->SetVisible(false);
+			m_pScoreLabel_Green->SetVisible(false);
+			m_pDeathsHeader_Green->SetVisible(false);
+			m_pPingHeader_Green->SetVisible(false);
+			m_pPingLabel_Green->SetVisible(false);
+		}*/
 
-		// Blue Labels _ON_
-		m_pPlayerListBlue->SetVisible( true );
-		m_pPlayerCountLabel_Blue->SetVisible( true );
-		m_pScoreHeader_Blue->SetVisible( true );
-		m_pScoreLabel_Blue->SetVisible( true );
-		m_pDeathsHeader_Blue->SetVisible( true );
-		m_pPingHeader_Blue->SetVisible( true );
-		m_pPingLabel_Blue->SetVisible( true );
+		
+
 
 		// Vertical Line _ON_
 		m_pVertLine->SetVisible( true );
@@ -659,6 +817,24 @@ void CSDKScoreboard::UpdateItemVisibiity()
 		m_pPingHeader_Blue->SetVisible( false );
 		m_pPingLabel_Blue->SetVisible( false );
 
+		// Yellow Labels _OFF_
+		/*m_pPlayerListYellow->SetVisible(false);
+		m_pPlayerCountLabel_Yellow->SetVisible(false);
+		m_pScoreHeader_Yellow->SetVisible(false);
+		m_pScoreLabel_Yellow->SetVisible(false);
+		m_pDeathsHeader_Yellow->SetVisible(false);
+		m_pPingHeader_Yellow->SetVisible(false);
+		m_pPingLabel_Yellow->SetVisible(false);
+
+		// Green Labels _OFF_
+		m_pPlayerListGreen->SetVisible(false);
+		m_pPlayerCountLabel_Green->SetVisible(false);
+		m_pScoreHeader_Green->SetVisible(false);
+		m_pScoreLabel_Green->SetVisible(false);
+		m_pDeathsHeader_Green->SetVisible(false);
+		m_pPingHeader_Green->SetVisible(false);
+		m_pPingLabel_Green->SetVisible(false);
+		*/
 		// Vertical Line _OFF_
 		m_pVertLine->SetVisible( false );
 

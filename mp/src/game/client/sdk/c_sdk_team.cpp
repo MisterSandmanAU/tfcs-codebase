@@ -19,6 +19,8 @@
 //Tony; undefine what I did in the header so everything from this point forward functions correctly.
 #undef CSDKTeam
 
+
+
 IMPLEMENT_CLIENTCLASS_DT(C_SDKTeam, DT_SDKTeam, CSDKTeam)
 END_RECV_TABLE()
 
@@ -184,11 +186,46 @@ C_SDKTeam_Red::C_SDKTeam_Red()
 #if defined ( SDK_USE_PLAYERCLASSES )
 	//parse our classes
 	int i = 0;
-	while( pszTeamRedClasses[i] != NULL )
+	while (pszTeamRedClasses[i] != NULL)
 	{
-		AddPlayerClass( pszTeamRedClasses[i] );
+		AddPlayerClass(pszTeamRedClasses[i]);
 		i++;
-	}	
+	}
 #endif
 }
+
+	IMPLEMENT_CLIENTCLASS_DT(C_SDKTeam_Yellow, DT_SDKTeam_Yellow, CSDKTeam_Yellow)
+		END_RECV_TABLE()
+
+C_SDKTeam_Yellow::C_SDKTeam_Yellow()
+{
+#if defined ( SDK_USE_PLAYERCLASSES )
+		//parse our classes
+		int i = 0;
+		while (pszTeamYellowClasses[i] != NULL)
+		{
+			AddPlayerClass(pszTeamYellowClasses[i]);
+			i++;
+		}
+#endif
+	}
+
+	IMPLEMENT_CLIENTCLASS_DT(C_SDKTeam_Green, DT_SDKTeam_Green, CSDKTeam_Green)
+		END_RECV_TABLE()
+
+		C_SDKTeam_Green::C_SDKTeam_Green()
+	{
+#if defined ( SDK_USE_PLAYERCLASSES )
+		//parse our classes
+		int i = 0;
+		while (pszTeamGreenClasses[i] != NULL)
+		{
+			AddPlayerClass(pszTeamGreenClasses[i]);
+			i++;
+		}
+#endif
+	}
+
+
+
 #endif // SDK_USE_TEAMS

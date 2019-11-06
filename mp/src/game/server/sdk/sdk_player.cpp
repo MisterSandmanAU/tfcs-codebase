@@ -24,15 +24,20 @@
 
 extern int gEvilImpulse101;
 
+extern ConVar mp_deathmatch;
+
 
 ConVar SDK_ShowStateTransitions( "sdk_ShowStateTransitions", "-2", FCVAR_CHEAT, "sdk_ShowStateTransitions <ent index or -1 for all>. Show player state transitions." );
-ConVar mp_TeamFull_Spawnpoints("mp_TeamFull_Spawnpoints", "0", FCVAR_GAMEDLL, "mp_baseTeamFull_Spawnpoints Should teams being full be based on SpawnPoints? <0, 1>");
+
 
 
 EHANDLE g_pLastDMSpawn;
 #if defined ( SDK_USE_TEAMS )
 EHANDLE g_pLastBlueSpawn;
 EHANDLE g_pLastRedSpawn;
+
+EHANDLE g_pLastYellowSpawn;
+EHANDLE g_pLastGreenSpawn;
 #endif
 // -------------------------------------------------------------------------------- //
 // Player animation event. Sent to the client when a player fires, jumps, reloads, etc..
@@ -445,21 +450,89 @@ CBaseEntity* CSDKPlayer::EntSelectSpawnPoint()
 #if defined ( SDK_USE_TEAMS )
 	case SDK_TEAM_BLUE:
 		{
-			pSpawnPointName = "info_player_blue";
-			pSpot = g_pLastBlueSpawn;
-			if ( SelectSpawnSpot( pSpawnPointName, pSpot ) )
+			if (mp_deathmatch.GetBool())
 			{
-				g_pLastBlueSpawn = pSpot;
+				pSpawnPointName = "info_player_deathmatch";
+				pSpot = g_pLastDMSpawn;
+				if (SelectSpawnSpot(pSpawnPointName, pSpot))
+				{
+					g_pLastDMSpawn = pSpot;
+				}
+			}
+			else
+			{
+				pSpawnPointName = "info_player_blue";
+				pSpot = g_pLastBlueSpawn;
+				if (SelectSpawnSpot(pSpawnPointName, pSpot))
+				{
+					g_pLastBlueSpawn = pSpot;
+				}
 			}
 		}
 		break;
 	case SDK_TEAM_RED:
 		{
-			pSpawnPointName = "info_player_red";
-			pSpot = g_pLastRedSpawn;
-			if ( SelectSpawnSpot( pSpawnPointName, pSpot ) )
+			if (mp_deathmatch.GetBool())
 			{
-				g_pLastRedSpawn = pSpot;
+				pSpawnPointName = "info_player_deathmatch";
+				pSpot = g_pLastDMSpawn;
+				if (SelectSpawnSpot(pSpawnPointName, pSpot))
+				{
+					g_pLastDMSpawn = pSpot;
+				}
+			}
+			else
+			{
+				pSpawnPointName = "info_player_red";
+				pSpot = g_pLastRedSpawn;
+				if (SelectSpawnSpot(pSpawnPointName, pSpot))
+				{
+					g_pLastRedSpawn = pSpot;
+				}
+			}
+		}		
+		break;
+	case SDK_TEAM_YELLOW:
+		{
+			if (mp_deathmatch.GetBool())
+			{
+				pSpawnPointName = "info_player_deathmatch";
+				pSpot = g_pLastDMSpawn;
+				if (SelectSpawnSpot(pSpawnPointName, pSpot))
+				{
+					g_pLastDMSpawn = pSpot;
+				}
+			}
+			else
+			{
+				pSpawnPointName = "info_player_yellow";
+				pSpot = g_pLastYellowSpawn;
+				if (SelectSpawnSpot(pSpawnPointName, pSpot))
+				{
+					g_pLastYellowSpawn = pSpot;
+				}
+			}
+		}
+		break;
+	case SDK_TEAM_GREEN:
+		{
+			if (mp_deathmatch.GetBool())
+			{
+				pSpawnPointName = "info_player_deathmatch";
+				pSpot = g_pLastDMSpawn;
+				if (SelectSpawnSpot(pSpawnPointName, pSpot))
+				{
+					g_pLastDMSpawn = pSpot;
+				}
+			}
+			else
+			{
+				pSpawnPointName = "info_player_green";
+				pSpot = g_pLastGreenSpawn;
+				if (SelectSpawnSpot(pSpawnPointName, pSpot))
+				{
+					g_pLastGreenSpawn = pSpot;
+				}
 			}
 		}		
 		break;
@@ -1199,6 +1272,14 @@ bool CSDKPlayer::HandleCommand_JoinTeam( int team )
 		{
 			ClientPrint(this, HUD_PRINTTALK, "#RedTeam_Full");
 		}
+		else if (team == SDK_TEAM_YELLOW)
+		{
+			ClientPrint(this, HUD_PRINTTALK, "#YellowTeam_Full");
+		}
+		else if (team == SDK_TEAM_GREEN)
+		{
+			ClientPrint(this, HUD_PRINTTALK, "#GreenTeam_Full");
+		}
 		ShowViewPortPanel(PANEL_TEAM);
 		return false;
 	}
@@ -1230,7 +1311,7 @@ bool CSDKPlayer::HandleCommand_JoinTeam( int team )
 		ClientPrint( 
 			this,
 			HUD_PRINTCENTER,
-			( team == SDK_TEAM_BLUE ) ?	"#BlueTeam_full" : "#RedTeam_full" );
+			(team == SDK_TEAM_BLUE) ? "#BlueTeam_full" : "#RedTeam_full" ? "#YellowTeam_full" : "#GreenTeam_full");
 
 		ShowViewPortPanel( PANEL_TEAM );
 		return false;
@@ -1340,6 +1421,14 @@ void CSDKPlayer::ShowClassSelectMenu()
 	else if ( GetTeamNumber() == SDK_TEAM_RED	)
 	{
 		ShowViewPortPanel( PANEL_CLASS_RED );
+	}
+	else if (GetTeamNumber() == SDK_TEAM_YELLOW)
+	{
+		ShowViewPortPanel( PANEL_CLASS_YELLOW );
+	}
+	else if (GetTeamNumber() == SDK_TEAM_GREEN)
+	{
+		ShowViewPortPanel(PANEL_CLASS_GREEN);
 	}
 
 #else

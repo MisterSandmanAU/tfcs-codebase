@@ -42,6 +42,51 @@ const char *pszTeamRedClasses[] =
 	"civilian",
 	NULL
 };
+
+const char *pszTeamClasses[] =
+{
+	"scout",
+	"soldier",
+	"pyro",
+	"hwguy",
+	"demoman",
+	"engineer",
+	"medic",
+	"sniper",
+	"spy",
+	"civilian",
+	NULL
+};
+
+const char *pszTeamYellowClasses[] =
+{
+	"scout",
+	"soldier",
+	"pyro",
+	"hwguy",
+	"demoman",
+	"engineer",
+	"medic",
+	"sniper",
+	"spy",
+	"civilian",
+	NULL
+};
+
+const char *pszTeamGreenClasses[] =
+{
+	"scout",
+	"soldier",
+	"pyro",
+	"hwguy",
+	"demoman",
+	"engineer",
+	"medic",
+	"sniper",
+	"spy",
+	"civilian",
+	NULL
+};
 ConVar	mp_limit_blue_class1(		"mp_limit_blue_class1", "-1", FCVAR_REPLICATED, "Class limit for Blue class 1" );
 ConVar	mp_limit_blue_class2(		"mp_limit_blue_class2", "-1", FCVAR_REPLICATED, "Class limit for Blue class 2" );
 ConVar	mp_limit_blue_class3(		"mp_limit_blue_class3", "-1", FCVAR_REPLICATED, "Class limit for Blue class 3" );
@@ -71,6 +116,8 @@ const char *pszTeamNames[] =
 #if defined ( SDK_USE_TEAMS )
 	"#SDK_Team_Blue",
 	"#SDK_Team_Red",
+	"#SDK_Team_Yellow",
+	"#SDK_Team_Green",
 #endif
 };
 

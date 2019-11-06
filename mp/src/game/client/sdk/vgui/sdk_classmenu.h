@@ -145,6 +145,46 @@ public:
 		return SDK_TEAM_RED;
 	}
 };
+class CSDKClassMenu_Yellow : public CSDKClassMenu
+{
+private:
+	DECLARE_CLASS_SIMPLE(CSDKClassMenu_Yellow, CSDKClassMenu);
+
+public:
+	CSDKClassMenu_Yellow::CSDKClassMenu_Yellow(IViewPort *pViewPort) : BaseClass(pViewPort, PANEL_CLASS_YELLOW)
+	{
+		LoadControlSettings("Resource/UI/ClassMenu_Yellow.res");
+	}
+
+	virtual const char *GetName(void)
+	{
+		return PANEL_CLASS_YELLOW;
+	}
+	virtual int GetTeamNumber(void)
+	{
+		return SDK_TEAM_YELLOW;
+	}
+};
+class CSDKClassMenu_Green : public CSDKClassMenu
+{
+private:
+	DECLARE_CLASS_SIMPLE(CSDKClassMenu_Green, CSDKClassMenu);
+
+public:
+	CSDKClassMenu_Green::CSDKClassMenu_Green(IViewPort *pViewPort) : BaseClass(pViewPort, PANEL_CLASS_GREEN)
+	{
+		LoadControlSettings("Resource/UI/ClassMenu_Green.res");
+	}
+
+	virtual const char *GetName(void)
+	{
+		return PANEL_CLASS_GREEN;
+	}
+	virtual int GetTeamNumber(void)
+	{
+		return SDK_TEAM_GREEN;
+	}
+};
 #endif
 
 #endif // SDK_USE_PLAYERCLASSES

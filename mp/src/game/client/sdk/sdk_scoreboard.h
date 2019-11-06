@@ -59,6 +59,8 @@ private:
 	vgui::SectionedListPanel *m_pPlayerListDM;	//Deathmatch Player list.
 	vgui::SectionedListPanel *m_pPlayerListRed;
 	vgui::SectionedListPanel *m_pPlayerListBlue;
+	vgui::SectionedListPanel *m_pPlayerListYellow;
+	vgui::SectionedListPanel *m_pPlayerListGreen;
 
 	CPanelAnimationVarAliasType( int, m_iStatusWidth, "status_width", "35", "proportional_int" );
 	CPanelAnimationVarAliasType( int, m_iFragsWidth, "frags_width", "30", "proportional_int" );
@@ -82,6 +84,22 @@ private:
 	vgui::Label	*m_pDeathsHeader_Blue;
 	vgui::Label	*m_pPingHeader_Blue;
 	vgui::Label	*m_pPingLabel_Blue;
+
+	//Team Yellow
+	vgui::Label	*m_pPlayerCountLabel_Yellow;
+	vgui::Label	*m_pScoreHeader_Yellow;
+	vgui::Label	*m_pScoreLabel_Yellow;
+	vgui::Label	*m_pDeathsHeader_Yellow;
+	vgui::Label	*m_pPingHeader_Yellow;
+	vgui::Label	*m_pPingLabel_Yellow;
+
+	// Team Green
+	vgui::Label	*m_pPlayerCountLabel_Green;
+	vgui::Label	*m_pScoreHeader_Green;
+	vgui::Label	*m_pScoreLabel_Green;
+	vgui::Label	*m_pDeathsHeader_Green;
+	vgui::Label	*m_pPingHeader_Green;
+	vgui::Label	*m_pPingLabel_Green;
 
 	// Create the vertical line so we can hide it in single column mode.
 	vgui::ImagePanel *m_pVertLine;

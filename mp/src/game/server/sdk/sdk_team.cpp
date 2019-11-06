@@ -105,7 +105,7 @@ void CSDKTeam::ResetScores( void )
 //
 // TEAMS
 //
-
+// There is probably a better way to load classes instead of loading them in four times as that is only for team different classes.
 #if defined ( SDK_USE_TEAMS )
 
 // BLUE TEAM
@@ -168,6 +168,68 @@ IMPLEMENT_SERVERCLASS_ST(CSDKTeam_Red, DT_SDKTeam_Red)
 END_SEND_TABLE()
 
 LINK_ENTITY_TO_CLASS( sdk_team_red, CSDKTeam_Red );
+
+// YELLOW TEAM
+//==================
+
+class CSDKTeam_Yellow : public CSDKTeam
+{
+	DECLARE_CLASS(CSDKTeam_Yellow, CSDKTeam);
+	DECLARE_SERVERCLASS();
+
+	virtual void Init(const char *pName, int iNumber)
+	{
+		BaseClass::Init(pName, iNumber);
+
+#if defined ( SDK_USE_PLAYERCLASSES )
+		int i = 0;
+		while (pszTeamYellowClasses[i] != NULL)
+		{
+			AddPlayerClass(pszTeamYellowClasses[i]);
+			i++;
+		}
+#endif 
+	}
+
+	virtual const char *GetTeamName(void) { return "#Teamname_Yellow"; }
+};
+
+IMPLEMENT_SERVERCLASS_ST(CSDKTeam_Yellow, DT_SDKTeam_Yellow)
+END_SEND_TABLE()
+
+LINK_ENTITY_TO_CLASS(sdk_team_Yellow, CSDKTeam_Yellow);
+
+
+// GREEN TEAM
+//==================
+
+class CSDKTeam_Green : public CSDKTeam
+{
+	DECLARE_CLASS(CSDKTeam_Green, CSDKTeam);
+	DECLARE_SERVERCLASS();
+
+	virtual void Init(const char *pName, int iNumber)
+	{
+		BaseClass::Init(pName, iNumber);
+
+#if defined ( SDK_USE_PLAYERCLASSES )
+		int i = 0;
+		while (pszTeamClasses[i] != NULL)
+		{
+			AddPlayerClass(pszTeamClasses[i]);
+			i++;
+		}
+#endif 
+	}
+
+	virtual const char *GetTeamName(void) { return "#Teamname_Green"; }
+};
+
+IMPLEMENT_SERVERCLASS_ST(CSDKTeam_Green, DT_SDKTeam_Green)
+END_SEND_TABLE()
+
+LINK_ENTITY_TO_CLASS(sdk_team_Green, CSDKTeam_Green);
+
 #endif
 
 // UNASSIGNED

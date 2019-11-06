@@ -48,6 +48,9 @@ private:
 #if defined ( SDK_USE_TEAMS )
 	CPanelAnimationVar( Color, m_clrBlueText, "TeamBlue", "153 204 255 255" );
 	CPanelAnimationVar( Color, m_clrRedText, "TeamRed", "255 64 64 255" );
+
+	CPanelAnimationVar(Color, m_clrYellowText, "TeamYellow", "153 204 255 255");
+	CPanelAnimationVar(Color, m_clrGreenText, "TeamGreen", "255 64 64 255");
 #endif
 
 };
@@ -170,6 +173,12 @@ Color SDKHudDeathNotice::GetTeamColor( int iTeamNumber )
 		break;
 	case SDK_TEAM_RED:
 		return m_clrRedText;
+		break;
+	case SDK_TEAM_YELLOW:
+		return m_clrYellowText;
+		break;
+	case SDK_TEAM_GREEN:
+		return m_clrGreenText;
 		break;
 #endif
 	case TEAM_UNASSIGNED:		
